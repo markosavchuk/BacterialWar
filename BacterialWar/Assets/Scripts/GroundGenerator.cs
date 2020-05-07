@@ -12,10 +12,10 @@ public class GroundGenerator : MonoBehaviour
     private Vector3 _startPos;
 
     [SerializeField]
-    private Transform BattleHexPrefab;
+    private GameObject BattleHexPrefab;
 
     [SerializeField]
-    private Transform FabricHexPrefab;
+    private GameObject FactoryHexPrefab;
 
     [SerializeField]
     private int GridWidth;
@@ -24,13 +24,15 @@ public class GroundGenerator : MonoBehaviour
     private int GridHeight;
 
     [SerializeField]
-    private int FabricHeight;
+    private int FactoryHeight;
 
     [SerializeField]
     private float Gap;  
  
     private void Start()
     {
+        MapManager.Instance.Hexs = new GameObject[GridHeight, GridWidth];
+
         CalculateGap();
         CalculateStartPosition();
         CreateGrid();
@@ -77,13 +79,23 @@ public class GroundGenerator : MonoBehaviour
         {
             for (int x = 0; x < GridWidth; x++)
             {
-                Transform hex = y < FabricHeight || y > GridHeight - FabricHeight - 1
-                                ? Instantiate(FabricHexPrefab) as Transform
-                                : Instantiate(BattleHexPrefab) as Transform;
+                var hexType = y < FactoryHeight || y > GridHeight - FactoryHeight - 1
+                    ? HexType.Factory
+                    : HexType.Battle;
 
-                hex.position = CalculateHexPosition(x, y);
-                hex.parent = this.transform;
-                hex.name = $"Hexagon[{x},{y}]";
+                var hexObject = hexType == HexType.Factory
+                    ? Instantiate(FactoryHexPrefab)
+                    : Instantiate(BattleHexPrefab);
+
+                hexObject.transform.position = CalculateHexPosition(x, y);
+                hexObject.transform.parent = this.transform;
+                hexObject.name = $"Hexagon[{y},{x}]";
+
+                var hexComponent = hexObject.AddComponent<HexComponent>() as HexComponent;
+                hexComponent.HexType = hexType;
+
+
+                MapManager.Instance.Hexs[y, x] = hexObject;
             }
         }
     }
