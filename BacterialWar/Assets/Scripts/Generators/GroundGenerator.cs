@@ -12,36 +12,39 @@ public class GroundGenerator : MonoBehaviour
     private Vector3 _startPos;
 
     [SerializeField]
-    private GameObject BattleHexPrefab;
+    private GameObject battleHexPrefab;
 
     [SerializeField]
-    private GameObject FactoryHexPrefab;
+    private GameObject factoryHexPrefab;
 
     [SerializeField]
-    private int GridWidth;
+    private int gridWidth;
 
     [SerializeField]
-    private int GridHeight;
+    private int gridHeight;
 
     [SerializeField]
-    private int FactoryHeight;
+    private int factoryHeight;
 
     [SerializeField]
-    private float Gap;  
+    private float gap;  
  
     private void Start()
     {
-        MapManager.Instance.Hexs = new GameObject[GridHeight, GridWidth];
+        MapManager.Instance.Hexs = new GameObject[gridWidth, gridHeight];
 
         CalculateGap();
         CalculateStartPosition();
         CreateGrid();
+
+        //todo move it to another place later
+        FactoryManager.Instance.CreateFactory(new Vector2Int(5,10));
     }
 
     private void CalculateGap()
     {
-        _hexWidthWithGap = _hexWidth * (1+Gap);
-        _hexHeightWithGap = _hexHeight * (1+Gap);
+        _hexWidthWithGap = _hexWidth * (1+gap);
+        _hexHeightWithGap = _hexHeight * (1+gap);
     }
 
     private void CalculateStartPosition()
@@ -50,13 +53,13 @@ public class GroundGenerator : MonoBehaviour
 
         float offsetX = centerPosition.x;
 
-        if (GridHeight / 2 % 2 != 0)
+        if (gridHeight / 2 % 2 != 0)
         {
             offsetX += _hexWidthWithGap / 2;
         }
 
-        float x = -_hexWidthWithGap * (GridWidth / 2) - offsetX;
-        float z = _hexHeightWithGap * 0.75f * (GridHeight / 2) - centerPosition.z;
+        float x = -_hexWidthWithGap * (gridWidth / 2) - offsetX;
+        float z = _hexHeightWithGap * 0.75f * (gridHeight / 2) - centerPosition.z;
 
         _startPos = new Vector3(x, centerPosition.y, z);
     }
@@ -75,27 +78,27 @@ public class GroundGenerator : MonoBehaviour
 
     private void CreateGrid()
     {
-        for (int y = 0; y < GridHeight; y++)
+        for (int y = 0; y < gridHeight; y++)
         {
-            for (int x = 0; x < GridWidth; x++)
+            for (int x = 0; x < gridWidth; x++)
             {
-                var hexType = y < FactoryHeight || y > GridHeight - FactoryHeight - 1
+                var hexType = y < factoryHeight || y > gridHeight - factoryHeight - 1
                     ? HexType.Factory
                     : HexType.Battle;
 
                 var hexObject = hexType == HexType.Factory
-                    ? Instantiate(FactoryHexPrefab)
-                    : Instantiate(BattleHexPrefab);
+                    ? Instantiate(factoryHexPrefab)
+                    : Instantiate(battleHexPrefab);
 
                 hexObject.transform.position = CalculateHexPosition(x, y);
                 hexObject.transform.parent = this.transform;
-                hexObject.name = $"Hexagon[{y},{x}]";
+                hexObject.name = $"Hexagon[{x},{y}]";
 
                 var hexComponent = hexObject.AddComponent<HexComponent>() as HexComponent;
+
                 hexComponent.HexType = hexType;
 
-
-                MapManager.Instance.Hexs[y, x] = hexObject;
+                MapManager.Instance.Hexs[x, y] = hexObject;
             }
         }
     }
