@@ -24,7 +24,8 @@ public class NavigationManager : MonoBehaviour
     #endregion
 
     //todo move this to another place
-    private float _speed = 3;
+    private float _speed = 3f;
+    private Vector3 _mobOffset = new Vector3(0, 0.5f, 0);
 
     private List<GameObject> _movingObjects = new List<GameObject>();
 
@@ -34,12 +35,29 @@ public class NavigationManager : MonoBehaviour
     }
 
     public Vector2Int FindNewPlaceForMob(Vector2Int oldPlace)
-    {
-        //todo check if there available place for mob
-        //todo find place only with proper type
-        //todo improve searching
+    {       
+        var delta = oldPlace.y % 2 == 0 ? -1 : 1;
+        var path1 = new Vector2Int(oldPlace.x, oldPlace.y - 1);
+        var path2 = new Vector2Int(oldPlace.x + delta, oldPlace.y - 1);
 
-        return new Vector2Int(oldPlace.x, oldPlace.y - 1);
+        if (IsAvailable(path1, HexType.Battle) && IsAvailable(path2, HexType.Battle))
+        {
+            var randomPath = UnityEngine.Random.Range(0, 2);
+            return randomPath == 0 ? path1 : path2;
+            
+        }
+        else if (IsAvailable(path1, HexType.Battle))
+        {
+            return path1;
+        }
+        else if (IsAvailable(path2, HexType.Battle))
+        {
+            return path2;
+        }
+        else
+        {
+            return oldPlace;
+        }
     }
 
     public bool PutGameObjectOnHex(GameObject gameObject, Vector2Int position)
@@ -85,7 +103,7 @@ public class NavigationManager : MonoBehaviour
         else
         {
             var newGlobalPosition = MapManager.Instance.Hexs[position.x, position.y].transform.position;
-            gameObject.transform.position = newGlobalPosition;
+            gameObject.transform.position = newGlobalPosition + ObjectOffset(gameObject);
         }
 
         // Set ObjectAbove in hexComponent
@@ -112,7 +130,6 @@ public class NavigationManager : MonoBehaviour
             return false;
         }
 
-        //todo fix crash which heppens here sometimes
         if (!(MapManager.Instance.Hexs[position.x, position.y].GetComponent<HexComponent>() is HexComponent hexComponent))
         {
             return false;
@@ -140,11 +157,11 @@ public class NavigationManager : MonoBehaviour
         {
             var mapObjectComponent = gameObject.GetComponent<MapObjectComponent>();
             var mapPosition = mapObjectComponent.MapPosition;
-            var targetPosition = MapManager.Instance.Hexs[mapPosition.x, mapPosition.y].transform.position;
+            var targetPosition = MapManager.Instance.Hexs[mapPosition.x, mapPosition.y].transform.position + ObjectOffset(gameObject);
 
             if (Vector3.Distance(gameObject.transform.position, targetPosition) < 0.2f)
             {
-                gameObject.transform.position = targetPosition;
+                gameObject.transform.position = targetPosition ;
                 mapObjectComponent.IsInMotion = false;
             }
             else
@@ -155,5 +172,17 @@ public class NavigationManager : MonoBehaviour
         }
 
         _movingObjects.RemoveAll(g => !g.GetComponent<MapObjectComponent>().IsInMotion);
+    }
+
+    private Vector3 ObjectOffset(GameObject gameObject)
+    {
+        if (gameObject.GetComponent<MobComponent>() != null)
+        {
+            return _mobOffset;
+        }
+        else
+        {
+            return Vector3.zero;
+        }
     }
 }

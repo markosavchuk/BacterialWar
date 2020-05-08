@@ -9,7 +9,7 @@ public class FactorySimulator : MonoBehaviour
 
     //todo move this value to another place;
     [SerializeField]
-    private float reproducablePeriod = 1f;
+    private float reproducablePeriod;
 
     private float _time = 0f;
     private Vector2Int _mapPosition;
