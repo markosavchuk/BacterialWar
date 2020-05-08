@@ -95,25 +95,25 @@ public class NavigationManager : MonoBehaviour
         mapObjectComponent.MapPosition = position;
 
         // Set global position to GameObject or start animation moving        
-        if (oldPosition != Vector2Int.zero)
+        if (gameObject.transform.position != Vector3.zero)
         {
             mapObjectComponent.IsInMotion = true;
             _movingObjects.Add(gameObject);
         }
         else
         {
-            var newGlobalPosition = MapManager.Instance.Hexs[position.x, position.y].transform.position;
+            var newGlobalPosition = MapManager.Instance.Hex(position).transform.position;
             gameObject.transform.position = newGlobalPosition + ObjectOffset(gameObject);
         }
 
         // Set ObjectAbove in hexComponent
         if (oldPosition != Vector2Int.zero &&
-            MapManager.Instance.Hexs[oldPosition.x, oldPosition.y].GetComponent<HexComponent>() is HexComponent oldHexComponent)
+            MapManager.Instance.Hex(oldPosition).GetComponent<HexComponent>() is HexComponent oldHexComponent)
         {
             oldHexComponent.ObjectAbove = null;
         }
 
-        if (MapManager.Instance.Hexs[position.x, position.y].GetComponent<HexComponent>() is HexComponent hexComponent)
+        if (MapManager.Instance.Hex(position).GetComponent<HexComponent>() is HexComponent hexComponent)
         {
             hexComponent.ObjectAbove = gameObject;
         }        
@@ -130,7 +130,7 @@ public class NavigationManager : MonoBehaviour
             return false;
         }
 
-        if (!(MapManager.Instance.Hexs[position.x, position.y].GetComponent<HexComponent>() is HexComponent hexComponent))
+        if (!(MapManager.Instance.Hex(position).GetComponent<HexComponent>() is HexComponent hexComponent))
         {
             return false;
         }
@@ -157,7 +157,7 @@ public class NavigationManager : MonoBehaviour
         {
             var mapObjectComponent = gameObject.GetComponent<MapObjectComponent>();
             var mapPosition = mapObjectComponent.MapPosition;
-            var targetPosition = MapManager.Instance.Hexs[mapPosition.x, mapPosition.y].transform.position + ObjectOffset(gameObject);
+            var targetPosition = MapManager.Instance.Hex(mapPosition).transform.position + ObjectOffset(gameObject);
 
             if (Vector3.Distance(gameObject.transform.position, targetPosition) < 0.2f)
             {

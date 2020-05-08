@@ -44,7 +44,8 @@ public class FactorySimulator : MonoBehaviour
         var newMob = Instantiate(mob);
         var mobComponent = newMob.AddComponent<MobComponent>();
 
-        //todo make mob start position in factory so it will move from factory
+        newMob.transform.position = MapManager.Instance.Hex(_mapPosition).transform.position;
+
         NavigationManager.Instance.PutGameObjectOnHex(newMob, mobPosition);
     }
 }
