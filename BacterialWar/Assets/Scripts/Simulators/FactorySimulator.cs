@@ -43,7 +43,10 @@ public class FactorySimulator : MonoBehaviour
             _mapObjectComponent.MapPosition,
             _mapObjectComponent.Player);
 
-        if (!NavigationManager.Instance.IsAvailable(mobPosition, HexType.Battle))
+        if (!NavigationManager.Instance.IsAvailable(
+                mobPosition,
+                HexType.Battle,
+                _mapObjectComponent.Player))
         {
             return;
         }

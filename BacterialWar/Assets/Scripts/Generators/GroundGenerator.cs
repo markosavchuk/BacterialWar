@@ -20,6 +20,7 @@ public class GroundGenerator : MonoBehaviour
     [SerializeField]
     private int gridWidth;
 
+    //todo make sure it's gridHeight%2==0
     [SerializeField]
     private int gridHeight;
 
@@ -106,15 +107,9 @@ public class GroundGenerator : MonoBehaviour
     private void CreateFactories()
     {
         FactoryManager.Instance.CreateFactory(new Vector2Int(1, 10), Player.Player1);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(3, 10), Player.Player1);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(5, 10), Player.Player1);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(7, 10), Player.Player1);
         FactoryManager.Instance.CreateFactory(new Vector2Int(9, 10), Player.Player1);
 
-        FactoryManager.Instance.CreateFactory(new Vector2Int(1, 1), Player.Player2);
         FactoryManager.Instance.CreateFactory(new Vector2Int(3, 1), Player.Player2);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(5, 1), Player.Player2);
         FactoryManager.Instance.CreateFactory(new Vector2Int(7, 1), Player.Player2);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(9, 1), Player.Player2);
     }
 }
