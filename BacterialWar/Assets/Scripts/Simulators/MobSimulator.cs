@@ -9,13 +9,11 @@ public class MobSimulator : MonoBehaviour
     private float _movePeriod = 0f;
 
     private float _time = 0f;
-    private Vector2Int _mapPosition;
     private MapObjectComponent _mapObjectComponent;
 
     private void Start()
     {
         _mapObjectComponent = GetComponent<MapObjectComponent>();
-        _mapPosition = _mapObjectComponent.MapPosition;
     }
 
     void Update()
@@ -37,7 +35,10 @@ public class MobSimulator : MonoBehaviour
             return;
         }
 
-        _mapPosition = NavigationManager.Instance.FindNewPlaceForMob(_mapPosition);
-        NavigationManager.Instance.PutGameObjectOnHex(gameObject, _mapPosition);       
+        var newPosition = NavigationManager.Instance.FindNewPlaceForMob(
+            _mapObjectComponent.MapPosition,
+            _mapObjectComponent.Player);
+
+        NavigationManager.Instance.PutGameObjectOnHex(gameObject, newPosition);       
     }
 }

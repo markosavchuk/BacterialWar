@@ -23,10 +23,15 @@ public class FactoryManager : MonoBehaviour
     [SerializeField]
     private GameObject factoryPrefab;    
 
-    public GameObject CreateFactory(Vector2Int position)
+    public GameObject CreateFactory(Vector2Int position, Player player)
     {        
         var newFactory = Instantiate(factoryPrefab);
+        newFactory.transform.parent = this.transform;
+
         var factoryComponent = newFactory.AddComponent<FactoryComponent>();
+
+        var mapOpjectCompontn = newFactory.AddComponent<MapObjectComponent>();
+        mapOpjectCompontn.Player = player;
 
         NavigationManager.Instance.PutGameObjectOnHex(newFactory, position);
 

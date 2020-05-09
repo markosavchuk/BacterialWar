@@ -34,11 +34,15 @@ public class NavigationManager : MonoBehaviour
         MoveObjects();
     }
 
-    public Vector2Int FindNewPlaceForMob(Vector2Int oldPlace)
-    {       
+    public Vector2Int FindNewPlaceForMob(Vector2Int oldPlace, Player player)
+    {
+        Debug.Log(player);
+
         var delta = oldPlace.y % 2 == 0 ? -1 : 1;
-        var path1 = new Vector2Int(oldPlace.x, oldPlace.y - 1);
-        var path2 = new Vector2Int(oldPlace.x + delta, oldPlace.y - 1);
+        var direction = player == Player.Player1 ? 1 : -1;
+
+        var path1 = new Vector2Int(oldPlace.x, oldPlace.y - 1 * direction);
+        var path2 = new Vector2Int(oldPlace.x + delta, oldPlace.y - 1 * direction);
 
         if (IsAvailable(path1, HexType.Battle) && IsAvailable(path2, HexType.Battle))
         {

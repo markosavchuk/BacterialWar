@@ -7,18 +7,22 @@ public class FactorySimulator : MonoBehaviour
     [SerializeField]
     private GameObject mob;
 
+    [SerializeField]
+    private Transform mobsParant;
+
     //todo move this value to another place;
     [SerializeField]
     private float reproducablePeriod;
 
     private float _time = 0f;
-    private Vector2Int _mapPosition;
+    private MapObjectComponent _mapObjectComponent;
 
     private void Start()
     {
-        if (GetComponent<MapObjectComponent>() is MapObjectComponent mapObjectComponent){
-            _mapPosition = mapObjectComponent.MapPosition;
-        }
+        _mapObjectComponent = GetComponent<MapObjectComponent>();
+
+        //todo find better way
+        mobsParant = GameObject.Find("Mobs")?.transform;
     }
 
     void Update()
@@ -35,16 +39,29 @@ public class FactorySimulator : MonoBehaviour
 
     private void MakeNewMob()
     {
-        var mobPosition = NavigationManager.Instance.FindNewPlaceForMob(_mapPosition);
+        var mobPosition = NavigationManager.Instance.FindNewPlaceForMob(
+            _mapObjectComponent.MapPosition,
+            _mapObjectComponent.Player);
+
         if (!NavigationManager.Instance.IsAvailable(mobPosition, HexType.Battle))
         {
             return;
         }
 
         var newMob = Instantiate(mob);
+        newMob.transform.parent = mobsParant.transform;
+
+        var mapObjectComponent = newMob.AddComponent<MapObjectComponent>();
+        mapObjectComponent.Player = _mapObjectComponent.Player;
+
+        newMob.GetComponent<MeshRenderer>().material.color =
+            _mapObjectComponent.Player == Player.Player1
+                ? Color.white
+                : Color.black;
+
         var mobComponent = newMob.AddComponent<MobComponent>();
 
-        newMob.transform.position = MapManager.Instance.Hex(_mapPosition).transform.position;
+        newMob.transform.position = MapManager.Instance.Hex(_mapObjectComponent.MapPosition).transform.position;
 
         NavigationManager.Instance.PutGameObjectOnHex(newMob, mobPosition);
     }
