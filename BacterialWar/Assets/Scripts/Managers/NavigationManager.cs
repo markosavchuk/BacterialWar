@@ -164,6 +164,12 @@ public class NavigationManager : MonoBehaviour
     {
         foreach (var gameObject in _movingObjects)
         {
+            // Object is already destroyed.
+            if (gameObject == null)
+            {
+                continue;
+            }
+
             var mapObjectComponent = gameObject.GetComponent<MapObjectComponent>();
             var mapPosition = mapObjectComponent.MapPosition;
             var targetPosition = MapManager.Instance.Hex(mapPosition).transform.position + ObjectOffset(gameObject);
@@ -180,7 +186,7 @@ public class NavigationManager : MonoBehaviour
             }
         }
 
-        _movingObjects.RemoveAll(g => !g.GetComponent<MapObjectComponent>().IsInMotion);
+        _movingObjects.RemoveAll(g => g == null || !g.GetComponent<MapObjectComponent>().IsInMotion);
     }
 
     private Vector3 ObjectOffset(GameObject gameObject)

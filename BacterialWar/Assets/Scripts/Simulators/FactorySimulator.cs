@@ -53,6 +53,7 @@ public class FactorySimulator : MonoBehaviour
 
         var newMob = Instantiate(mob);
         newMob.transform.parent = mobsParant.transform;
+        newMob.tag = TagConstants.Mob;
 
         var mapObjectComponent = newMob.AddComponent<MapObjectComponent>();
         mapObjectComponent.Player = _mapObjectComponent.Player;
