@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//todo refactor solution to not attach this script manually to all factories
 public class FactorySimulator : MonoBehaviour
 {
     [SerializeField]
@@ -12,7 +13,7 @@ public class FactorySimulator : MonoBehaviour
 
     //todo move this value to another place;
     [SerializeField]
-    private float reproducablePeriod;
+    private float reproducablePeriod = 3;
 
     private float _time = 0f;
     private float _reproducableTime;

@@ -151,7 +151,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc97364d9330f42e2b32a6b5f5d66499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  factoryPrefab: {fileID: 5717051833918957599, guid: 01e62ac8a81ba44009948a45a8800f6d,
+  factory1: {fileID: 5717051833918957599, guid: 01e62ac8a81ba44009948a45a8800f6d,
+    type: 3}
+  factory2: {fileID: 6600659531888419040, guid: 7694ddac1ec39483f88373726c55e149,
+    type: 3}
+  factory3: {fileID: 3213952627125746843, guid: 6f318b928a46948b6a2936935d2272b0,
+    type: 3}
+  factory4: {fileID: 1240827989271035031, guid: 3f694fc4444824b2fb595d8408cb8aa0,
     type: 3}
 --- !u!4 &117829899
 Transform:

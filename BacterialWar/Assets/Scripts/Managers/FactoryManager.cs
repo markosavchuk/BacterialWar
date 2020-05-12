@@ -5,7 +5,7 @@ public class FactoryManager : MonoBehaviour
 {
     #region Singleton logic    
 
-    public static FactoryManager Instance { get; private set; }    
+    public static FactoryManager Instance { get; private set; }
    
     private void Awake()
     {
@@ -21,10 +21,21 @@ public class FactoryManager : MonoBehaviour
     #endregion
 
     [SerializeField]
-    private GameObject factoryPrefab;    
+    public GameObject factory1;
 
-    public GameObject CreateFactory(Vector2Int position, Player player)
-    {        
+    [SerializeField]
+    public GameObject factory2;
+
+    [SerializeField]
+    public GameObject factory3;
+
+    public Vector2Int SelectedPosition;
+    
+    public GameObject CreateFactory(Vector2Int position, Player player, GameObject factoryPrefab)
+    {
+        //todo refactor solution with factoryPrefabs
+        //todo make it possible to build factories on the second (and any other) row
+
         var newFactory = Instantiate(factoryPrefab);
         newFactory.transform.parent = this.transform;
 
