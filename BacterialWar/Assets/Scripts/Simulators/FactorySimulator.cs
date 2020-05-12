@@ -15,11 +15,16 @@ public class FactorySimulator : MonoBehaviour
     private float reproducablePeriod;
 
     private float _time = 0f;
+    private float _reproducableTime;
     private MapObjectComponent _mapObjectComponent;
+    private FactoryComponent _factoryComponent;
 
     private void Start()
     {
         _mapObjectComponent = GetComponent<MapObjectComponent>();
+        _factoryComponent = GetComponent<FactoryComponent>();
+
+        _reproducableTime = reproducablePeriod * Settings.StepTime;
 
         //todo find better way
         mobsParant = GameObject.Find("Mobs")?.transform;
@@ -29,9 +34,9 @@ public class FactorySimulator : MonoBehaviour
     {
         _time += Time.deltaTime;
 
-        if (_time >= reproducablePeriod)
+        if (_time >= _reproducableTime)
         {
-            _time -= reproducablePeriod;
+            _time -= _reproducableTime;
 
             MakeNewMob();
         }
@@ -39,14 +44,7 @@ public class FactorySimulator : MonoBehaviour
 
     private void MakeNewMob()
     {
-        var mobPosition = NavigationManager.Instance.FindNewPlaceForMob(
-            _mapObjectComponent.MapPosition,
-            _mapObjectComponent.Player);
-
-        if (!NavigationManager.Instance.IsAvailable(
-                mobPosition,
-                HexType.Battle,
-                _mapObjectComponent.Player))
+        if (_factoryComponent.MobAbove != null)
         {
             return;
         }
@@ -57,6 +55,8 @@ public class FactorySimulator : MonoBehaviour
 
         var mapObjectComponent = newMob.AddComponent<MapObjectComponent>();
         mapObjectComponent.Player = _mapObjectComponent.Player;
+        mapObjectComponent.CanMove = true;
+        mapObjectComponent.MapPosition = _mapObjectComponent.MapPosition;
 
         newMob.GetComponent<MeshRenderer>().material.color =
             _mapObjectComponent.Player == Player.Player1
@@ -64,9 +64,10 @@ public class FactorySimulator : MonoBehaviour
                 : Color.black;
 
         var mobComponent = newMob.AddComponent<MobComponent>();
+        mobComponent.Damage = _mapObjectComponent.Player == Player.Player1 ? 25 : 10;
 
         newMob.transform.position = MapManager.Instance.Hex(_mapObjectComponent.MapPosition).transform.position;
 
-        NavigationManager.Instance.PutGameObjectOnHex(newMob, mobPosition);
+        _factoryComponent.MobAbove = newMob;
     }
 }

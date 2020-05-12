@@ -25,10 +25,6 @@ public class BattleManager : MonoBehaviour
     }
     #endregion
 
-    //todo move this value to another place;
-    [SerializeField]
-    private float battlePeriod;
-
     private float _time = 0f;
 
     private int _mapLengthX;
@@ -45,9 +41,9 @@ public class BattleManager : MonoBehaviour
         //todo find better way to track it
         _time += Time.deltaTime;
 
-        if (_time >= battlePeriod)
+        if (_time >= Settings.StepTime)
         {
-            _time -= battlePeriod;
+            _time -= Settings.StepTime;
 
             ExecuteRound();
         }
@@ -68,27 +64,30 @@ public class BattleManager : MonoBehaviour
             var mobComponent = mobObject.GetComponent<MobComponent>();
             var mapObjComponent = mobObject.GetComponent<MapObjectComponent>();
 
+            mapObjComponent.CanMove = true;
+
             if (mapObjComponent.IsInMotion)
             {
                 continue;
             }
 
-            foreach (var position in GetRichArea(mobObject))
-            {
-                if (mobMatrix[position.x, position.y] != null)
-                {
-                    var enemyMapObjComponent = mobMatrix[position.x, position.y].GetComponent<MapObjectComponent>();
-                    var enemyMobComponent = mobMatrix[position.x, position.y].GetComponent<MobComponent>();
+            var richArea = GetRichArea(mobObject);
+            var richMobsObjects = richArea
+                .Where(p => p != null)
+                .Select(p => mobMatrix[p.x, p.y])
+                .Where(o => o != null);
 
-                    if (enemyMapObjComponent.Player != mapObjComponent.Player)
-                    {
-                        var isAliva = enemyMobComponent.Attack(mobComponent);
-                        if (!isAliva)
-                        {
-                            RemoveMobFromMap(mobMatrix, mobMatrix[position.x, position.y]);
-                        }
-                    }
+            var victimMob = ChooseVictim(richMobsObjects, mapObjComponent.Player);
+
+            if (victimMob != null)
+            {
+                var isAlive = mobComponent.Attacked(victimMob.GetComponent<MobComponent>());
+                if (!isAlive)
+                {
+                    RemoveMobFromMap(mobMatrix, victimMob);
                 }
+
+                mapObjComponent.CanMove = false;
             }
         }
     }
@@ -164,6 +163,24 @@ public class BattleManager : MonoBehaviour
         }
 
         return listOfPositions;
+    }
+
+    private GameObject ChooseVictim(IEnumerable<GameObject> mobs, Player player)
+    {
+        var enemies = mobs
+            .Where(m => m.GetComponent<MapObjectComponent>().Player != player);
+
+        if (enemies.Any())
+        {
+            // Choose the one who has the lower health.
+            return enemies.Aggregate((m1, m2) =>
+                m1.GetComponent<MobComponent>().Health <
+                m2.GetComponent<MobComponent>().Health ? m1 : m2);
+        }
+        else
+        {
+            return null;
+        }
     }
 
     private void RemoveMobFromMap(GameObject[,] mobMatrix, GameObject gameObject)

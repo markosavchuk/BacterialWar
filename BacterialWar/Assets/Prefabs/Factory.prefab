@@ -93,5 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mob: {fileID: 5566804217179120310, guid: d684f866b53854db48850b0150bf23e9, type: 3}
+  attackRay: {fileID: 4451395016464769478, guid: 171877bf870ca4a61b7f9aa6f5669c62,
+    type: 3}
   mobsParant: {fileID: 0}
-  reproducablePeriod: 1
+  reproducablePeriod: 3

@@ -24,10 +24,17 @@ public class NavigationManager : MonoBehaviour
     #endregion
 
     //todo move this to another place
-    private float _speed = 3f;
+    private float _speedK = 4f;
+
+    private float _speed;
     private Vector3 _mobOffset = new Vector3(0, 0.5f, 0);
 
     private List<GameObject> _movingObjects = new List<GameObject>();
+
+    private void Start()
+    {
+        _speed = _speedK * Settings.StepTime;
+    }
 
     private void Update()
     {
@@ -105,11 +112,22 @@ public class NavigationManager : MonoBehaviour
             gameObject.transform.position = newGlobalPosition + ObjectOffset(gameObject);
         }
 
-        // Set ObjectAbove in hexComponent
-        if (oldPosition != Vector2Int.zero &&
-            MapManager.Instance.Hex(oldPosition).GetComponent<HexComponent>() is HexComponent oldHexComponent)
+        // Set ObjectAbove in hexComponent or Factory
+        if (oldPosition != Vector2Int.zero)
         {
-            oldHexComponent.ObjectAbove = null;
+            var oldHexComponent = MapManager.Instance.Hex(oldPosition).GetComponent<HexComponent>();
+            if (oldHexComponent.HexType == HexType.Factory)
+            {
+                if (oldHexComponent.ObjectAbove!=null &&
+                    oldHexComponent.ObjectAbove.GetComponent<FactoryComponent>() is FactoryComponent factoryComponent)
+                {
+                    factoryComponent.MobAbove = null;
+                }
+            }
+            else if (oldHexComponent.HexType == HexType.Battle)
+            {
+                oldHexComponent.ObjectAbove = null;
+            }
         }
 
         if (MapManager.Instance.Hex(position).GetComponent<HexComponent>() is HexComponent hexComponent)

@@ -11,11 +11,10 @@ public class MobComponent : MonoBehaviour
     /// <summary>
     /// </summary>
     /// <param name="enemy"></param>
-    /// <returns>Returns if mob still alive.</returns>
-    public bool Attack(MobComponent enemy)
+    /// <returns>Returns if attacked mob still alive.</returns>
+    public bool Attacked(MobComponent enemy)
     {
-        Health -= enemy.Damage;      
-
-        return Health > 0;
+        enemy.Health -= Damage;
+        return enemy.Health > 0;
     }
 }

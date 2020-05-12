@@ -107,11 +107,17 @@ public class GroundGenerator : MonoBehaviour
     private void CreateFactories()
     {
         FactoryManager.Instance.CreateFactory(new Vector2Int(8, 10), Player.Player1);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(7, 10), Player.Player1);
         FactoryManager.Instance.CreateFactory(new Vector2Int(5, 10), Player.Player1);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(4, 10), Player.Player1);
         FactoryManager.Instance.CreateFactory(new Vector2Int(2, 10), Player.Player1);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(0, 10), Player.Player1);
 
+        FactoryManager.Instance.CreateFactory(new Vector2Int(9, 1), Player.Player2);
         FactoryManager.Instance.CreateFactory(new Vector2Int(7, 1), Player.Player2);
         FactoryManager.Instance.CreateFactory(new Vector2Int(4, 1), Player.Player2);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(5, 1), Player.Player2);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(2, 1), Player.Player2);
         FactoryManager.Instance.CreateFactory(new Vector2Int(1, 1), Player.Player2);
     }
 }
