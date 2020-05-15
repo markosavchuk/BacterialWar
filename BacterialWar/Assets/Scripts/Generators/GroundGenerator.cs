@@ -121,8 +121,8 @@ public class GroundGenerator : MonoBehaviour
     private void AddStartObjects()
     {
         // Add Crystals.
-        Instantiate(crystal1Prefab, MapManager.Instance.Hexs[4, 0].transform);
-        Instantiate(crystal2Prefab, MapManager.Instance.Hexs[4, 15].transform);
+        Instantiate(crystal1Prefab, MapManager.Instance.Hexs[3, 0].transform);
+        Instantiate(crystal2Prefab, MapManager.Instance.Hexs[3, 15].transform);
 
         // Add factories.
         var manager = FactoryManager.Instance;
@@ -134,10 +134,10 @@ public class GroundGenerator : MonoBehaviour
         FactoryManager.Instance.CreateFactory(new Vector2Int(4, 14), Player.Player1, manager.factory2Level2);
         FactoryManager.Instance.CreateFactory(new Vector2Int(5, 14), Player.Player1, manager.factory2Level3);
         FactoryManager.Instance.CreateFactory(new Vector2Int(6, 14), Player.Player1, manager.factory3Level1);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(7, 14), Player.Player1, manager.factory3Level2Player1);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(8, 14), Player.Player1, manager.factory3Level3Player1);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(0, 15), Player.Player1, manager.factory3Level2Player1);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(1, 15), Player.Player1, manager.factory3Level3Player1);
         FactoryManager.Instance.CreateFactory(new Vector2Int(2, 15), Player.Player1, manager.factory4Level1);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(3, 15), Player.Player1, manager.factory4Level2);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(4, 15), Player.Player1, manager.factory4Level2);
         FactoryManager.Instance.CreateFactory(new Vector2Int(5, 15), Player.Player1, manager.factory4Level3);
 
         FactoryManager.Instance.CreateFactory(new Vector2Int(0, 1), Player.Player2, manager.factory1Level1);
@@ -147,10 +147,10 @@ public class GroundGenerator : MonoBehaviour
         FactoryManager.Instance.CreateFactory(new Vector2Int(4, 1), Player.Player2, manager.factory2Level2);
         FactoryManager.Instance.CreateFactory(new Vector2Int(5, 1), Player.Player2, manager.factory2Level3);
         FactoryManager.Instance.CreateFactory(new Vector2Int(6, 1), Player.Player2, manager.factory3Level1);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(7, 1), Player.Player2, manager.factory3Level2Player2);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(8, 1), Player.Player2, manager.factory3Level3Player2);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(3, 0), Player.Player2, manager.factory4Level1);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(0, 0), Player.Player2, manager.factory3Level2Player2);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(1, 0), Player.Player2, manager.factory3Level3Player2);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(2, 0), Player.Player2, manager.factory4Level1);
         FactoryManager.Instance.CreateFactory(new Vector2Int(4, 0), Player.Player2, manager.factory4Level2);
-        FactoryManager.Instance.CreateFactory(new Vector2Int(6, 0), Player.Player2, manager.factory4Level3);
+        FactoryManager.Instance.CreateFactory(new Vector2Int(5, 0), Player.Player2, manager.factory4Level3);
     }
 }

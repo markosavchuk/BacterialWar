@@ -948,7 +948,7 @@ MonoBehaviour:
     type: 3}
   crystal2Prefab: {fileID: 4313284915193839922, guid: 6e631899360964736897fca3e0d51827,
     type: 3}
-  gridWidth: 9
+  gridWidth: 7
   gridHeight: 16
   factoryHeight: 2
   gap: 0.1
@@ -1259,7 +1259,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1742922484
 RectTransform:
   m_ObjectHideFlags: 0
