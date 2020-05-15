@@ -21,15 +21,46 @@ public class FactoryManager : MonoBehaviour
     #endregion
 
     [SerializeField]
-    public GameObject factory1;
+    public GameObject factory1Level1;
 
     [SerializeField]
-    public GameObject factory2;
+    public GameObject factory1Level2;
 
     [SerializeField]
-    public GameObject factory3;
+    public GameObject factory1Level3;
 
-    public Vector2Int SelectedPosition;
+    [SerializeField]
+    public GameObject factory2Level1;
+
+    [SerializeField]
+    public GameObject factory2Level2;
+
+    [SerializeField]
+    public GameObject factory2Level3;
+
+    [SerializeField]
+    public GameObject factory3Level1;
+
+    [SerializeField]
+    public GameObject factory3Level2Player1;
+
+    [SerializeField]
+    public GameObject factory3Level2Player2;
+
+    [SerializeField]
+    public GameObject factory3Level3Player1;
+
+    [SerializeField]
+    public GameObject factory3Level3Player2;
+
+    [SerializeField]
+    public GameObject factory4Level1;
+
+    [SerializeField]
+    public GameObject factory4Level2;
+
+    [SerializeField]
+    public GameObject factory4Level3;
     
     public GameObject CreateFactory(Vector2Int position, Player player, GameObject factoryPrefab)
     {

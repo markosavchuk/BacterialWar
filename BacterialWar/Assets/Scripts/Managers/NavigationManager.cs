@@ -28,6 +28,7 @@ public class NavigationManager : MonoBehaviour
 
     private float _speed;
     private Vector3 _mobOffset = new Vector3(0, 0.5f, 0);
+    private Vector3 _factoryOffset = new Vector3(0, 0.24f, 0);
 
     private List<GameObject> _movingObjects = new List<GameObject>();
 
@@ -142,7 +143,7 @@ public class NavigationManager : MonoBehaviour
     {
         // Check if Map has this Hex position
         if (position.x<0 || MapManager.Instance.Hexs.GetLength(0) <= position.x ||
-            position.y<=0 || MapManager.Instance.Hexs.GetLength(1) <= position.y)
+            position.y<0 || MapManager.Instance.Hexs.GetLength(1) <= position.y)
         {
             return false;
         }
@@ -212,6 +213,10 @@ public class NavigationManager : MonoBehaviour
         if (gameObject.GetComponent<MobComponent>() != null)
         {
             return _mobOffset;
+        }
+        else if (gameObject.GetComponent<FactoryComponent>() != null)
+        {
+            return _factoryOffset;
         }
         else
         {

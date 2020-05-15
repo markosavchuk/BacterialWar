@@ -6,9 +6,12 @@ using UnityEngine;
 public class FactorySimulator : MonoBehaviour
 {
     [SerializeField]
-    private GameObject mob;
+    private GameObject mob1;
 
     [SerializeField]
+    private GameObject mob2;
+
+    //[SerializeField]
     private Transform mobsParant;
 
     //todo move this value to another place;
@@ -50,7 +53,7 @@ public class FactorySimulator : MonoBehaviour
             return;
         }
 
-        var newMob = Instantiate(mob);
+        var newMob = Instantiate(_mapObjectComponent.Player == Player.Player1 ? mob1 : mob2);
         newMob.transform.parent = mobsParant.transform;
         newMob.tag = TagConstants.Mob;
 
@@ -59,10 +62,10 @@ public class FactorySimulator : MonoBehaviour
         mapObjectComponent.CanMove = true;
         mapObjectComponent.MapPosition = _mapObjectComponent.MapPosition;
 
-        newMob.GetComponent<MeshRenderer>().material.color =
+        /*newMob.GetComponent<MeshRenderer>().material.color =
             _mapObjectComponent.Player == Player.Player1
                 ? Color.white
-                : Color.black;
+                : Color.black;*/
 
         var mobComponent = newMob.AddComponent<MobComponent>();
         mobComponent.Damage = _mapObjectComponent.Player == Player.Player1 ? 25 : 10;
