@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//todo rename it to something like MobMovement
 public class MobSimulator : MonoBehaviour
 {
     private MapObjectComponent _mapObjectComponent;

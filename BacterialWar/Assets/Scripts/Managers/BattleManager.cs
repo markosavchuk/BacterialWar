@@ -5,26 +5,9 @@ using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 
-public class BattleManager : MonoBehaviour
+//todo split a bit or make regions at least
+public class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
-    //todo make helper class for it
-    #region Singleton logic    
-
-    public static BattleManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-    #endregion
-
     private float _time = 0f;
 
     private int _mapLengthX;
@@ -183,6 +166,7 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    //todo move it somewhere and make it generic for any map object
     private void RemoveMobFromMap(GameObject[,] mobMatrix, GameObject gameObject)
     {
         var position = gameObject.GetComponent<MapObjectComponent>().MapPosition;

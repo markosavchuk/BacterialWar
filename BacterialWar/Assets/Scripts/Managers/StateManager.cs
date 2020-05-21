@@ -1,26 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-public class StateManager : MonoBehaviour
+public class StateManager : SingletonMonoBehaviour<StateManager>
 {
-    //todo make helper class for it
-    #region Singleton logic    
-
-    public static StateManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-    #endregion
-
     [SerializeField]
     private float preparationTime;
 

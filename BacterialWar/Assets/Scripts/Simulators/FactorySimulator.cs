@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //todo refactor solution to not attach this script manually to all factories
+//todo rename it
 public class FactorySimulator : MonoBehaviour
 {
     [SerializeField]

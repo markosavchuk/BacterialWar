@@ -1,25 +1,8 @@
 ﻿using System;
 using UnityEngine;
 
-public class FactoryManager : MonoBehaviour
+public class FactoryManager : SingletonMonoBehaviour<FactoryManager>
 {
-    #region Singleton logic    
-
-    public static FactoryManager Instance { get; private set; }
-   
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-    #endregion
-
     [SerializeField]
     public GameObject factory1Level1;
 

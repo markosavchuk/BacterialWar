@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+//todo make it base for all other map objects
 public class MapObjectComponent : MonoBehaviour
 {
     public Vector2Int MapPosition;

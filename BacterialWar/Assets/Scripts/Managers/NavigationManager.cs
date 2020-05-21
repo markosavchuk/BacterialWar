@@ -3,26 +3,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 
-public class NavigationManager : MonoBehaviour
+//todo split and refator it
+public class NavigationManager : SingletonMonoBehaviour<NavigationManager>
 {
-    //todo make helper class for it
-    #region Singleton logic    
-
-    public static NavigationManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
-    }
-    #endregion
-
     //todo move this to another place
     private float _speedK = 4f;
 

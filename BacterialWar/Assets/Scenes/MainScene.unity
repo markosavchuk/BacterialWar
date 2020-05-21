@@ -151,6 +151,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc97364d9330f42e2b32a6b5f5d66499, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
   factory1Level1: {fileID: 1666597575171481797, guid: 7538bf5c7bc6242d884fa567255675fa,
     type: 3}
   factory1Level2: {fileID: 2458406133158229803, guid: 9f74963cb32794cfd91f11b96b55adc7,
@@ -526,6 +527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0134d49db373947b2a1f51bb30ca73ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
 --- !u!4 &971214480
 Transform:
   m_ObjectHideFlags: 0
@@ -569,6 +571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f2fc99378494d91b12f9f8f6c34339, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
 --- !u!4 &1000948716
 Transform:
   m_ObjectHideFlags: 0
@@ -938,20 +941,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fae654ce8924686aec59c06c70e518, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battleHexPrefab: {fileID: 5377941052699766728, guid: 411ed0a9c0cfd4082a2b8fa5b850a75c,
+  _battleHexPrefab: {fileID: 5377941052699766728, guid: 411ed0a9c0cfd4082a2b8fa5b850a75c,
     type: 3}
-  factory1HexPrefab: {fileID: 6659034357786058092, guid: aa11ee45cbd4942569ee6fcf08f9abb8,
+  _factory1HexPrefab: {fileID: 6659034357786058092, guid: aa11ee45cbd4942569ee6fcf08f9abb8,
     type: 3}
-  factory2HexPrefab: {fileID: 2025972775262279051, guid: 3fd8a9ec752d54aa38424d540c87fd79,
+  _factory2HexPrefab: {fileID: 2025972775262279051, guid: 3fd8a9ec752d54aa38424d540c87fd79,
     type: 3}
-  crystal1Prefab: {fileID: 2347125244610707489, guid: 2517410ee9b2a4d8caa5782fce796af8,
+  _crystal1Prefab: {fileID: 2347125244610707489, guid: 2517410ee9b2a4d8caa5782fce796af8,
     type: 3}
-  crystal2Prefab: {fileID: 4313284915193839922, guid: 6e631899360964736897fca3e0d51827,
+  _crystal2Prefab: {fileID: 4313284915193839922, guid: 6e631899360964736897fca3e0d51827,
     type: 3}
-  gridWidth: 7
-  gridHeight: 16
-  factoryHeight: 2
-  gap: 0.1
+  _gridWidth: 7
+  _gridHeight: 16
+  _factoryHeight: 2
+  _gap: 0.1
 --- !u!4 &1363641688
 Transform:
   m_ObjectHideFlags: 0
@@ -1240,6 +1243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dac87320f528e4f8bb9a85a814b57c07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _persistent: 1
   preparationTime: 7
   countingText: {fileID: 1742922485}
 --- !u!1 &1742922483

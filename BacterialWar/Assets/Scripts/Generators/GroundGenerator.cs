@@ -12,39 +12,39 @@ public class GroundGenerator : MonoBehaviour
     private Vector3 _startPos;
 
     [SerializeField]
-    private GameObject battleHexPrefab;
+    private GameObject _battleHexPrefab;
 
     [SerializeField]
-    private GameObject factory1HexPrefab;
+    private GameObject _factory1HexPrefab;
 
     [SerializeField]
-    private GameObject factory2HexPrefab;
+    private GameObject _factory2HexPrefab;
 
     //todo move it to another place
     #region temporary SerializeField
     [SerializeField]
-    private GameObject crystal1Prefab;
+    private GameObject _crystal1Prefab;
 
     [SerializeField]
-    private GameObject crystal2Prefab;
+    private GameObject _crystal2Prefab;
     #endregion
 
     [SerializeField]
-    private int gridWidth;
+    private int _gridWidth;
 
     //todo make sure it's gridHeight%2==0
     [SerializeField]
-    private int gridHeight;
+    private int _gridHeight;
 
     [SerializeField]
-    private int factoryHeight;
+    private int _factoryHeight;
 
     [SerializeField]
-    private float gap;  
+    private float _gap;  
  
     private void Start()
     {
-        MapManager.Instance.Hexs = new GameObject[gridWidth, gridHeight];
+        MapManager.Instance.Hexs = new GameObject[_gridWidth, _gridHeight];
 
         CalculateGap();
         CalculateStartPosition();
@@ -55,8 +55,8 @@ public class GroundGenerator : MonoBehaviour
 
     private void CalculateGap()
     {
-        _hexWidthWithGap = _hexWidth * (1+gap);
-        _hexHeightWithGap = _hexHeight * (1+gap);
+        _hexWidthWithGap = _hexWidth * (1+_gap);
+        _hexHeightWithGap = _hexHeight * (1+_gap);
     }
 
     private void CalculateStartPosition()
@@ -65,13 +65,13 @@ public class GroundGenerator : MonoBehaviour
 
         float offsetX = centerPosition.x;
 
-        if (gridHeight / 2 % 2 != 0)
+        if (_gridHeight / 2 % 2 != 0)
         {
             offsetX += _hexWidthWithGap / 2;
         }
 
-        float x = -_hexWidthWithGap * (gridWidth / 2) - offsetX;
-        float z = _hexHeightWithGap * 0.75f * (gridHeight / 2) - centerPosition.z;
+        float x = -_hexWidthWithGap * (_gridWidth / 2) - offsetX;
+        float z = _hexHeightWithGap * 0.75f * (_gridHeight / 2) - centerPosition.z;
 
         _startPos = new Vector3(x, centerPosition.y, z);
     }
@@ -90,17 +90,17 @@ public class GroundGenerator : MonoBehaviour
 
     private void CreateGrid()
     {
-        for (int y = 0; y < gridHeight; y++)
+        for (int y = 0; y < _gridHeight; y++)
         {
-            for (int x = 0; x < gridWidth; x++)
+            for (int x = 0; x < _gridWidth; x++)
             {
-                var hexType = y < factoryHeight || y > gridHeight - factoryHeight - 1
+                var hexType = y < _factoryHeight || y > _gridHeight - _factoryHeight - 1
                     ? HexType.Factory
                     : HexType.Battle;
 
                 var hexObject = hexType == HexType.Factory
-                    ? y < gridHeight / 2 ? Instantiate(factory1HexPrefab) : Instantiate(factory2HexPrefab)
-                    : Instantiate(battleHexPrefab);
+                    ? y < _gridHeight / 2 ? Instantiate(_factory1HexPrefab) : Instantiate(_factory2HexPrefab)
+                    : Instantiate(_battleHexPrefab);
 
                 //var mesh = hexObject.GetComponent<MeshCollider>();
 
@@ -121,8 +121,8 @@ public class GroundGenerator : MonoBehaviour
     private void AddStartObjects()
     {
         // Add Crystals.
-        Instantiate(crystal1Prefab, MapManager.Instance.Hexs[3, 0].transform);
-        Instantiate(crystal2Prefab, MapManager.Instance.Hexs[3, 15].transform);
+        Instantiate(_crystal1Prefab, MapManager.Instance.Hexs[3, 0].transform);
+        Instantiate(_crystal2Prefab, MapManager.Instance.Hexs[3, 15].transform);
 
         // Add factories.
         var manager = FactoryManager.Instance;
