@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: c06f3b602294d4874accce1f70ffe241
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ParentHex: {instanceID: 0}
+  - MobAbove: {instanceID: 0}
+  - _factoryLevel1Prefab: {fileID: 1666597575171481797, guid: 7538bf5c7bc6242d884fa567255675fa,
+      type: 3}
+  - _factoryLevel2Prefab: {fileID: 2458406133158229803, guid: 9f74963cb32794cfd91f11b96b55adc7,
+      type: 3}
+  - _factoryLevel3Prefab: {fileID: 54096395160685877, guid: 1c981509904ba4ee7b164aa3dee9cfa4,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
