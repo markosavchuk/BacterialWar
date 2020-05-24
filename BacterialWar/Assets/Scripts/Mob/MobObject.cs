@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MobObject : HexContainer
+public class MobObject : HexContent
 {
-    /*public bool IsInMotion;
-    public bool CanMove;
-
-    //todo make setters private
     public float Health = 100;
-    public int RiachRange = 1;
-    public float Damage = 10;
+    public bool IsFrozen = false;
 
+
+    //public int RiachRange = 1;
+    //public float Damage = 10;
+
+    /*
     //todo move it to some MobBatte
     //todo one will attack, another will be attacked
     //todo make interface for this method

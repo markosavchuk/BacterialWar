@@ -26,7 +26,12 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
 
     public void Build<T>(Vector2Int position) where T : FactoryObject, new()
     {
-        if (MapManager.Instance.Hex(position).Container != null ||
+        if (!MapManager.Instance.IsExist(position))
+        {
+            throw new System.ArgumentException("Hex with this position doesn't exist");
+        }
+
+        if (MapManager.Instance.Hex(position).Сontent != null ||
             MapManager.Instance.Hex(position).HexType != HexType.Factory)
         {
             throw new System.ArgumentException("Cannot build factory on given hex");
@@ -49,7 +54,7 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         factoryComponent.Player = MapManager.Instance.GetPlayerForFactoryNode(position);
 
         var parentHex = MapManager.Instance.Hex(position);
-        parentHex.Container = factoryComponent;
+        parentHex.SetContent(factoryComponent);
         newFactory.transform.position = parentHex.transform.position + _factoryOffset;
     }
 

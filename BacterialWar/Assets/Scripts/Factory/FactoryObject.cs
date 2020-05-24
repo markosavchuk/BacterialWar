@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class FactoryObject : HexContainer
+public class FactoryObject : HexContent
 {    
     public GameObject MobAbove;
 

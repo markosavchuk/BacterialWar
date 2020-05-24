@@ -5,25 +5,32 @@ public class HexObject : MapObject
 {
     public HexType HexType;
 
-    private HexContainer _container;
-    public HexContainer Container
+    public HexContent Сontent { get; private set; }
+
+    public void SetContent(HexContent content, HexObject oldHexContainer = null)
     {
-        get => _container;
-        set
+        if (oldHexContainer != null)
         {
-            if (ValidateContainer(value))
+            oldHexContainer.SetContent(null);
+        }
+
+        if (ValidateContent(content))
+        {
+            Сontent = content;
+
+            if (content != null)
             {
-                _container = value;
-                _container.ParentHex = this;
+                Сontent.ParentHex = this;
+                Сontent.MapPosition = MapPosition;
             }
-            else
-            {
-                throw new ArgumentException("Not valid hex container");
-            }
+        }
+        else
+        {
+            throw new ArgumentException("Not valid hex container");
         }
     }
 
-    private bool ValidateContainer(HexContainer obj)
+    private bool ValidateContent(HexContent obj)
     {
         // Free hex.
         if (obj == null)
@@ -39,5 +46,5 @@ public class HexObject : MapObject
         }
 
         return true;
-    }
+    }   
 }

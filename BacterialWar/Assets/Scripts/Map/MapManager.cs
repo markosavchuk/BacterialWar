@@ -28,4 +28,10 @@ public class MapManager : SingletonBase<MapManager>
     {
         return position.y + 1 < Height / 2 ? Player.Player1 : Player.Player2;
     }
+
+    public bool IsExist(Vector2Int position)
+    {
+        return position.x >= 0 && position.x < Width &&
+            position.y >= 0 && position.y < Height;
+    }
 }
