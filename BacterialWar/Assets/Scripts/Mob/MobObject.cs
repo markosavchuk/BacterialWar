@@ -10,22 +10,36 @@ public class MobObject : HexContent
 
     public float Health = 100;
     public bool IsFrozen = false;
+    public bool IsInMotion = false;
+    public int RiachRange = 1;
 
+    private float _time = 0f;
 
-    //public int RiachRange = 1;
-    //public float Damage = 10;
-
-    /*
-    //todo move it to some MobBatte
-    //todo one will attack, another will be attacked
-    //todo make interface for this method
-    /// <summary>
-    /// </summary>
-    /// <param name="enemy"></param>
-    /// <returns>Returns if attacked mob still alive.</returns>
-    public bool Attacked(MobObject enemy)
+    private void Update()
     {
-        enemy.Health -= Damage;
-        return enemy.Health > 0;
-    }*/
+        _time += Time.deltaTime;
+
+        if (_time >= Settings.Instance.StepTime)
+        {
+            _time -= Settings.Instance.StepTime;
+
+            Unfreeze();
+        }
+    }
+
+    private void Unfreeze()
+    {
+        IsFrozen = false;
+    }
+
+    public void GotAttacked(float damage)
+    {
+        IsFrozen = true;
+
+        Health -= damage;
+        if (Health <= 0)
+        {
+            DestroyObject();
+        }
+    }
 }

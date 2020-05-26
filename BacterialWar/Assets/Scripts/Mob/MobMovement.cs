@@ -13,24 +13,17 @@ public class MobMovement : MonoBehaviour
     [SerializeField]
     private float _speed = 6f;
 
-    private bool _isInMotion;
     private float _realSpped;
 
     private void Awake()
     {
         _mobObject = GetComponent<MobObject>();
-
-        if (_mobObject == null)
-        {
-            //todo stop script
-        }
-
         _realSpped = _speed * Settings.Instance.StepTime;
     }
 
     void Update()
     {
-        if (_isInMotion)
+        if (_mobObject.IsInMotion)
         {
             Move();
         }
@@ -51,7 +44,7 @@ public class MobMovement : MonoBehaviour
             return;
         }
 
-        _isInMotion = true;
+        _mobObject.IsInMotion = true;
 
         if (_mobObject.OnFactory != null)
         {
@@ -72,7 +65,7 @@ public class MobMovement : MonoBehaviour
         if (Vector3.Distance(gameObject.transform.position, targetPosition) < 0.2f)
         {
             gameObject.transform.position = targetPosition;
-            _isInMotion = false;
+            _mobObject.IsInMotion = false;
         }
         else
         {

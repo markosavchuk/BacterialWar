@@ -11,7 +11,5 @@ public class BattleAreaFactoryMobProduction : BaseFactoryMobProduction
         {
             return;
         }
-
-        //todo apply all mob settings
     }
 }

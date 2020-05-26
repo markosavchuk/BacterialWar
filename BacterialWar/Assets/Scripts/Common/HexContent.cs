@@ -8,4 +8,11 @@ public class HexContent : MapObject
     /// Automatically assigned on HexObject class
     /// </summary>
     public HexObject ParentHex;
+
+    public void DestroyObject()
+    {
+        ParentHex.SetContent(null);
+
+        Destroy(gameObject);
+    }
 }

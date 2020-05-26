@@ -46,10 +46,11 @@ public class BaseFactoryMobProduction : MonoBehaviour
 
         //todo move this to specific factories later
         var mobObject = NewMobInstance.AddComponent<MobObject>();
-        mobObject.Player = _factoryObject.Player;        
+        mobObject.Player = _factoryObject.Player;
 
         _factoryObject.SetMobAbove(mobObject);
 
         NewMobInstance.AddComponent<MobMovement>();
+        NewMobInstance.AddComponent<MobAttacker>();
     }
 }
