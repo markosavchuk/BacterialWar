@@ -26,7 +26,7 @@ public class MapManager : SingletonBase<MapManager>
 
     public Player GetPlayerForFactoryNode(Vector2Int position)
     {
-        return position.y + 1 < Height / 2 ? Player.Player1 : Player.Player2;
+        return position.y + 1 < Height / 2 ? Player.Player2 : Player.Player1;
     }
 
     public bool IsExist(Vector2Int position)

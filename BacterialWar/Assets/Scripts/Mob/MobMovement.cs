@@ -7,9 +7,11 @@ public class MobMovement : MonoBehaviour
 {
     private MobObject _mobObject;
 
-    //todo serialize
-    private Vector3 _mobOffset = new Vector3(0, 0.5f, 0);   
-    private float _speed = 4f;
+    [SerializeField]
+    private Vector3 _mobOffset = new Vector3(0, 0.5f, 0);
+
+    [SerializeField]
+    private float _speed = 6f;
 
     private bool _isInMotion;
     private float _realSpped;
@@ -51,6 +53,11 @@ public class MobMovement : MonoBehaviour
 
         _isInMotion = true;
 
+        if (_mobObject.OnFactory != null)
+        {
+            _mobObject.OnFactory.SetMobAbove(null);
+        }
+
         var oldHexContainer = _mobObject.ParentHex;
         var newHexContainer = MapManager.Instance.Hex(newPlace.Value);
         newHexContainer.SetContent(_mobObject, oldHexContainer);
@@ -70,7 +77,7 @@ public class MobMovement : MonoBehaviour
         else
         {
             var dir = targetPosition - gameObject.transform.position;
-            gameObject.transform.Translate(dir.normalized * _speed * Time.deltaTime, Space.World);
+            gameObject.transform.Translate(dir.normalized * _realSpped * Time.deltaTime, Space.World);
         }
     }
 }

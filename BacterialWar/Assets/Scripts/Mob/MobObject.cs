@@ -3,6 +3,11 @@ using System.Collections;
 
 public class MobObject : HexContent
 {
+    /// <summary>
+    /// Automatically assigned on FactoryObject class
+    /// </summary>
+    public FactoryObject OnFactory;
+
     public float Health = 100;
     public bool IsFrozen = false;
 

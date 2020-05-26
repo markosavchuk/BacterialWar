@@ -104,8 +104,8 @@ public class GroundGenerator : MonoBehaviour
                 hexObject.name = $"Hexagon[{x},{y}]";
 
                 var hexComponent = hexObject.AddComponent<HexObject>() as HexObject;
-
                 hexComponent.HexType = hexType;
+                hexComponent.MapPosition = new Vector2Int(x, y);
 
                 MapManager.Instance.Hexs[x, y] = hexComponent;
             }

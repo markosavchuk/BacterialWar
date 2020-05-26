@@ -47,11 +47,12 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         var newFactory = Instantiate(factoryPrefab);
 
         newFactory.transform.parent = this.transform;
-        newFactory.name = typeof(BattleAreaFactory).Name;
+        newFactory.name = typeof(T).Name;
 
         var factoryComponent = newFactory.AddComponent<T>();
-        factoryComponent.Initialize();
         factoryComponent.Player = MapManager.Instance.GetPlayerForFactoryNode(position);
+
+        factoryComponent.Initialize();
 
         var parentHex = MapManager.Instance.Hex(position);
         parentHex.SetContent(factoryComponent);

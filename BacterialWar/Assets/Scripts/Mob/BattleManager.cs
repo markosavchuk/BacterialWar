@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using UnityEngine;
 
-//todo split a bit or make regions at least
+//todo get rid of it
 public class BattleManager : SingletonMonoBehaviour<BattleManager>
 {
     /*private float _time = 0f;

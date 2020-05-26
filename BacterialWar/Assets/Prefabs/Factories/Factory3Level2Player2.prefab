@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1413557675893223074}
   - component: {fileID: 1439974358098484672}
   - component: {fileID: 1430400435866664918}
-  - component: {fileID: -7069627705700761991}
   m_Layer: 0
   m_Name: Factory3Level2Player2
   m_TagString: Untagged
@@ -80,18 +79,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-7069627705700761991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1408251134591938634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0dbedbd347bd486081bf0ec6e09fe87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mob1: {fileID: 2343554399155619110, guid: da09fdb7ddbc64744b7f4a8b892b2c3e, type: 3}
-  mob2: {fileID: 2595653536198250271, guid: 2825b709f95f541f281dffdf91b11d9f, type: 3}
-  reproducablePeriod: 3

@@ -5,8 +5,6 @@ public class BattleAreaFactory : FactoryObject
 {
     public override void Initialize()
     {
-        base.Initialize();
-
-
+        base.Initialize();        
     }
 }

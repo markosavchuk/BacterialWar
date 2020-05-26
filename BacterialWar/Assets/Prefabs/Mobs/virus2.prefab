@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2598609888883278899}
   - component: {fileID: 2627684314818562673}
   - component: {fileID: 2617140345396912597}
-  - component: {fileID: -7428755856768530283}
   m_Layer: 0
   m_Name: virus2
   m_TagString: Untagged
@@ -82,15 +81,3 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &-7428755856768530283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2595653536198250271}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b21c3586b12d74885a5efcb2d85ef4e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
