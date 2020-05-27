@@ -22,9 +22,5 @@ public class FactoryObject : HexContent
 
     public virtual void Initialize()
     {
-        var mobProductionComponent = gameObject.AddComponent<BaseFactoryMobProduction>();
-        mobProductionComponent.ReproducableMob = Player == Player.Player1
-            ? MobCollection.Instance.Virus1
-            : MobCollection.Instance.Virus2;
     }    
 }

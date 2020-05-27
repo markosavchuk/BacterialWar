@@ -804,5 +804,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
-  Virus1: {fileID: 2343554399155619110, guid: da09fdb7ddbc64744b7f4a8b892b2c3e, type: 3}
-  Virus2: {fileID: 2595653536198250271, guid: 2825b709f95f541f281dffdf91b11d9f, type: 3}
+  BattleAreaMobLevel1: {fileID: 1080590003768566303, guid: 85607c0b4c78f4295a2eee5fa3b7d88b,
+    type: 3}
+  BattleAreaMobLevel2: {fileID: 71964202577993555, guid: 4946385d3c75a4f7f885f066fbbcea03,
+    type: 3}
+  BattleAreaMobLevel3: {fileID: 1374200154331065783, guid: eddafa770f2834e7a8750b9420ffcd82,
+    type: 3}
+  BattlePointMobLevel1: {fileID: 1391036265913101987, guid: 5200c276285fc421992bca736b99d6eb,
+    type: 3}
+  BattlePointMobLevel2: {fileID: 2782366126816827520, guid: 20deedee5458b4bde86d383de6ccb0e4,
+    type: 3}
+  BattlePointMobLevel3: {fileID: 4331052665422229854, guid: a0027d1e89cb24bd1bc068219ea6a0a3,
+    type: 3}
+  FreezeMobLevel1: {fileID: 8889313552161758672, guid: aef267d7d7d774e91ad88109f1b3c80b,
+    type: 3}
+  FreezeMobLevel2: {fileID: 5530002480171494226, guid: 2f0db51b0877c4bd8b89cde67b795fcb,
+    type: 3}
+  InfectionMobLevel1: {fileID: 5010094025838097866, guid: 51cb5aa17df3141098dec9711e05983c,
+    type: 3}
+  InfectionMobLevel2: {fileID: 3576030921032471636, guid: 46f6cd6c7dfbc436ea88e63f0c429c27,
+    type: 3}

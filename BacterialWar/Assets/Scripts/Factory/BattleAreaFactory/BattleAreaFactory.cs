@@ -5,6 +5,9 @@ public class BattleAreaFactory : FactoryObject
 {
     public override void Initialize()
     {
-        base.Initialize();        
+        base.Initialize();
+
+        var mobProductionComponent = gameObject.AddComponent<BaseFactoryMobProduction>();
+        mobProductionComponent.ReproducableMob = MobCollection.Instance.BattleAreaMobLevel1;
     }
 }
