@@ -12,6 +12,12 @@ public class MobAttacker : MonoBehaviour
     private void Awake()
     {
         _mobObject = GetComponent<MobObject>();
+
+        //todo remove it later
+        if (_mobObject.Player== Player.Player1)
+        {
+            _damage *= 2;
+        }
     }
 
     private void Update()

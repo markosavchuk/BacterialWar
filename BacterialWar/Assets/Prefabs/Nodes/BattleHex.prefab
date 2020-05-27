@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5395135204095561398}
   - component: {fileID: 5401340938179294854}
   - component: {fileID: 5351065251657605862}
+  - component: {fileID: 8602189418307491391}
   m_Layer: 0
   m_Name: BattleHex
   m_TagString: Untagged
@@ -59,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: cf051fba995609b459f0eb4baf4bb478, type: 2}
+  - {fileID: 2100000, guid: aba2ff44c477944ee82325512c1a1e51, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -94,3 +95,17 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 09800fb7ecd7dfa499d1a9b3e9414605, type: 3}
+--- !u!114 &8602189418307491391
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5377941052699766728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c3b55ec801d40e796401e5eefd812f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Color1: {r: 0.9811321, g: 0.8745098, b: 0.7529412, a: 0}
+  Color2: {r: 0.67058825, g: 0.9882353, b: 0.99607843, a: 0}

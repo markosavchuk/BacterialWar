@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //todo refactor when it comes to factory building implementation
-public class FactoryNodeScript : MonoBehaviour
+/*public class FactoryNodeScript : MonoBehaviour
 {
     [SerializeField]
     private Color _hoverColor;
@@ -26,4 +26,4 @@ public class FactoryNodeScript : MonoBehaviour
     {
         _renderer.material.color = _nodeColor;
     }
-}
+}*/

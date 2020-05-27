@@ -106,9 +106,15 @@ public class GroundGenerator : MonoBehaviour
                 var hexComponent = hexObject.AddComponent<HexObject>() as HexObject;
                 hexComponent.HexType = hexType;
                 hexComponent.MapPosition = new Vector2Int(x, y);
+                hexComponent.Player = GetPlayerForFactoryNode(hexComponent.MapPosition);
 
                 MapManager.Instance.Hexs[x, y] = hexComponent;
             }
         }
+    }
+
+    private Player GetPlayerForFactoryNode(Vector2Int position)
+    {
+        return position.y < MapManager.Instance.Height / 2 ? Player.Player2 : Player.Player1;
     }
 }

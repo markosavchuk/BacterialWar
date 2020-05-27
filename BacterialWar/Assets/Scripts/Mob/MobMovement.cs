@@ -55,6 +55,8 @@ public class MobMovement : MonoBehaviour
         var newHexContainer = MapManager.Instance.Hex(newPlace.Value);
         newHexContainer.SetContent(_mobObject, oldHexContainer);
 
+        ChangeNodePlayer(newPlace.Value);
+
         Move();
     }
 
@@ -72,5 +74,10 @@ public class MobMovement : MonoBehaviour
             var dir = targetPosition - gameObject.transform.position;
             gameObject.transform.Translate(dir.normalized * _realSpped * Time.deltaTime, Space.World);
         }
+    }
+
+    private void ChangeNodePlayer(Vector2Int position)
+    {
+        MapManager.Instance.Hex(position).Player = _mobObject.Player;
     }
 }

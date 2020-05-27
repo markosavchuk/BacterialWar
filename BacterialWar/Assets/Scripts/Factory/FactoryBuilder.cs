@@ -49,12 +49,13 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         newFactory.transform.parent = this.transform;
         newFactory.name = typeof(T).Name;
 
+        var parentHex = MapManager.Instance.Hex(position);
+
         var factoryComponent = newFactory.AddComponent<T>();
-        factoryComponent.Player = MapManager.Instance.GetPlayerForFactoryNode(position);
+        factoryComponent.Player = parentHex.Player;
 
         factoryComponent.Initialize();
-
-        var parentHex = MapManager.Instance.Hex(position);
+        
         parentHex.SetContent(factoryComponent);
         newFactory.transform.position = parentHex.transform.position + _factoryOffset;
     }
