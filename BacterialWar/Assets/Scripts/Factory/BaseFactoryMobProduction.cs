@@ -10,6 +10,9 @@ public class BaseFactoryMobProduction : MonoBehaviour
     [SerializeField]
     private float _reproducablePeriod = 3;
 
+    [SerializeField]
+    private Vector3 _mobOffset = new Vector3(0, 0.2f, 0);
+
     private float _time = 0f;
     private float _reproducableTime;
 
@@ -41,7 +44,7 @@ public class BaseFactoryMobProduction : MonoBehaviour
         }
 
         NewMobInstance = Instantiate(ReproducableMob);
-        NewMobInstance.transform.position = _factoryObject.transform.position;
+        NewMobInstance.transform.position = _factoryObject.transform.position + _mobOffset;
         NewMobInstance.transform.parent = _factoryObject.transform;
 
         //todo move this to specific factories later
