@@ -7,7 +7,7 @@ public class FreezeFactory : FactoryObject
     {
         base.Initialize();
 
-        var mobProductionComponent = gameObject.AddComponent<BaseFactoryMobProduction>();
+        var mobProductionComponent = gameObject.AddComponent<FreezeFactoryMobProduction>();
         mobProductionComponent.ReproducableMob = MobCollection.Instance.FreezeMobLevel1;
     }
 }

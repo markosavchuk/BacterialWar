@@ -27,7 +27,7 @@ public class MobMovement : MonoBehaviour
         {
             Move();
         }
-        else if (!_mobObject.IsFrozen)
+        else if (_mobObject.FrozenMovement == 0)
         {
             MakeNextStep();
         }

@@ -7,7 +7,7 @@ public class BattleAreaFactory : FactoryObject
     {
         base.Initialize();
 
-        var mobProductionComponent = gameObject.AddComponent<BaseFactoryMobProduction>();
+        var mobProductionComponent = gameObject.AddComponent<BattleAreaFactoryMobProduction>();
         mobProductionComponent.ReproducableMob = MobCollection.Instance.BattleAreaMobLevel1;
     }
 }

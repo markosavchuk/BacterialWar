@@ -5,6 +5,12 @@ using UnityEngine;
 
 public class MobAttackerExtension
 {
+    public enum ChooseVictimStrategy
+    {
+        TheWeakest,
+        TheStrongest
+    }
+
     public static IEnumerable<Vector2Int> GetRichArea(MobObject mob)
     {
         var listOfPositions = new List<Vector2Int>();
@@ -59,25 +65,36 @@ public class MobAttackerExtension
         return listOfPositions;
     }
 
-    public static IEnumerable<MobObject> GetMobsOnArea(IEnumerable<Vector2Int> area)
+    public static IEnumerable<MobObject> GetEnemyMobsInArea(IEnumerable<Vector2Int> area, Player player)
     {
         return area.Where(p => MapManager.Instance.Hex(p).Сontent is MobObject)
-            .Select(p=> MapManager.Instance.Hex(p).Сontent as MobObject);
+            .Select(p=> MapManager.Instance.Hex(p).Сontent as MobObject)
+            .Where(m => m.Player != player);
     }
 
-    public static MobObject ChooseVictim(IEnumerable<MobObject> mobs, Player player)
+    public static MobObject ChooseVictim(IEnumerable<MobObject> enemies, ChooseVictimStrategy strategy)
     {
-        var enemies = mobs.Where(m => m.Player != player);
-
         if (enemies.Any())
         {
             // Choose the one who has the lower health.
-            return enemies.Aggregate((m1, m2) =>
-                m1.Health < m2.Health ? m1 : m2);
+            return enemies.Aggregate((m1, m2) => CompareVictims(m1, m2, strategy));
         }
         else
         {
             return null;
+        }
+    }
+
+    public static MobObject CompareVictims(MobObject mob1, MobObject mob2, ChooseVictimStrategy strategy)
+    {
+        switch (strategy)
+        {
+            case ChooseVictimStrategy.TheStrongest:
+                return mob1.Health > mob2.Health ? mob1 : mob2;
+            case ChooseVictimStrategy.TheWeakest:
+                return mob1.Health < mob2.Health ? mob1 : mob2;
+            default:
+                return mob1;
         }
     }
 }

@@ -7,7 +7,7 @@ public class InfectionFactory : FactoryObject
     {
         base.Initialize();
 
-        var mobProductionComponent = gameObject.AddComponent<BaseFactoryMobProduction>();
+        var mobProductionComponent = gameObject.AddComponent<InfectionFactoryMobProduction>();
         mobProductionComponent.ReproducableMob = MobCollection.Instance.InfectionMobLevel1;
     }
 }

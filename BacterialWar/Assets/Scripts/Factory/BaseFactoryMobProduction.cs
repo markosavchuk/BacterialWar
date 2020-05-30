@@ -16,15 +16,13 @@ public class BaseFactoryMobProduction : MonoBehaviour
     private float _time = 0f;
     private float _reproducableTime;
 
-    protected GameObject NewMobInstance;
-
     private void Awake()
     {
         _factoryObject = GetComponent<FactoryObject>();
         _reproducableTime = _reproducablePeriod * Settings.Instance.StepTime;
     }
 
-    void Update()
+    private void Update()
     {
         _time += Time.deltaTime;
 
@@ -36,24 +34,29 @@ public class BaseFactoryMobProduction : MonoBehaviour
         }
     }
 
-    protected virtual void MakeNewMob()
+    private void MakeNewMob()
     {
         if (_factoryObject.MobAbove != null || ReproducableMob==null)
         {
             return;
         }
 
-        NewMobInstance = Instantiate(ReproducableMob);
-        NewMobInstance.transform.position = _factoryObject.transform.position + _mobOffset;
-        NewMobInstance.transform.parent = _factoryObject.transform;
+        var newMobInstance = Instantiate(ReproducableMob);
+        newMobInstance.transform.position = _factoryObject.transform.position + _mobOffset;
+        newMobInstance.transform.parent = _factoryObject.transform;
 
-        //todo move this to specific factories later
-        var mobObject = NewMobInstance.AddComponent<MobObject>();
+        var mobObject = newMobInstance.AddComponent<MobObject>();
         mobObject.Player = _factoryObject.Player;
 
         _factoryObject.SetMobAbove(mobObject);
 
-        NewMobInstance.AddComponent<MobMovement>();
-        NewMobInstance.AddComponent<MobAttacker>();
+        newMobInstance.AddComponent<MobMovement>();
+
+        InitializeNewMob(newMobInstance);
+    }
+
+    protected virtual void InitializeNewMob(GameObject mobInstance)
+    {
+
     }
 }

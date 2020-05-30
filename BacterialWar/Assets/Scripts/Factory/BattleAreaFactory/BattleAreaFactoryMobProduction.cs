@@ -3,13 +3,10 @@ using System.Collections;
 
 public class BattleAreaFactoryMobProduction : BaseFactoryMobProduction
 {
-    protected override void MakeNewMob()
+    protected override void InitializeNewMob(GameObject mobInstance)
     {
-        base.MakeNewMob();
+        base.InitializeNewMob(gameObject);
 
-        if (NewMobInstance == null)
-        {
-            return;
-        }
+        mobInstance.AddComponent<BattleAreaAttacker>();
     }
 }
