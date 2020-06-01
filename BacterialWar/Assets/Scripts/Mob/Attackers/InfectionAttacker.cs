@@ -10,7 +10,6 @@ public class InfectionAttacker : BaseMobAttacker
     {
         base.ExecuteRound();
 
-        //todo change victim strategy
         var victim = MobAttackerExtension.ChooseVictim(
             EnemyMobsInArea,
             MobAttackerExtension.ChooseVictimStrategy.TheStrongest);
