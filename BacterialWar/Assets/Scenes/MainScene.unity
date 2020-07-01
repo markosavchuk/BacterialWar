@@ -627,7 +627,7 @@ MonoBehaviour:
     type: 3}
   DamageInfection: {fileID: 8546663896117656919, guid: b477a53f3762944a2bbdc281862cd8a1,
     type: 3}
-  DamagePoint: {fileID: 9149178349108279034, guid: 0b943102c75704dafba22412f798ba55,
+  DamagePoint: {fileID: 2763417573343729172, guid: a23660923aa0f4e0795360804c60f157,
     type: 3}
   Frozen: {fileID: 3741690903322296272, guid: ca84083839da54cf2bed6b21df3f911e, type: 3}
   Infected: {fileID: 5657164767882412067, guid: 3f80dd2c447be4084b30789b7ef6862c,

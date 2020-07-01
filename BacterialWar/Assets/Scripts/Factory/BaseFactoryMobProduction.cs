@@ -8,7 +8,7 @@ public class BaseFactoryMobProduction : MonoBehaviour
     public GameObject ReproducableMob;
 
     [SerializeField]
-    private float _reproducablePeriod = 3;
+    public float ReproducablePeriod = 3;
 
     [SerializeField]
     private Vector3 _mobOffset = new Vector3(0, 0.2f, 0);
@@ -19,7 +19,7 @@ public class BaseFactoryMobProduction : MonoBehaviour
     private void Awake()
     {
         _factoryObject = GetComponent<FactoryObject>();
-        _reproducableTime = _reproducablePeriod * Settings.Instance.StepTime;
+        _reproducableTime = ReproducablePeriod * Settings.Instance.StepTime;
     }
 
     private void Update()

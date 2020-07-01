@@ -13,7 +13,7 @@ public class MobObject : HexContent
     public float FrozenFight = 0;
     public float FrozenMovement = 0;
     public bool IsInMotion = false;
-    public int RiachRange = 2;
+    public int RiachRange = 1;
     public float Infection = 0;
 
     private float _time = 0f;

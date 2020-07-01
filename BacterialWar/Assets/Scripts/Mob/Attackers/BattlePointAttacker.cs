@@ -18,6 +18,20 @@ public class BattlePointAttacker : BaseMobAttacker
         if (victim != null)
         {
             victim.GotAttacked(_damage, Settings.Instance.StepTime * 0.5f);
+
+            AddAttackParticles(victim.MapPosition);
         }
+    }
+
+    protected void AddAttackParticles(Vector2Int targetPosition)
+    {
+        var particlePrefab = ParticleCollection.Instance.DamagePoint;
+
+        var particleObject = Instantiate(particlePrefab);
+        particleObject.transform.position = gameObject.transform.position;
+        particleObject.transform.parent = gameObject.transform;
+
+        var pointParticleMover = particleObject.AddComponent<PointParticleMovement>();
+        pointParticleMover.TargetPosition = targetPosition;
     }
 }
