@@ -15,5 +15,22 @@ public class BattleAreaAttacker : BaseMobAttacker
         {
             victim.GotAttacked(_damage, 0);
         }
+
+        if (EnemyMobsInArea.Any())
+        {
+            AddAttackParticles(MobObject.RiachRange);
+        }
+    }
+
+    private void AddAttackParticles(int richRange)
+    {
+        var particlePrefab = ParticleCollection.Instance.DamageArea;
+
+        var particleObject = Instantiate(particlePrefab);
+        particleObject.transform.position = gameObject.transform.position;
+        particleObject.transform.parent = gameObject.transform;
+
+        var pointParticleMover = particleObject.AddComponent<AreaParticleMovement>();
+        pointParticleMover.RichRange = richRange;
     }
 }

@@ -2,54 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PointParticleMovement : MonoBehaviour, IParticleMovement
+public class PointParticleMovement : BaseParticleMovement
 {
-    [SerializeField]
-    private float _speed = 6f;
+    private Vector3 _targetPosition;
 
-    [SerializeField]
-    private Vector3 _offset = new Vector3(0, -1f, 0);
+    public Vector2Int TargetMapPosition;
 
-    private float _realSpped;
-
-    public Vector2Int TargetPosition;
-
-    private void Awake()
+    protected override void Awake()
     {
-        _realSpped = _speed * Settings.Instance.StepTime;
+        Speed = 6;
+
+        base.Awake();
     }
 
     private void Start()
     {
-        gameObject.transform.position += _offset;
+        _targetPosition = MapManager.Instance.Hex(TargetMapPosition).transform.position
+            + Offset;
     }
 
-    public void Update()
+    protected override void Move()
     {
-        Move();    
-    }
+        base.Move();
 
-    private void Move()
-    {
-        var targetPosition = MapManager.Instance.Hex(TargetPosition).transform.position;
-
-        targetPosition += _offset;
-
-        if (Vector3.Distance(gameObject.transform.position, targetPosition) < 0.1f)
+        if (Vector3.Distance(gameObject.transform.position, _targetPosition) < 0.1f)
         {
-            gameObject.transform.position = targetPosition;
+            gameObject.transform.position = _targetPosition;
 
             RichTarget();
         }
         else
         {
-            var dir = targetPosition - gameObject.transform.position;
-            gameObject.transform.Translate(dir.normalized * _realSpped * Time.deltaTime, Space.World);
+            var dir = _targetPosition - gameObject.transform.position;
+            gameObject.transform.Translate(dir.normalized * RealSpped * Time.deltaTime, Space.World);
         }
-    }
-
-    private void RichTarget()
-    {
-        Destroy(gameObject);
     }
 }

@@ -621,7 +621,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
-  DamageArea: {fileID: 6559674531613238992, guid: f8d58c17ca41847e4b2165ebd8e9c207,
+  DamageArea: {fileID: 6780155565781200360, guid: f991bd969ba264e9fb9b56b2fcb29ffd,
     type: 3}
   DamageFreeze: {fileID: 3200093490773864966, guid: 89d458f9bbf8a46a89cd59f0e3340ae6,
     type: 3}

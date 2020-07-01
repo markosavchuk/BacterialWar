@@ -54,6 +54,8 @@ public class GroundGenerator : MonoBehaviour
     {
         _hexWidthWithGap = _hexWidth * (1+_gap);
         _hexHeightWithGap = _hexHeight * (1+_gap);
+
+        MapManager.Instance.HexRadius = _hexWidthWithGap / 2;
     }
 
     private void CalculateStartPosition()

@@ -6,6 +6,8 @@ public class MapManager : SingletonBase<MapManager>
     public int Width;
     public int Height;
 
+    public float HexRadius;
+
     private HexObject[,] _hexs;
     public HexObject[,] Hexs
     {
