@@ -8,14 +8,17 @@ public class BaseParticleMovement : MonoBehaviour
     protected float Speed;
 
     [SerializeField]
-    protected Vector3 Offset = new Vector3(0, -1f, 0);
+    public Vector3 Offset;
 
     protected float RealSpped;
 
     protected virtual void Awake()
     {
         RealSpped = Speed * Settings.Instance.StepTime;
+    }
 
+    protected virtual void Start()
+    {
         gameObject.transform.position += Offset;
     }
 

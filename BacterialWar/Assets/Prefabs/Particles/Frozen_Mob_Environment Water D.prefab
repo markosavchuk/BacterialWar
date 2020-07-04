@@ -4611,7 +4611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3741690903321960558}
   m_Layer: 0
-  m_Name: Flozen_Mob_Environment Water D
+  m_Name: Frozen_Mob_Environment Water D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4625,7 +4625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3741690903322296272}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -89.5, y: 0, z: -32.7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 3741690903322016700}

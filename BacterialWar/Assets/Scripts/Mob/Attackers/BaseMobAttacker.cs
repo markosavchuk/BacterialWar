@@ -51,4 +51,29 @@ public class BaseMobAttacker : MonoBehaviour
         var richArea = MobAttackerExtension.GetRichArea(MobObject);
         EnemyMobsInArea = MobAttackerExtension.GetEnemyMobsInArea(richArea, MobObject.Player);
     }
+
+    protected void AddPointAttackParticles(GameObject particlePrefab, Vector2Int targetPosition, Vector3 offset) 
+    {
+        var particleObject = AddParticle(particlePrefab);
+
+        var pointParticleMover = particleObject.AddComponent<PointParticleMovement>();
+        pointParticleMover.TargetMapPosition = targetPosition;
+        pointParticleMover.Offset = offset;
+    }
+
+    protected void AddWaveAttackParticle(GameObject particlePrefab, float radiusMultiplier, Vector3 offset)
+    {
+        var particleObject = AddParticle(particlePrefab);
+
+        var areaParticleMover = particleObject.AddComponent<AreaParticleMovement>();
+        areaParticleMover.RichRange = MobObject.RiachRange;
+        areaParticleMover.RadiusMultiplier = radiusMultiplier;
+        areaParticleMover.Offset = offset;
+    }
+
+    private GameObject AddParticle(GameObject particlePrefab)
+    {
+        var particleObject = Instantiate(particlePrefab, gameObject.transform);
+        return particleObject;
+    }
 }

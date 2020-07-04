@@ -8,6 +8,7 @@ public class AreaParticleMovement : BaseParticleMovement
     private float _richWaveRadius;
 
     public int RichRange;
+    public float RadiusMultiplier = 1;
 
     protected override void Awake()
     {
@@ -18,9 +19,11 @@ public class AreaParticleMovement : BaseParticleMovement
         _particleSystem = gameObject.transform.GetComponentInChildren<ParticleSystem>();
     }
 
-    private void Start()
+    protected override void Start()
     {
-        _richWaveRadius = MapManager.Instance.HexRadius * 2 * RichRange / gameObject.transform.localScale.x;
+        base.Start();
+
+        _richWaveRadius = MapManager.Instance.HexRadius * 2 * RichRange * RadiusMultiplier;
     }
 
     protected override void Move()

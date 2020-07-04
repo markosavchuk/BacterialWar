@@ -15,8 +15,10 @@ public class PointParticleMovement : BaseParticleMovement
         base.Awake();
     }
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
+
         _targetPosition = MapManager.Instance.Hex(TargetMapPosition).transform.position
             + Offset;
     }
@@ -25,7 +27,7 @@ public class PointParticleMovement : BaseParticleMovement
     {
         base.Move();
 
-        if (Vector3.Distance(gameObject.transform.position, _targetPosition) < 0.1f)
+        if (Vector3.Distance(gameObject.transform.position, _targetPosition) < 0.001f)
         {
             gameObject.transform.position = _targetPosition;
 

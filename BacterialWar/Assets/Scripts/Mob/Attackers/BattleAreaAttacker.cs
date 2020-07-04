@@ -18,19 +18,7 @@ public class BattleAreaAttacker : BaseMobAttacker
 
         if (EnemyMobsInArea.Any())
         {
-            AddAttackParticles(MobObject.RiachRange);
+            AddWaveAttackParticle(ParticleCollection.Instance.DamageArea, 10, new Vector3(0, -1f, 0));
         }
-    }
-
-    private void AddAttackParticles(int richRange)
-    {
-        var particlePrefab = ParticleCollection.Instance.DamageArea;
-
-        var particleObject = Instantiate(particlePrefab);
-        particleObject.transform.position = gameObject.transform.position;
-        particleObject.transform.parent = gameObject.transform;
-
-        var pointParticleMover = particleObject.AddComponent<AreaParticleMovement>();
-        pointParticleMover.RichRange = richRange;
     }
 }

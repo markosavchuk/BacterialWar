@@ -17,6 +17,8 @@ public class InfectionAttacker : BaseMobAttacker
         if (victim != null)
         {
             victim.GotInfected(_permanentDamage);
+
+            AddPointAttackParticles(ParticleCollection.Instance.DamageInfection, victim.MapPosition, new Vector3(0, 1f, 0));
         }
     }
 }
