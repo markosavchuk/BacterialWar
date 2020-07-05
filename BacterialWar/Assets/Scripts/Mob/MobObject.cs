@@ -37,11 +37,7 @@ public class MobObject : HexContent
     {
         FreezeMovement(freezeMovementTime);
 
-        Health -= damage;
-        if (Health <= 0)
-        {
-            DestroyObject();
-        }
+        DamageMob(damage);
     }
 
     public void GotInfected(float permanentDamage)
@@ -98,20 +94,23 @@ public class MobObject : HexContent
 
     private void DamageInfection()
     {
-        Health -= Infection;
+        DamageMob(Infection);
+    }
+
+    private void DamageMob(float damage)
+    {
+        if (damage == 0)
+        {
+            return;
+        }
+
+        Health -= damage;
+
+        ShowHealthChange(damage);
+
         if (Health <= 0)
         {
-            if (_frozenParticles != null)
-            {
-                _frozenParticles.Lifetime = 0;
-            }
-
-            if (_infectionParticles != null)
-            {
-                _infectionParticles.Lifetime = 0;
-            }
-
-            DestroyObject();
+            DestroyMob();
         }
     }
 
@@ -124,5 +123,33 @@ public class MobObject : HexContent
         stateParticle.Lifetime = time;
 
         return stateParticle;
+    }
+
+    private void DestroyMob()
+    {
+        if (_frozenParticles != null)
+        {
+            _frozenParticles.Lifetime = 0;
+        }
+
+        if (_infectionParticles != null)
+        {
+            _infectionParticles.Lifetime = 0;
+        }
+
+        DestroyObject();
+    }
+
+    private void ShowHealthChange(float delta)
+    {
+        var damageText = Instantiate(
+            Player == Player.Player1
+                ? UICollection.Instance.MyDamageText
+                : UICollection.Instance.EnemyDamageText,
+            gameObject.transform);
+
+        var textMesh = damageText.GetComponent<TextMesh>();
+        textMesh.text = $"-{delta}";
+        damageText.AddComponent<TextMovement>();
     }
 }

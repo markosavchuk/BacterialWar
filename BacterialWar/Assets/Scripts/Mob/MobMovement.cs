@@ -13,12 +13,12 @@ public class MobMovement : MonoBehaviour
     [SerializeField]
     private float _speed = 6f;
 
-    private float _realSpped;
+    private float _realSpeed;
 
     private void Awake()
     {
         _mobObject = GetComponent<MobObject>();
-        _realSpped = _speed * Settings.Instance.StepTime;
+        _realSpeed = _speed * Settings.Instance.StepTime;
     }
 
     void Update()
@@ -72,7 +72,7 @@ public class MobMovement : MonoBehaviour
         else
         {
             var dir = targetPosition - gameObject.transform.position;
-            gameObject.transform.Translate(dir.normalized * _realSpped * Time.deltaTime, Space.World);
+            gameObject.transform.Translate(dir.normalized * _realSpeed * Time.deltaTime, Space.World);
         }
     }
 
