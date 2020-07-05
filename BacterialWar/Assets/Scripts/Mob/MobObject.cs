@@ -17,6 +17,8 @@ public class MobObject : HexContent
     public float Infection = 0;
 
     private float _time = 0f;
+    private StateParticle _frozenParticles;
+    private StateParticle _infectionParticles;
 
     private void Update()
     {
@@ -45,6 +47,11 @@ public class MobObject : HexContent
     public void GotInfected(float permanentDamage)
     {
         Infection += permanentDamage;
+
+        if (_infectionParticles == null)
+        {
+            _infectionParticles = AddStateParticles(ParticleCollection.Instance.Infected);
+        }
     }
 
     private void Unfreeze()
@@ -77,6 +84,15 @@ public class MobObject : HexContent
         if (FrozenFight < freezeTime)
         {
             FrozenFight = freezeTime;
+
+            if (_frozenParticles == null)
+            {
+                _frozenParticles = AddStateParticles(ParticleCollection.Instance.Frozen, freezeTime);
+            }
+            else
+            {
+                _frozenParticles.Lifetime = freezeTime;
+            }
         }
     }
 
@@ -85,7 +101,28 @@ public class MobObject : HexContent
         Health -= Infection;
         if (Health <= 0)
         {
+            if (_frozenParticles != null)
+            {
+                _frozenParticles.Lifetime = 0;
+            }
+
+            if (_infectionParticles != null)
+            {
+                _infectionParticles.Lifetime = 0;
+            }
+
             DestroyObject();
         }
+    }
+
+    private StateParticle AddStateParticles(GameObject particlesPrefab, float? time = null)
+    {
+        var particles = Instantiate(particlesPrefab, gameObject.transform);
+        particles.transform.position = gameObject.transform.position + new Vector3(0, 0.5f, 0);
+
+        var stateParticle = particles.AddComponent<StateParticle>();
+        stateParticle.Lifetime = time;
+
+        return stateParticle;
     }
 }

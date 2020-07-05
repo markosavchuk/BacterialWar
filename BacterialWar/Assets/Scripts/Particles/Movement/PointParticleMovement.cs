@@ -27,7 +27,7 @@ public class PointParticleMovement : BaseParticleMovement
     {
         base.Move();
 
-        if (Vector3.Distance(gameObject.transform.position, _targetPosition) < 0.001f)
+        if (Vector3.Distance(gameObject.transform.position, _targetPosition) < 0.05f)
         {
             gameObject.transform.position = _targetPosition;
 
