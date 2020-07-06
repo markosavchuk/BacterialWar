@@ -110,6 +110,11 @@ public class GroundGenerator : MonoBehaviour
                 hexComponent.MapPosition = new Vector2Int(x, y);
                 hexComponent.Player = GetPlayerForFactoryNode(hexComponent.MapPosition);
 
+                if (hexType == HexType.Factory)
+                {
+                    hexObject.AddComponent<FactoryNodeInteraction>();
+                }
+
                 MapManager.Instance.Hexs[x, y] = hexComponent;
             }
         }

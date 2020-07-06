@@ -8,7 +8,9 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     private IBuilder _battleAreaFactoryBuilder;
     private IBuilder _battlePointFactoryBuilder;
     private IBuilder _freezeFactoryBuilder;
-    private IBuilder _infectionFactoryBuilder;    
+    private IBuilder _infectionFactoryBuilder;
+
+    public GameObject BuildCanvas;
 
     private void Awake()
     {
