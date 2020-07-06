@@ -11,14 +11,14 @@ public class MobMovement : MonoBehaviour
     private Vector3 _mobOffset = new Vector3(0, 0.5f, 0);
 
     [SerializeField]
-    private float _speed = 6f;
+    private float _speed = 3f;
 
     private float _realSpeed;
 
     private void Awake()
     {
         _mobObject = GetComponent<MobObject>();
-        _realSpeed = _speed * Settings.Instance.StepTime;
+        _realSpeed = _speed / Settings.Instance.StepTime;
     }
 
     void Update()
@@ -64,7 +64,7 @@ public class MobMovement : MonoBehaviour
     {
         var targetPosition = MapManager.Instance.Hex(_mobObject.MapPosition).transform.position + _mobOffset;
 
-        if (Vector3.Distance(gameObject.transform.position, targetPosition) < 0.2f)
+        if (Vector3.Distance(gameObject.transform.position, targetPosition) < 0.05f)
         {
             gameObject.transform.position = targetPosition;
             _mobObject.IsInMotion = false;

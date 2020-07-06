@@ -724,7 +724,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
-  StepTime: 0.5
+  StepTime: 1
 --- !u!4 &1570362944
 Transform:
   m_ObjectHideFlags: 0

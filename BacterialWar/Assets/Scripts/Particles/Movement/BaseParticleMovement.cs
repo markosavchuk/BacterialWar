@@ -10,11 +10,11 @@ public class BaseParticleMovement : MonoBehaviour
     [SerializeField]
     public Vector3 Offset;
 
-    protected float RealSpped;
+    protected float RealSpeed;
 
     protected virtual void Awake()
     {
-        RealSpped = Speed * Settings.Instance.StepTime;
+        RealSpeed = Speed / Settings.Instance.StepTime;
     }
 
     protected virtual void Start()

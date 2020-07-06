@@ -6,7 +6,7 @@ public class BaseMobAttacker : MonoBehaviour
     protected MobObject MobObject;
 
     private float _time = 0f;
-    private float _roundSpeed;
+    private float _roundPeriod;
 
     protected IEnumerable<MobObject> EnemyMobsInArea;
 
@@ -16,16 +16,16 @@ public class BaseMobAttacker : MonoBehaviour
     {
         MobObject = GetComponent<MobObject>();
 
-        _roundSpeed = Settings.Instance.StepTime * FightPeriod;
+        _roundPeriod = FightPeriod * Settings.Instance.StepTime;
     }
 
     private void Update()
     {
         _time += Time.deltaTime;
 
-        if (_time >= _roundSpeed)
+        if (_time >= _roundPeriod)
         {
-            _time -= _roundSpeed;
+            _time -= _roundPeriod;
 
             TryExecuteRound();
         }

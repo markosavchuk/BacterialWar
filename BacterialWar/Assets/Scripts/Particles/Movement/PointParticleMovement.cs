@@ -10,7 +10,7 @@ public class PointParticleMovement : BaseParticleMovement
 
     protected override void Awake()
     {
-        Speed = 6;
+        Speed = 2f;
 
         base.Awake();
     }
@@ -36,7 +36,7 @@ public class PointParticleMovement : BaseParticleMovement
         else
         {
             var dir = _targetPosition - gameObject.transform.position;
-            gameObject.transform.Translate(dir.normalized * RealSpped * Time.deltaTime, Space.World);
+            gameObject.transform.Translate(dir.normalized * RealSpeed * Time.deltaTime, Space.World);
         }
     }
 }

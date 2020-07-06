@@ -12,7 +12,7 @@ public class AreaParticleMovement : BaseParticleMovement
 
     protected override void Awake()
     {
-        Speed = 2;
+        Speed = 7f;
 
         base.Awake();
 
@@ -29,7 +29,7 @@ public class AreaParticleMovement : BaseParticleMovement
     protected override void Move()
     {
         var shape = _particleSystem.shape;
-        shape.radius += RealSpped;
+        shape.radius += RealSpeed*Time.deltaTime;
 
         if (shape.radius >= _richWaveRadius)
         {

@@ -9,5 +9,5 @@ public class Settings : SingletonMonoBehaviour<Settings>
     }
 
     [SerializeField]
-    public float StepTime = 0.5f;
+    public float StepTime;
 }

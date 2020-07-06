@@ -15,10 +15,11 @@ public class StateManager : SingletonMonoBehaviour<StateManager>
     {
         GameState = GameState.Preparation;
 
-        int countingNumber = (int)preparationTime;
+        int readPreparationTime = (int)preparationTime * (int)Settings.Instance.StepTime;
+        int countingNumber = (int)readPreparationTime;
         countingText.text = countingNumber.ToString();
 
-        StartCoroutine(CoroutineHelper.ExecuteAfterTime(preparationTime, () =>
+        StartCoroutine(CoroutineHelper.ExecuteAfterTime(readPreparationTime, () =>
         {
             Destroy(countingText);
             GameState = GameState.Fight;

@@ -8,7 +8,7 @@ public class BaseFactoryMobProduction : MonoBehaviour
     public GameObject ReproducableMob;
 
     [SerializeField]
-    public float ReproducablePeriod = 3;
+    public float ReproducablePeriod = 1.5f;
 
     [SerializeField]
     private Vector3 _mobOffset = new Vector3(0, 0.2f, 0);
