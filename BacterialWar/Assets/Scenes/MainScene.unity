@@ -159,7 +159,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 376.46616, y: -220}
+  m_AnchoredPosition: {x: 366.46616, y: -255}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &44866121
@@ -481,7 +481,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 376.46616, y: -115}
+  m_AnchoredPosition: {x: 366.46616, y: -115}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &264997214
@@ -751,7 +751,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 496.46616, y: -220}
+  m_AnchoredPosition: {x: 506.46616, y: -255}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657071092
@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 80, y: 80}
-  m_Spacing: {x: 40, y: 25}
+  m_Spacing: {x: 60, y: 60}
   m_Constraint: 2
   m_ConstraintCount: 2
 --- !u!114 &1082163691
@@ -1282,7 +1282,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1363641686}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 481d233cda1dc4444a3c4b8afcbce3fe, type: 3}
+  m_Script: {fileID: 11500000, guid: 63e774a2f407241fea988e551b66379d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _crystal1Prefab: {fileID: 2347125244610707489, guid: 2517410ee9b2a4d8caa5782fce796af8,
@@ -1600,7 +1600,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 496.46616, y: -115}
+  m_AnchoredPosition: {x: 506.46616, y: -115}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816787945

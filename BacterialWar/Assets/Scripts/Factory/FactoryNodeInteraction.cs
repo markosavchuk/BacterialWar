@@ -4,23 +4,43 @@ using UnityEngine;
 
 public class FactoryNodeInteraction : MonoBehaviour
 {
-    HexObject _hexObject;
+    private HexObject _hexObject;
+    private FactoryBuilder _factoryBuilder;
 
     private void Awake()
     {
         _hexObject = gameObject.GetComponent<HexObject>();
+        _factoryBuilder = FactoryBuilder.Instance;
     }
 
     private void OnMouseDown()
     {
-        var factoryBuilder = FactoryBuilder.Instance;
-
-        if (factoryBuilder.SelectedFactoryPosition.HasValue)
+        if (!CanBuildFactory())
         {
             return;
         }
 
-        factoryBuilder.SelectedFactoryPosition = _hexObject.MapPosition;
-        factoryBuilder.BuildMenu.SetActive(true);
+        _factoryBuilder.SelectedFactoryPosition = _hexObject.MapPosition;
+        _factoryBuilder.BuildMenu.SetActive(true);
+    }
+
+    private bool CanBuildFactory()
+    {
+        if (_factoryBuilder.SelectedFactoryPosition.HasValue)
+        {
+            return false;
+        }
+
+        if (_hexObject.Player != Player.Player1)
+        {
+            return false;
+        }
+
+        if (_hexObject.Сontent != null)
+        {
+            return false;
+        }
+
+        return true;
     }
 }
