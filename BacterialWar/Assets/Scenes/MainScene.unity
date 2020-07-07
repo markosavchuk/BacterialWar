@@ -133,8 +133,11 @@ GameObject:
   - component: {fileID: 44866120}
   - component: {fileID: 44866122}
   - component: {fileID: 44866121}
+  - component: {fileID: 44866123}
+  - component: {fileID: 44866125}
+  - component: {fileID: 44866124}
   m_Layer: 0
-  m_Name: Factory1Image
+  m_Name: InfectionFactoryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -152,11 +155,11 @@ RectTransform:
   m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_Children: []
   m_Father: {fileID: 1082163689}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 376.46616, y: -115}
+  m_AnchoredPosition: {x: 376.46616, y: -220}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &44866121
@@ -195,6 +198,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 44866119}
   m_CullTransparentMesh: 0
+--- !u!114 &44866123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44866119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d740bc868f18347d795e7fc98785ad41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &44866124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44866119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14814addeaaf2401b944ef2aa41894dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentHex: {fileID: 0}
+--- !u!114 &44866125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44866119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 44866123}
+          m_MethodName: BuildFactory
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 44866124}
+            m_ObjectArgumentAssemblyTypeName: FactoryObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &94010522
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,7 +286,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _persistent: 1
   _factoryOffset: {x: 0, y: 0.24, z: 0}
-  BuildCanvas: {fileID: 628520731}
+  BuildMenu: {fileID: 628520731}
 --- !u!4 &94010524
 Transform:
   m_ObjectHideFlags: 0
@@ -385,8 +441,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1405461107}
-  m_RootOrder: 0
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &264997212
 GameObject:
@@ -399,8 +455,11 @@ GameObject:
   - component: {fileID: 264997213}
   - component: {fileID: 264997215}
   - component: {fileID: 264997214}
+  - component: {fileID: 264997216}
+  - component: {fileID: 264997218}
+  - component: {fileID: 264997217}
   m_Layer: 0
-  m_Name: Factory3Image
+  m_Name: BattleAreaFactoryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -418,11 +477,11 @@ RectTransform:
   m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_Children: []
   m_Father: {fileID: 1082163689}
-  m_RootOrder: 2
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 376.46616, y: -220}
+  m_AnchoredPosition: {x: 376.46616, y: -115}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &264997214
@@ -461,6 +520,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264997212}
   m_CullTransparentMesh: 0
+--- !u!114 &264997216
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264997212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d740bc868f18347d795e7fc98785ad41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &264997217
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264997212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 264997216}
+          m_MethodName: BuildFactory
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 264997218}
+            m_ObjectArgumentAssemblyTypeName: FactoryObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &264997218
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264997212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06f3b602294d4874accce1f70ffe241, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentHex: {fileID: 0}
 --- !u!1 &628520731
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,8 +586,9 @@ GameObject:
   - component: {fileID: 628520734}
   - component: {fileID: 628520733}
   - component: {fileID: 628520736}
+  - component: {fileID: 628520737}
   m_Layer: 0
-  m_Name: BuildCanvas
+  m_Name: BuildMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -578,9 +691,9 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 628520731}
-          m_MethodName: SetActive
-          m_Mode: 6
+        - m_Target: {fileID: 628520737}
+          m_MethodName: CloseMenu
+          m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -589,6 +702,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &628520737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 628520731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a788a2a5b5884f43be51961e0cddaae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &657071090
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,8 +725,11 @@ GameObject:
   - component: {fileID: 657071091}
   - component: {fileID: 657071093}
   - component: {fileID: 657071092}
+  - component: {fileID: 657071094}
+  - component: {fileID: 657071096}
+  - component: {fileID: 657071095}
   m_Layer: 0
-  m_Name: Factory2Image
+  m_Name: FreezeFactoryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -619,11 +747,11 @@ RectTransform:
   m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_Children: []
   m_Father: {fileID: 1082163689}
-  m_RootOrder: 1
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 496.46616, y: -115}
+  m_AnchoredPosition: {x: 496.46616, y: -220}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657071092
@@ -662,6 +790,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 657071090}
   m_CullTransparentMesh: 0
+--- !u!114 &657071094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657071090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d740bc868f18347d795e7fc98785ad41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &657071095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657071090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 657071094}
+          m_MethodName: BuildFactory
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 657071096}
+            m_ObjectArgumentAssemblyTypeName: FactoryObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &657071096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657071090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93a0494a9a71f4d938c60862e0c22b1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentHex: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -867,10 +1048,10 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 44866120}
-  - {fileID: 657071091}
   - {fileID: 264997213}
   - {fileID: 1816787944}
+  - {fileID: 44866120}
+  - {fileID: 657071091}
   m_Father: {fileID: 628520732}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -957,7 +1138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1087047749
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1152,8 +1333,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 252894982}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1394,8 +1574,11 @@ GameObject:
   - component: {fileID: 1816787944}
   - component: {fileID: 1816787946}
   - component: {fileID: 1816787945}
+  - component: {fileID: 1816787947}
+  - component: {fileID: 1816787949}
+  - component: {fileID: 1816787948}
   m_Layer: 0
-  m_Name: Factory4Image
+  m_Name: BattlePointFactoryImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1413,11 +1596,11 @@ RectTransform:
   m_LocalScale: {x: 1.4999999, y: 1.4999999, z: 1.4999999}
   m_Children: []
   m_Father: {fileID: 1082163689}
-  m_RootOrder: 3
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 496.46616, y: -220}
+  m_AnchoredPosition: {x: 496.46616, y: -115}
   m_SizeDelta: {x: 80, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1816787945
@@ -1456,6 +1639,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1816787943}
   m_CullTransparentMesh: 0
+--- !u!114 &1816787947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816787943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d740bc868f18347d795e7fc98785ad41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1816787948
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816787943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 2
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1816787947}
+          m_MethodName: BuildFactory
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1816787949}
+            m_ObjectArgumentAssemblyTypeName: FactoryObject, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1816787949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816787943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 310203d79ab144590ba58e746d1e9585, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ParentHex: {fileID: 0}
 --- !u!1 &1820232140
 GameObject:
   m_ObjectHideFlags: 0

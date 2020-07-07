@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
 {
@@ -10,7 +11,8 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     private IBuilder _freezeFactoryBuilder;
     private IBuilder _infectionFactoryBuilder;
 
-    public GameObject BuildCanvas;
+    public GameObject BuildMenu;
+    public Vector2Int? SelectedFactoryPosition;
 
     private void Awake()
     {
@@ -23,7 +25,7 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     private void Start()
     {
         //todo remove it later
-        AddStartFactories();
+        //AddStartFactories();
     }
 
     public void Build<T>(Vector2Int position) where T : FactoryObject, new()
@@ -60,6 +62,32 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         
         parentHex.SetContent(factoryComponent);
         newFactory.transform.position = parentHex.transform.position + _factoryOffset;
+    }
+
+    public void Build(FactoryObject factoryObject)
+    {
+        if (!SelectedFactoryPosition.HasValue)
+        {
+            return;
+        }
+
+        switch (factoryObject)
+        {
+            case BattleAreaFactory _:
+                Build<BattleAreaFactory>(SelectedFactoryPosition.Value);
+                break;
+            case BattlePointFactory _:
+                Build<BattlePointFactory>(SelectedFactoryPosition.Value);
+                break;
+            case FreezeFactory _:
+                Build<FreezeFactory>(SelectedFactoryPosition.Value);
+                break;
+            case InfectionFactory _:
+                Build<InfectionFactory>(SelectedFactoryPosition.Value);
+                break;
+        }
+
+        SelectedFactoryPosition = null;
     }
 
     private IBuilder GetBuilderForFactory<T>() where T : FactoryObject
