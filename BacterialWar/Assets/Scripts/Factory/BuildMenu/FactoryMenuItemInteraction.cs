@@ -25,9 +25,9 @@ public class FactoryMenuItemInteraction : MonoBehaviour
         _buildMenuInteraction.OpenFactoryDescription(factoryObject);
     }
 
-    public void BuildFactory(FactoryObject factoryObject)
+    public void BuildFactory()
     {
-        FactoryBuilder.Instance.Build(factoryObject);
-        FactoryBuilder.Instance.BuildMenu.SetActive(false);
+        //FactoryBuilder.Instance.Build(factoryObject);
+        //FactoryBuilder.Instance.BuildMenu.SetActive(false);
     }
 }
