@@ -8,12 +8,15 @@ public class BuildMenuInteraction : MonoBehaviour
     [SerializeField]
     private GameObject _descriptionPanel;
 
+    private FactoryObject _activeFactoryDescription;
+
     public void CloseMenu()
     {       
         FactoryBuilder.Instance.SelectedFactoryPosition = null;
         gameObject.SetActive(false);
 
         _descriptionPanel.SetActive(false);
+        _activeFactoryDescription = null;
 
         FadeOutAllItems(true);
     }
@@ -31,6 +34,16 @@ public class BuildMenuInteraction : MonoBehaviour
 
     public void OpenFactoryDescription(FactoryObject factoryObject)
     {
+        _activeFactoryDescription = factoryObject;
+
+        _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(factoryObject);
+
         _descriptionPanel.SetActive(true);
+    }
+
+    public void BuildFactory()
+    {
+        FactoryBuilder.Instance.Build(_activeFactoryDescription);
+        CloseMenu();
     }
 }
