@@ -332,6 +332,7 @@ GameObject:
   - component: {fileID: 44866123}
   - component: {fileID: 44866125}
   - component: {fileID: 44866124}
+  - component: {fileID: 44866126}
   m_Layer: 0
   m_Name: InfectionFactoryImage
   m_TagString: Untagged
@@ -419,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
+  FactoryCalculator: {fileID: 44866126}
 --- !u!114 &44866125
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +449,18 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!114 &44866126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 44866119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98bcfd652c569480c96e61888eca6e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &84014138 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3,
@@ -788,6 +802,7 @@ GameObject:
   - component: {fileID: 264997216}
   - component: {fileID: 264997218}
   - component: {fileID: 264997217}
+  - component: {fileID: 264997219}
   m_Layer: 0
   m_Name: BattleAreaFactoryImage
   m_TagString: Untagged
@@ -903,6 +918,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
+  FactoryCalculator: {fileID: 264997219}
+--- !u!114 &264997219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 264997212}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ad124ff780f54868bdbce634476e9ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &278200151
 GameObject:
   m_ObjectHideFlags: 0
@@ -1029,6 +1057,18 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &520454538 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1760448156}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &616256063
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1445,6 +1485,7 @@ GameObject:
   - component: {fileID: 657071094}
   - component: {fileID: 657071096}
   - component: {fileID: 657071095}
+  - component: {fileID: 657071097}
   m_Layer: 0
   m_Name: FreezeFactoryImage
   m_TagString: Untagged
@@ -1560,6 +1601,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
+  FactoryCalculator: {fileID: 657071097}
+--- !u!114 &657071097
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 657071090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86a79513065a447ae8e45a066ed46703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1652,6 +1706,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!114 &738623550 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
+    type: 3}
+  m_PrefabInstance: {fileID: 24984062}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &773754188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1837,6 +1903,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 56.770004, y: 0, z: 0}
+--- !u!114 &1007749504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1846583226}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1072250869 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1151290989}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1087047748
 GameObject:
   m_ObjectHideFlags: 0
@@ -2152,6 +2242,30 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 1151290989}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1235608350 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
+    type: 3}
+  m_PrefabInstance: {fileID: 1607548894}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1236338282 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11400002, guid: 05a81c3d5091440058129444d28322f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 616256063}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1363641686
 GameObject:
   m_ObjectHideFlags: 0
@@ -2994,6 +3108,7 @@ GameObject:
   - component: {fileID: 1816787947}
   - component: {fileID: 1816787949}
   - component: {fileID: 1816787948}
+  - component: {fileID: 1816787950}
   m_Layer: 0
   m_Name: BattlePointFactoryImage
   m_TagString: Untagged
@@ -3109,6 +3224,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
+  FactoryCalculator: {fileID: 1816787950}
+--- !u!114 &1816787950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1816787943}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2df33f968217d4348ba701682c409a71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1820232140
 GameObject:
   m_ObjectHideFlags: 0
@@ -3119,6 +3247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1820232141}
   - component: {fileID: 1820232142}
+  - component: {fileID: 1820232143}
   m_Layer: 0
   m_Name: Mobs
   m_TagString: Untagged
@@ -3173,6 +3302,35 @@ MonoBehaviour:
     type: 3}
   InfectionMobLevel2: {fileID: 3576030921032471636, guid: 46f6cd6c7dfbc436ea88e63f0c429c27,
     type: 3}
+--- !u!114 &1820232143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820232140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aa23026a94204fb49750f01d13a547f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistent: 1
+  BattleAreaMobLevel1: {fileID: 21300000, guid: 78f760893349e4efabf5b868d2c291e0,
+    type: 3}
+  BattleAreaMobLevel2: {fileID: 21300000, guid: 198e4e2001bc24557a123618f278463f,
+    type: 3}
+  BattleAreaMobLevel3: {fileID: 21300000, guid: 6427001c1bfbd4c128aacca832dee09a,
+    type: 3}
+  BattlePointMobLevel1: {fileID: 21300000, guid: e99e17a7ba4764dec9a32a17a05de55a,
+    type: 3}
+  BattlePointMobLevel2: {fileID: 21300000, guid: ed337755c0af14dcaba220e1a1fef3a5,
+    type: 3}
+  BattlePointMobLevel3: {fileID: 21300000, guid: d9ae6abdd5b0d437d81327718487bdaa,
+    type: 3}
+  FreezeMobLevel1: {fileID: 21300000, guid: b5442ad01f1f2407da0c0f0f4884ec96, type: 3}
+  FreezeMobLevel2: {fileID: 21300000, guid: 431faafb701aa4aabbc34273bedf9dc6, type: 3}
+  InfectionMobLevel1: {fileID: 21300000, guid: 967f82e763feb48d59d95a6aabe7e492, type: 3}
+  InfectionMobLevel2: {fileID: 21300000, guid: 35d6804eaa4ff451996492805c832e17, type: 3}
 --- !u!1001 &1846583226
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3484,6 +3642,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc0333ef837a04853b24a819ca004db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _image: {fileID: 1413368757}
+  _name: {fileID: 2044399255}
+  _health: {fileID: 1235608350}
+  _damage: {fileID: 1072250869}
+  _radius: {fileID: 1007749504}
+  _speed: {fileID: 738623550}
+  _defense: {fileID: 520454538}
+  _cost: {fileID: 1236338282}
 --- !u!1 &2044399253
 GameObject:
   m_ObjectHideFlags: 0

@@ -2,8 +2,10 @@
 using UnityEngine;
 
 public class FactoryObject : HexContent
-{    
+{
     public MobObject MobAbove { get; private set; }
+
+    public BaseFactoryCalculator FactoryCalculator;
 
     public void SetMobAbove(MobObject mob)
     { 
