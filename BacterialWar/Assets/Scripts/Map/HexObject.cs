@@ -5,7 +5,7 @@ public class HexObject : MapObject
 {
     public HexType HexType;
 
-    public HexContent Сontent { get; private set; }
+    public HexContent Content { get; private set; }
 
     public void SetContent(HexContent content, HexObject oldHexContainer = null)
     {
@@ -16,12 +16,12 @@ public class HexObject : MapObject
 
         if (ValidateContent(content))
         {
-            Сontent = content;
+            Content = content;
 
             if (content != null)
             {
-                Сontent.ParentHex = this;
-                Сontent.MapPosition = MapPosition;
+                Content.ParentHex = this;
+                Content.MapPosition = MapPosition;
             }
         }
         else

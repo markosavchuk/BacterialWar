@@ -11,8 +11,7 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     private IBuilder _freezeFactoryBuilder;
     private IBuilder _infectionFactoryBuilder;
 
-    public GameObject BuildMenu;
-    public Vector2Int? SelectedFactoryPosition;
+    public BuildMenuInteraction BuildMenu;
 
     private void Awake()
     {
@@ -35,7 +34,7 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
             throw new System.ArgumentException("Hex with this position doesn't exist");
         }
 
-        if (MapManager.Instance.Hex(position).Сontent != null ||
+        if (MapManager.Instance.Hex(position).Content != null ||
             MapManager.Instance.Hex(position).HexType != HexType.Factory)
         {
             throw new System.ArgumentException("Cannot build factory on given hex");
@@ -64,30 +63,23 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         newFactory.transform.position = parentHex.transform.position + _factoryOffset;
     }
 
-    public void Build(FactoryObject factoryObject)
+    public void Build(FactoryObject factoryObject, Vector2Int position)
     {
-        if (!SelectedFactoryPosition.HasValue)
-        {
-            return;
-        }
-
         switch (factoryObject)
         {
             case BattleAreaFactory _:
-                Build<BattleAreaFactory>(SelectedFactoryPosition.Value);
+                Build<BattleAreaFactory>(position);
                 break;
             case BattlePointFactory _:
-                Build<BattlePointFactory>(SelectedFactoryPosition.Value);
+                Build<BattlePointFactory>(position);
                 break;
             case FreezeFactory _:
-                Build<FreezeFactory>(SelectedFactoryPosition.Value);
+                Build<FreezeFactory>(position);
                 break;
             case InfectionFactory _:
-                Build<InfectionFactory>(SelectedFactoryPosition.Value);
+                Build<InfectionFactory>(position);
                 break;
         }
-
-        SelectedFactoryPosition = null;
     }
 
     private IBuilder GetBuilderForFactory<T>() where T : FactoryObject

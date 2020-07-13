@@ -11,7 +11,7 @@ public class FactoryMenuItemInteraction : MonoBehaviour
 
     private void Awake()
     {
-        _buildMenuInteraction = FactoryBuilder.Instance.BuildMenu.GetComponent<BuildMenuInteraction>();
+        _buildMenuInteraction = FactoryBuilder.Instance.BuildMenu;
     }
 
     public void ChooseFactory(FactoryObject factoryObject)

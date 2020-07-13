@@ -49,7 +49,7 @@ public class MobMovementExtension
         }
 
         // Check if position is empty
-        if (hexComponent.Сontent != null)
+        if (hexComponent.Content != null)
         {
             return false;
         }

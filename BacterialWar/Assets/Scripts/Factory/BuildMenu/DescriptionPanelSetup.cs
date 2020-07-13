@@ -37,7 +37,7 @@ public class DescriptionPanelSetup : MonoBehaviour
         FactoryParameters parameters = factory.FactoryCalculator.GetParameters(1);
 
         _image.sprite = parameters.MobImage;
-        _name.text = parameters.Name;
+        _name.text = $"{parameters.Name} (Lvl {parameters.Level})";
         _health.text = $"Health: {parameters.Health}";
         _damage.text = $"Damage: {parameters.Damage}";
         _radius.text = $"Radius: {parameters.RiachRange}";

@@ -67,8 +67,8 @@ public class MobAttackerExtension
 
     public static IEnumerable<MobObject> GetEnemyMobsInArea(IEnumerable<Vector2Int> area, Player player)
     {
-        return area.Where(p => MapManager.Instance.Hex(p).Сontent is MobObject)
-            .Select(p=> MapManager.Instance.Hex(p).Сontent as MobObject)
+        return area.Where(p => MapManager.Instance.Hex(p).Content is MobObject)
+            .Select(p=> MapManager.Instance.Hex(p).Content as MobObject)
             .Where(m => m.Player != player);
     }
 

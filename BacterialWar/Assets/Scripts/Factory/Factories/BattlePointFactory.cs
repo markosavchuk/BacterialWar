@@ -7,6 +7,9 @@ public class BattlePointFactory : FactoryObject
     {
         base.Initialize();
 
+        FactoryCalculator = gameObject.AddComponent<BattlePointFactoryCalculator>();
+        FactoryImage = FactoryImageCollection.Instance.BattlePointFactoryLevel1;
+
         var mobProductionComponent = gameObject.AddComponent<BattlePointFactoryMobProduction>();
         mobProductionComponent.ReproducableMob = MobCollection.Instance.BattlePointMobLevel1;
     }

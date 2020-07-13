@@ -8,17 +8,52 @@ public class BuildMenuInteraction : MonoBehaviour
     [SerializeField]
     private GameObject _descriptionPanel;
 
+    [SerializeField]
+    private GameObject _newFactoryPanel;
+
+    [SerializeField]
+    private GameObject _builtFactoryPanel;
+
     private FactoryObject _activeFactoryDescription;
+    private Vector2Int? _selectedFactoryPosition;
+
+    public void OpenMenu(HexObject hexObject)
+    {
+        if (_selectedFactoryPosition.HasValue)
+        {
+            return;
+        }
+
+        _selectedFactoryPosition = hexObject.MapPosition;
+
+        gameObject.SetActive(true);
+
+        if (hexObject.Content == null)
+        {
+            _newFactoryPanel.SetActive(true);
+        }
+        else
+        {
+            if (hexObject.Content is FactoryObject factory)
+            {
+                _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(factory);
+                _builtFactoryPanel.SetActive(true);
+            }
+        }
+    }
 
     public void CloseMenu()
-    {       
-        FactoryBuilder.Instance.SelectedFactoryPosition = null;
-        gameObject.SetActive(false);
-
-        _descriptionPanel.SetActive(false);
-        _activeFactoryDescription = null;
+    {
+        _selectedFactoryPosition = null;
 
         FadeOutAllItems(true);
+
+        gameObject.SetActive(false);
+        _newFactoryPanel.SetActive(false);
+        _builtFactoryPanel.SetActive(false);
+        _descriptionPanel.SetActive(false);
+
+        _activeFactoryDescription = null;        
     }
 
     public void FadeOutAllItems(bool oppositeAction = false)
@@ -43,7 +78,15 @@ public class BuildMenuInteraction : MonoBehaviour
 
     public void BuildFactory()
     {
-        FactoryBuilder.Instance.Build(_activeFactoryDescription);
+        if (!_selectedFactoryPosition.HasValue)
+        {
+            return;
+        }
+
+        FactoryBuilder.Instance.Build(_activeFactoryDescription, _selectedFactoryPosition.Value);
+
+        _selectedFactoryPosition = null;
+
         CloseMenu();
     }
 }

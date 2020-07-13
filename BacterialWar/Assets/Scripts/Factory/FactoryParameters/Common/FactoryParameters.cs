@@ -13,4 +13,5 @@ public class FactoryParameters
     public int Cost = 200;
     public Sprite MobImage;
     public int GenetaionSpeed = 1;
+    public int Level = 1;
 }

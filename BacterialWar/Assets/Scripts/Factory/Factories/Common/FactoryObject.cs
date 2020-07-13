@@ -7,6 +7,10 @@ public class FactoryObject : HexContent
 
     public BaseFactoryCalculator FactoryCalculator;
 
+    public int Level = 1;
+
+    public Sprite FactoryImage;
+
     public void SetMobAbove(MobObject mob)
     { 
         if (mob == null)
