@@ -612,11 +612,31 @@ MonoBehaviour:
   _persistent: 1
   BattleAreaFactoryLevel1: {fileID: 21300000, guid: 25deb9bb6697f4a20ab595b050c6abcb,
     type: 3}
+  BattleAreaFactoryLevel2Player1: {fileID: 21300000, guid: 42a2c72a5c0374b30b8553e756652600,
+    type: 3}
+  BattleAreaFactoryLevel2Player2: {fileID: 21300000, guid: e32e92fdfb9df4d30b9a7d52ffe328a9,
+    type: 3}
+  BattleAreaFactoryLevel3Player1: {fileID: 21300000, guid: f334e76b7cca94bd88767c758b6433d3,
+    type: 3}
+  BattleAreaFactoryLevel3Player2: {fileID: 21300000, guid: b48713cdc452848f0a4c5463ddf02725,
+    type: 3}
   BattlePointFactoryLevel1: {fileID: 21300000, guid: 6019fe2c49cf74ddc90622e10c1a5d2d,
+    type: 3}
+  BattlePointFactoryLevel2: {fileID: 21300000, guid: cb05d71e4027241f9b2e1ab5d6ec14eb,
+    type: 3}
+  BattlePointFactoryLevel3: {fileID: 21300000, guid: 2b1b4dfdeaa5d4aec9580aabc6fd4349,
     type: 3}
   FreezeFactoryLevel1: {fileID: 21300000, guid: 5d34b8f6f409b488685b3ac557a41214,
     type: 3}
-  InfectionFactoryAreaLevel1: {fileID: 21300000, guid: 0458e69a508d14129a131bba137b13eb,
+  FreezeFactoryLevel2: {fileID: 21300000, guid: b8f8ba4343d5c4cd59a699705f0b59e3,
+    type: 3}
+  FreezeFactoryLevel3: {fileID: 21300000, guid: 0103f228aa9fe44dc8bbe0ed3d8950e8,
+    type: 3}
+  InfectionFactoryLevel1: {fileID: 21300000, guid: 0458e69a508d14129a131bba137b13eb,
+    type: 3}
+  InfectionFactoryLevel2: {fileID: 21300000, guid: 4a4c693bf22e640d6affad47352146f5,
+    type: 3}
+  InfectionFactoryLevel3: {fileID: 21300000, guid: 0cf436eddb2984670a5fe094b43781ba,
     type: 3}
 --- !u!1 &225584121
 GameObject:
