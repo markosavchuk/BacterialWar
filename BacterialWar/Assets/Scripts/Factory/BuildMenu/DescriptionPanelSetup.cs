@@ -27,7 +27,10 @@ public class DescriptionPanelSetup : MonoBehaviour
     private Text _defense;
 
     [SerializeField]
-    private Text _cost;
+    private Text _generationSpeed;
+
+    [SerializeField]
+    private Text _cost;    
 
     public void Setup(FactoryObject factory)
     {
@@ -38,7 +41,8 @@ public class DescriptionPanelSetup : MonoBehaviour
         _health.text = $"Health: {parameters.Health}";
         _damage.text = $"Damage: {parameters.Damage}";
         _radius.text = $"Radius: {parameters.RiachRange}";
-        _speed.text = $"Health: {parameters.Speed}";
+        _speed.text = $"Speed: {parameters.Speed}";
+        _generationSpeed.text = $"Generation: {parameters.GenetaionSpeed}";
         _cost.text = $"Plant ({parameters.Cost})";
     }
 }

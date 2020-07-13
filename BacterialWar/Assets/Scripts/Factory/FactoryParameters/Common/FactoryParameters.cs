@@ -12,4 +12,5 @@ public class FactoryParameters
     public float Defense = 3;
     public int Cost = 200;
     public Sprite MobImage;
+    public int GenetaionSpeed = 1;
 }
