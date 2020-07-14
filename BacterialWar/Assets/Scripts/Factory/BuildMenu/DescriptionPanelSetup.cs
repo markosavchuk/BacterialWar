@@ -52,7 +52,7 @@ public class DescriptionPanelSetup : MonoBehaviour
         _speed.text = FillParameterText("Speed", newParameters.Speed, oldParameters?.Speed);
         _generationSpeed.text = FillParameterText("Generation", newParameters.GenetaionSpeed, oldParameters?.GenetaionSpeed);
 
-        _cost.text = isNewFactory ? "Plant" : "Upgrade" + $" ({newParameters.Cost})";
+        _cost.text = (isNewFactory ? $"Plant" : "Upgrade") + $" ({newParameters.Cost})";
     }
 
     private string FillParameterText(string name, float newParameter, float? oldParameter = null)

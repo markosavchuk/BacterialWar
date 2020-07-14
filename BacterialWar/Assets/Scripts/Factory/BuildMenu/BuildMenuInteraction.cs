@@ -25,6 +25,11 @@ public class BuildMenuInteraction : MonoBehaviour
             return;
         }
 
+        if (hexObject.Content is CrystalObject)
+        {
+            return;
+        }
+
         _selectedFactoryPosition = hexObject.MapPosition;
 
         gameObject.SetActive(true);

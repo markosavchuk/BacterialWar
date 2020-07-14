@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public class FactoryObject : HexContent
+public abstract class FactoryObject : HexContent
 {
     public MobObject MobAbove { get; private set; }
 
@@ -28,14 +28,20 @@ public class FactoryObject : HexContent
 
     public virtual void Initialize()
     {
+        SetFactoryCalculator();
+        SetFactoryImage();
     }
 
     public virtual void UpgradeFactory()
     {
         Level++;
 
-        //todo update parameters
+        SetFactoryImage();
 
-        //todo check bug with changing old mobs size
+        //todo update parameters
     }
+
+    protected abstract void SetFactoryImage();
+
+    protected abstract void SetFactoryCalculator();
 }

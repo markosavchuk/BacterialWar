@@ -43,7 +43,7 @@ public class BaseFactoryMobProduction : MonoBehaviour
 
         var newMobInstance = Instantiate(ReproducableMob);
         newMobInstance.transform.position = _factoryObject.transform.position + _mobOffset;
-        newMobInstance.transform.parent = _factoryObject.transform;
+        newMobInstance.transform.parent = MobCollection.Instance.gameObject.transform;
 
         var mobObject = newMobInstance.AddComponent<MobObject>();
         mobObject.Player = _factoryObject.Player;
