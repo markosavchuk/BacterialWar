@@ -38,6 +38,9 @@ public class BuildMenuInteraction : MonoBehaviour
             {
                 _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(factory);
                 _builtFactoryPanel.SetActive(true);
+
+                _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(factory, false);
+                _descriptionPanel.SetActive(true);
             }
         }
     }
@@ -71,7 +74,7 @@ public class BuildMenuInteraction : MonoBehaviour
     {
         _activeFactoryDescription = factoryObject;
 
-        _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(factoryObject);
+        _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(factoryObject, true);
 
         _descriptionPanel.SetActive(true);
     }

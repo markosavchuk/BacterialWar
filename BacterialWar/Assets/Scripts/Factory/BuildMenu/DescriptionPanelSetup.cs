@@ -32,17 +32,43 @@ public class DescriptionPanelSetup : MonoBehaviour
     [SerializeField]
     private Text _cost;    
 
-    public void Setup(FactoryObject factory)
+    public void Setup(FactoryObject factory, bool isNewFactory)
     {
-        FactoryParameters parameters = factory.FactoryCalculator.GetParameters(1);
+        var calculator = factory.FactoryCalculator;
+        var level = isNewFactory ? 1 : factory.Level + 1;
 
-        _image.sprite = parameters.MobImage;
-        _name.text = $"{parameters.Name} (Lvl {parameters.Level})";
-        _health.text = $"Health: {parameters.Health}";
-        _damage.text = $"Damage: {parameters.Damage}";
-        _radius.text = $"Radius: {parameters.RiachRange}";
-        _speed.text = $"Speed: {parameters.Speed}";
-        _generationSpeed.text = $"Generation: {parameters.GenetaionSpeed}";
-        _cost.text = $"Plant ({parameters.Cost})";
+        FactoryParameters oldParameters = isNewFactory
+            ? null
+            : calculator.GetParameters(factory.Level);
+
+        FactoryParameters newParameters = calculator.GetParameters(level);
+
+        _image.sprite = newParameters.MobImage;
+        _name.text = $"{newParameters.Name} (Lvl {level})";
+
+        _health.text = FillParameterText("Health", newParameters.Health, oldParameters?.Health);
+        _damage.text = FillParameterText("Damage", newParameters.Damage, oldParameters?.Damage);
+        _radius.text = FillParameterText("Radius", newParameters.RiachRange, oldParameters?.RiachRange);
+        _speed.text = FillParameterText("Speed", newParameters.Speed, oldParameters?.Speed);
+        _generationSpeed.text = FillParameterText("Generation", newParameters.GenetaionSpeed, oldParameters?.GenetaionSpeed);
+
+        _cost.text = isNewFactory ? "Plant" : "Upgrade" + $" ({newParameters.Cost})";
+    }
+
+    private string FillParameterText(string name, float newParameter, float? oldParameter = null)
+    {
+        newParameter = (int)newParameter;
+        if (oldParameter.HasValue)
+        {
+            oldParameter = (int)oldParameter;
+        }
+
+        var str = $"{name}: {newParameter}";
+        if (oldParameter.HasValue)
+        {
+            var deltaStr = newParameter > oldParameter ? $" (+{newParameter-oldParameter})" : string.Empty;
+            str = str + deltaStr;
+        }
+        return str;
     }
 }
