@@ -13,4 +13,11 @@ public class InfectionFactory : FactoryObject
         var mobProductionComponent = gameObject.AddComponent<InfectionFactoryMobProduction>();
         mobProductionComponent.ReproducableMob = MobCollection.Instance.InfectionMobLevel1;
     }
+
+    public override void UpgradeFactory()
+    {
+        base.UpgradeFactory();
+
+        FactoryBuilder.Instance.UpgrageFactoryPrefab(this);
+    }
 }

@@ -28,5 +28,14 @@ public class FactoryObject : HexContent
 
     public virtual void Initialize()
     {
-    }    
+    }
+
+    public virtual void UpgradeFactory()
+    {
+        Level++;
+
+        //todo update parameters
+
+        //todo check bug with changing old mobs size
+    }
 }

@@ -13,4 +13,11 @@ public class FreezeFactory : FactoryObject
         var mobProductionComponent = gameObject.AddComponent<FreezeFactoryMobProduction>();
         mobProductionComponent.ReproducableMob = MobCollection.Instance.FreezeMobLevel1;
     }
+
+    public override void UpgradeFactory()
+    {
+        base.UpgradeFactory();
+
+        FactoryBuilder.Instance.UpgrageFactoryPrefab(this);
+    }
 }

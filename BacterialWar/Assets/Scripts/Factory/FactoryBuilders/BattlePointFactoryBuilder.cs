@@ -11,8 +11,22 @@ public class BattlePointFactoryBuilder : MonoBehaviour, IBuilder
     [SerializeField]
     private GameObject _factoryLevel3Prefab;
 
-    public GameObject GetStartFactoryPrefab()
+    public GameObject GetFactoryPrefab(FactoryObject factory = null)
     {
-        return _factoryLevel1Prefab;
+        if (factory == null)
+        {
+            return _factoryLevel1Prefab;
+        }
+
+        switch (factory.Level)
+        {
+            case 1:
+                return _factoryLevel1Prefab;
+            case 2:
+                return _factoryLevel2Prefab;
+            case 3:
+            default:
+                return _factoryLevel3Prefab;
+        }
     }
 }

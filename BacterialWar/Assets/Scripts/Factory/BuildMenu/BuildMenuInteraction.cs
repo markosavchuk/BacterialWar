@@ -16,6 +16,7 @@ public class BuildMenuInteraction : MonoBehaviour
 
     private FactoryObject _activeFactoryDescription;
     private Vector2Int? _selectedFactoryPosition;
+    private FactoryObject _factoryToUpgrage;
 
     public void OpenMenu(HexObject hexObject)
     {
@@ -36,10 +37,12 @@ public class BuildMenuInteraction : MonoBehaviour
         {
             if (hexObject.Content is FactoryObject factory)
             {
-                _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(factory);
+                _factoryToUpgrage = factory;
+
+                _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(_factoryToUpgrage);
                 _builtFactoryPanel.SetActive(true);
 
-                _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(factory, false);
+                _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(_factoryToUpgrage, false);
                 _descriptionPanel.SetActive(true);
             }
         }
@@ -48,6 +51,7 @@ public class BuildMenuInteraction : MonoBehaviour
     public void CloseMenu()
     {
         _selectedFactoryPosition = null;
+        _factoryToUpgrage = null;
 
         FadeOutAllItems(true);
 
@@ -86,7 +90,14 @@ public class BuildMenuInteraction : MonoBehaviour
             return;
         }
 
-        FactoryBuilder.Instance.Build(_activeFactoryDescription, _selectedFactoryPosition.Value);
+        if (_factoryToUpgrage != null)
+        {
+            _factoryToUpgrage.UpgradeFactory();
+        }
+        else
+        {
+            FactoryBuilder.Instance.Build(_activeFactoryDescription, _selectedFactoryPosition.Value);
+        }
 
         _selectedFactoryPosition = null;
 

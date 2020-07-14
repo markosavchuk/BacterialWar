@@ -13,4 +13,11 @@ public class BattleAreaFactory : FactoryObject
         var mobProductionComponent = gameObject.AddComponent<BattleAreaFactoryMobProduction>();
         mobProductionComponent.ReproducableMob = MobCollection.Instance.BattleAreaMobLevel1;
     }
+
+    public override void UpgradeFactory()
+    {
+        base.UpgradeFactory();
+      
+        FactoryBuilder.Instance.UpgrageFactoryPrefab(this);       
+    }
 }

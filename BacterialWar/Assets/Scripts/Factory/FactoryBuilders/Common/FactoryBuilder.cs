@@ -46,7 +46,7 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
             throw new System.ArgumentException("Cannot find appropriate builder");
         }
 
-        var factoryPrefab = factoryBuilder.GetStartFactoryPrefab();
+        var factoryPrefab = factoryBuilder.GetFactoryPrefab();
         var newFactory = Instantiate(factoryPrefab);
 
         newFactory.transform.parent = this.transform;
@@ -80,6 +80,16 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
                 Build<InfectionFactory>(position);
                 break;
         }
+    }
+
+    public void UpgrageFactoryPrefab<T>(T factoryObject) where T : FactoryObject
+    {
+        var prefab = GetBuilderForFactory<T>().GetFactoryPrefab(factoryObject);
+
+        factoryObject.GetComponent<MeshFilter>().sharedMesh = prefab.GetComponent<MeshFilter>().sharedMesh;
+
+        factoryObject.transform.rotation = prefab.transform.rotation;
+        factoryObject.transform.localScale = prefab.transform.localScale;
     }
 
     private IBuilder GetBuilderForFactory<T>() where T : FactoryObject

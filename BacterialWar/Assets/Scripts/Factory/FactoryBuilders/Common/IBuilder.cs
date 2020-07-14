@@ -3,5 +3,5 @@ using UnityEngine;
 
 public interface IBuilder
 {
-    GameObject GetStartFactoryPrefab();
+    GameObject GetFactoryPrefab(FactoryObject factory = null);
 }
