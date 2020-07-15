@@ -4,6 +4,8 @@ public class BaseFactoryMobProduction : MonoBehaviour
 {
     private FactoryObject _factoryObject;
 
+    protected ProgressBarController ProgressBarControl;
+
     [SerializeField]
     public GameObject ReproducableMob;
 
@@ -20,11 +22,28 @@ public class BaseFactoryMobProduction : MonoBehaviour
     {
         _factoryObject = GetComponent<FactoryObject>();
         _reproducableTime = ReproducablePeriod * Settings.Instance.StepTime;
+
+        AddProgressBar();
+    }
+
+    protected virtual void AddProgressBar()
+    {
+        var progressBarObject = Instantiate(UICollection.Instance.ProgressBar, UICollection.Instance.ProgressBarsCanvas.transform);
+
+        ProgressBarControl = progressBarObject.GetComponent<ProgressBarController>();
+        ProgressBarControl.SetPosition(_factoryObject.ParentHex.gameObject);
     }
 
     private void Update()
     {
+        if (!CanMakeNewMob())
+        {
+            return;
+        }
+
         _time += Time.deltaTime;
+
+        ProgressBarControl.TrackProgress(this, _time / _reproducableTime);
 
         if (_time >= _reproducableTime)
         {
@@ -34,9 +53,24 @@ public class BaseFactoryMobProduction : MonoBehaviour
         }
     }
 
+    private bool CanMakeNewMob()
+    {
+        if (_factoryObject.MobAbove != null || ReproducableMob == null)
+        {
+            ProgressBarControl.gameObject.SetActive(false);
+
+            _time = 0;
+
+            return false;
+        }
+
+        ProgressBarControl.gameObject.SetActive(true);
+        return true;
+    }
+
     private void MakeNewMob()
     {
-        if (_factoryObject.MobAbove != null || ReproducableMob==null)
+        if (!CanMakeNewMob())
         {
             return;
         }

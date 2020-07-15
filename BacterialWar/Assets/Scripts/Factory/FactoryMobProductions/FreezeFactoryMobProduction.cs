@@ -11,4 +11,11 @@ public class FreezeFactoryMobProduction : BaseFactoryMobProduction
         var freezeAttacker = mobInstance.AddComponent<FreezeAttacker>();
         freezeAttacker.FightPeriod = 2;
     }
+
+    protected override void AddProgressBar()
+    {
+        base.AddProgressBar();
+
+        ProgressBarControl.SetColor(UICollection.Instance.FreezeFactoryProgressBarColor);
+    }
 }

@@ -10,4 +10,11 @@ public class InfectionFactoryMobProduction : BaseFactoryMobProduction
 
         mobInstance.AddComponent<InfectionAttacker>();
     }
+
+    protected override void AddProgressBar()
+    {
+        base.AddProgressBar();
+
+        ProgressBarControl.SetColor(UICollection.Instance.InfectionFactoryProgressBarColor);
+    }
 }

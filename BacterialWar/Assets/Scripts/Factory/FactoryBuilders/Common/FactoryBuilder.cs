@@ -57,10 +57,10 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         var factoryComponent = newFactory.AddComponent<T>();
         factoryComponent.Player = parentHex.Player;
 
-        factoryComponent.Initialize();
-        
         parentHex.SetContent(factoryComponent);
         newFactory.transform.position = parentHex.transform.position + _factoryOffset;
+
+        factoryComponent.Initialize();                
     }
 
     public void Build(FactoryObject factoryObject, Vector2Int position)

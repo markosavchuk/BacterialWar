@@ -9,4 +9,11 @@ public class BattlePointFactoryMobProduction : BaseFactoryMobProduction
 
         mobInstance.AddComponent<BattlePointAttacker>();
     }
+
+    protected override void AddProgressBar()
+    {
+        base.AddProgressBar();
+
+        ProgressBarControl.SetColor(UICollection.Instance.BattlePointFactoryProgressBarColor);
+    }
 }
