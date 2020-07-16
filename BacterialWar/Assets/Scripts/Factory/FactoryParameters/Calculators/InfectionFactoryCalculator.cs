@@ -1,27 +1,27 @@
 ﻿using System;
-public class FreezeFactoryCalculator : BaseFactoryCalculator
+public class InfectionFactoryCalculator : BaseFactoryCalculator
 {
     public override FactoryParameters GetParameters(int level)
     {
-        var parameters = new FactoryParameters
+        var parameters = new InfectionFactoryParameters
         {
-            Name = "Freeze Virus Generator",
+            Name = "Infectious Virus Generator",
         };
 
         switch (level)
         {
             case 1:
-                parameters.MobImage = MobImageCollection.Instance.FreezeMobLevel1;
+                parameters.MobImage = MobImageCollection.Instance.InfectionMobLevel1;
                 break;
             case 2:
             default:
-                parameters.MobImage = MobImageCollection.Instance.FreezeMobLevel2;
+                parameters.MobImage = MobImageCollection.Instance.InfectionMobLevel2;
                 break;
         }
 
         parameters.Health += 10 * level;
         parameters.Cost += 100 * level;
-        parameters.Damage += 20 * level;
+        parameters.Infection += 20 * level;
         parameters.RiachRange += (level - 1);
 
         return parameters;

@@ -3,7 +3,7 @@ public class BattlePointFactoryCalculator : BaseFactoryCalculator
 {
     public override FactoryParameters GetParameters(int level)
     {
-        var parameters = new FactoryParameters
+        var parameters = new BattlePointFactoryParameters
         {
             Name = "Point Attack Virus Generator",
         };

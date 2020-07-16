@@ -47,12 +47,13 @@ public class DescriptionPanelSetup : MonoBehaviour
         _name.text = $"{newParameters.Name} (Lvl {level})";
 
         _health.text = FillParameterText("Health", newParameters.Health, oldParameters?.Health);
-        _damage.text = FillParameterText("Damage", newParameters.Damage, oldParameters?.Damage);
         _radius.text = FillParameterText("Radius", newParameters.RiachRange, oldParameters?.RiachRange);
         _speed.text = FillParameterText("Speed", newParameters.Speed, oldParameters?.Speed);
         _generationSpeed.text = FillParameterText("Generation", newParameters.GenetaionSpeed, oldParameters?.GenetaionSpeed);
 
         _cost.text = (isNewFactory ? $"Plant" : "Upgrade") + $" ({newParameters.Cost})";
+
+        _damage.text = FillParameterText(newParameters.SpecialDamageValue.Name, newParameters.SpecialDamageValue.Value, oldParameters?.SpecialDamageValue.Value);
     }
 
     private string FillParameterText(string name, float newParameter, float? oldParameter = null)

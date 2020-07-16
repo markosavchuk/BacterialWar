@@ -5,7 +5,7 @@ public class BattleAreaFactoryCalculator : BaseFactoryCalculator
     {
         //todo set mob image according to level
 
-        var parameters = new FactoryParameters
+        var parameters = new BattleAreaFactoryParameters
         {
             Name = "Wave Attack Virus Generator",
         };
@@ -26,7 +26,7 @@ public class BattleAreaFactoryCalculator : BaseFactoryCalculator
 
         parameters.Health += 10 * level;
         parameters.Cost += 100 * level;
-        parameters.Damage += 20 * level;
+        parameters.WaveDamage += 20 * level;
         parameters.RiachRange += (level - 1);
 
         return parameters;
