@@ -24,7 +24,7 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     private void Start()
     {
         //todo remove it later
-        //AddStartFactories();
+        AddStartFactories();
     }
 
     public void Build<T>(Vector2Int position) where T : FactoryObject, new()

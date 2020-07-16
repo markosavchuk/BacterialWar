@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class InfectionFactoryMobProduction : BaseFactoryMobProduction
 {
+    private InfectionAttacker _attacker;
+
     protected override void InitializeNewMob(GameObject mobInstance)
     {
         base.InitializeNewMob(mobInstance);
 
-        mobInstance.AddComponent<InfectionAttacker>();
+        var parameters = FactoryObject.Parameters as InfectionFactoryParameters;
+
+        _attacker = mobInstance.AddComponent<InfectionAttacker>();
+        _attacker.SetParameters(parameters);
     }
 
     protected override void AddProgressBar()
@@ -16,5 +21,14 @@ public class InfectionFactoryMobProduction : BaseFactoryMobProduction
         base.AddProgressBar();
 
         ProgressBarControl.SetColor(UICollection.Instance.InfectionFactoryProgressBarColor);
+    }
+
+    public override void OnUpgrade()
+    {
+        base.OnUpgrade();
+
+        var parameters = FactoryObject.Parameters as InfectionFactoryParameters;
+
+        _attacker.SetParameters(parameters);
     }
 }

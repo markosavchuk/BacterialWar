@@ -4,8 +4,7 @@ using System.Linq;
 
 public class BattleAreaAttacker : BaseMobAttacker
 {
-    [SerializeField]
-    private float _damage = 3;
+    private float _damage;
 
     protected override void ExecuteRound()
     {
@@ -20,5 +19,12 @@ public class BattleAreaAttacker : BaseMobAttacker
         {
             AddWaveAttackParticle(ParticleCollection.Instance.DamageArea, 10, new Vector3(0, -1f, 0));
         }
+    }
+
+    public void SetParameters(BattleAreaFactoryParameters parameters)
+    {
+        base.SetParameters(parameters);
+
+        _damage = parameters.WaveDamage;
     }
 }

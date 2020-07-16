@@ -6,9 +6,6 @@ public class BattlePointFactory : FactoryObject
     public override void Initialize()
     {
         base.Initialize();
-       
-        var mobProductionComponent = gameObject.AddComponent<BattlePointFactoryMobProduction>();
-        mobProductionComponent.ReproducableMob = MobCollection.Instance.BattlePointMobLevel1;
     }
 
     public override void UpgradeFactory()
@@ -16,6 +13,13 @@ public class BattlePointFactory : FactoryObject
         base.UpgradeFactory();
 
         FactoryBuilder.Instance.UpgrageFactoryPrefab(this);
+    }
+
+    protected override void InitializeMobProduction()
+    {
+        MobProduction = gameObject.AddComponent<BattlePointFactoryMobProduction>();
+
+        base.InitializeMobProduction();
     }
 
     protected override void SetFactoryCalculator()
@@ -38,6 +42,23 @@ public class BattlePointFactory : FactoryObject
             case 3:
             default:
                 FactoryImage = images.BattlePointFactoryLevel3;
+                break;
+        }
+    }
+
+    protected override void SetReproducableMob()
+    {
+        switch (Level)
+        {
+            case 1:
+                MobProduction.ReproducableMob = MobCollection.Instance.BattlePointMobLevel1;
+                break;
+            case 2:
+                MobProduction.ReproducableMob = MobCollection.Instance.BattlePointMobLevel2;
+                break;
+            case 3:
+            default:
+                MobProduction.ReproducableMob = MobCollection.Instance.BattlePointMobLevel3;
                 break;
         }
     }

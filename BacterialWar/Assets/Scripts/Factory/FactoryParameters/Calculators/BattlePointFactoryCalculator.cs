@@ -27,6 +27,7 @@ public class BattlePointFactoryCalculator : BaseFactoryCalculator
         parameters.Damage += 20 * level;
         parameters.RiachRange += (level - 1);
         parameters.GenetaionSpeed += (level - 1);
+        parameters.GenetaionSpeed = level;
 
         return parameters;
     }

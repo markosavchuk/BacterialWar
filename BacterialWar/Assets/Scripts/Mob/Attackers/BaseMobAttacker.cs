@@ -6,17 +6,13 @@ public class BaseMobAttacker : MonoBehaviour
     protected MobObject MobObject;
 
     private float _time = 0f;
-    private float _roundPeriod;
+    private float _roundPeriod = int.MaxValue;
 
     protected IEnumerable<MobObject> EnemyMobsInArea;
 
-    public float FightPeriod = 1;
-
     private void Awake()
     {
-        MobObject = GetComponent<MobObject>();
-
-        _roundPeriod = FightPeriod * Settings.Instance.StepTime;
+        MobObject = GetComponent<MobObject>();        
     }
 
     private void Update()
@@ -69,6 +65,11 @@ public class BaseMobAttacker : MonoBehaviour
         areaParticleMover.RichRange = MobObject.RiachRange;
         areaParticleMover.RadiusMultiplier = radiusMultiplier;
         areaParticleMover.Offset = offset;
+    }
+
+    protected void SetParameters(FactoryParameters parameters)
+    {
+        _roundPeriod = FactoryParameters.AttackSpeedConst / parameters.Speed * Settings.Instance.StepTime;
     }
 
     private GameObject AddParticle(GameObject particlePrefab)

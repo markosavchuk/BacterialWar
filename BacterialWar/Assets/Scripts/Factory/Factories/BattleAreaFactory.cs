@@ -6,16 +6,20 @@ public class BattleAreaFactory : FactoryObject
     public override void Initialize()
     {
         base.Initialize();
-
-        var mobProductionComponent = gameObject.AddComponent<BattleAreaFactoryMobProduction>();
-        mobProductionComponent.ReproducableMob = MobCollection.Instance.BattleAreaMobLevel1;
     }
 
     public override void UpgradeFactory()
     {
         base.UpgradeFactory();
       
-        FactoryBuilder.Instance.UpgrageFactoryPrefab(this);       
+        FactoryBuilder.Instance.UpgrageFactoryPrefab(this);
+    }
+
+    protected override void InitializeMobProduction()
+    {
+        MobProduction = gameObject.AddComponent<BattleAreaFactoryMobProduction>();
+
+        base.InitializeMobProduction();
     }
 
     protected override void SetFactoryCalculator()
@@ -45,6 +49,23 @@ public class BattleAreaFactory : FactoryObject
                 FactoryImage = images.BattleAreaFactoryLevel3Player2;
                 break;
             default:
+                break;
+        }
+    }
+
+    protected override void SetReproducableMob()
+    {
+        switch (Level)
+        {
+            case 1:
+                MobProduction.ReproducableMob = MobCollection.Instance.BattleAreaMobLevel1;
+                break;
+            case 2:
+                MobProduction.ReproducableMob = MobCollection.Instance.BattleAreaMobLevel2;
+                break;
+            case 3:
+            default:
+                MobProduction.ReproducableMob = MobCollection.Instance.BattleAreaMobLevel3;
                 break;
         }
     }

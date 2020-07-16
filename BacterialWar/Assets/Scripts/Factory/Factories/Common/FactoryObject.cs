@@ -11,6 +11,10 @@ public abstract class FactoryObject : HexContent
 
     public Sprite FactoryImage;
 
+    public FactoryParameters Parameters;
+
+    protected BaseFactoryMobProduction MobProduction;
+
     public void SetMobAbove(MobObject mob)
     { 
         if (mob == null)
@@ -30,6 +34,10 @@ public abstract class FactoryObject : HexContent
     {
         SetFactoryCalculator();
         SetFactoryImage();
+
+        Parameters = FactoryCalculator.GetParameters(1);
+
+        InitializeMobProduction();
     }
 
     public virtual void UpgradeFactory()
@@ -38,10 +46,26 @@ public abstract class FactoryObject : HexContent
 
         SetFactoryImage();
 
-        //todo update parameters
+        Parameters = FactoryCalculator.GetParameters(Level);
+
+        MobProduction.OnUpgrade();
+
+        SetReproducableMob();
+    }
+
+    protected virtual void InitializeMobProduction()
+    {
+        if (MobProduction == null)
+        {
+            return;
+        }
+
+        SetReproducableMob();
     }
 
     protected abstract void SetFactoryImage();
 
     protected abstract void SetFactoryCalculator();
+
+    protected abstract void SetReproducableMob();
 }

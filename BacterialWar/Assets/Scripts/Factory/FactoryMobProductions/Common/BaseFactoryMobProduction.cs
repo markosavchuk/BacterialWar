@@ -1,37 +1,25 @@
 ﻿using UnityEngine;
 
 public class BaseFactoryMobProduction : MonoBehaviour
-{
-    private FactoryObject _factoryObject;
-
-    protected ProgressBarController ProgressBarControl;
-
-    [SerializeField]
+{    
     public GameObject ReproducableMob;
-
-    [SerializeField]
-    public float ReproducablePeriod = 1.5f;
 
     [SerializeField]
     private Vector3 _mobOffset = new Vector3(0, 0.2f, 0);
 
+    protected ProgressBarController ProgressBarControl;
+
+    protected FactoryObject FactoryObject;
+
     private float _time = 0f;
     private float _reproducableTime;
 
-    private void Awake()
+    protected virtual void Start()
     {
-        _factoryObject = GetComponent<FactoryObject>();
-        _reproducableTime = ReproducablePeriod * Settings.Instance.StepTime;
+        FactoryObject = GetComponent<FactoryObject>();
+        CalculateReproducableTime();
 
-        AddProgressBar();
-    }
-
-    protected virtual void AddProgressBar()
-    {
-        var progressBarObject = Instantiate(UICollection.Instance.ProgressBar, UICollection.Instance.ProgressBarsCanvas.transform);
-
-        ProgressBarControl = progressBarObject.GetComponent<ProgressBarController>();
-        ProgressBarControl.SetPosition(_factoryObject.ParentHex.gameObject);
+        AddProgressBar();        
     }
 
     private void Update()
@@ -53,9 +41,22 @@ public class BaseFactoryMobProduction : MonoBehaviour
         }
     }
 
+    public virtual void OnUpgrade()
+    {
+        CalculateReproducableTime();
+    }
+
+    protected virtual void AddProgressBar()
+    {
+        var progressBarObject = Instantiate(UICollection.Instance.ProgressBar, UICollection.Instance.ProgressBarsCanvas.transform);
+
+        ProgressBarControl = progressBarObject.GetComponent<ProgressBarController>();
+        ProgressBarControl.SetPosition(FactoryObject.ParentHex.gameObject);
+    }
+
     private bool CanMakeNewMob()
     {
-        if (_factoryObject.MobAbove != null || ReproducableMob == null)
+        if (FactoryObject.MobAbove != null || ReproducableMob == null)
         {
             ProgressBarControl.gameObject.SetActive(false);
 
@@ -76,13 +77,13 @@ public class BaseFactoryMobProduction : MonoBehaviour
         }
 
         var newMobInstance = Instantiate(ReproducableMob);
-        newMobInstance.transform.position = _factoryObject.transform.position + _mobOffset;
+        newMobInstance.transform.position = FactoryObject.transform.position + _mobOffset;
         newMobInstance.transform.parent = MobCollection.Instance.gameObject.transform;
 
         var mobObject = newMobInstance.AddComponent<MobObject>();
-        mobObject.Player = _factoryObject.Player;
+        mobObject.Player = FactoryObject.Player;
 
-        _factoryObject.SetMobAbove(mobObject);
+        FactoryObject.SetMobAbove(mobObject);
 
         newMobInstance.AddComponent<MobMovement>();
 
@@ -92,5 +93,11 @@ public class BaseFactoryMobProduction : MonoBehaviour
     protected virtual void InitializeNewMob(GameObject mobInstance)
     {
 
+    }
+
+    private void CalculateReproducableTime()
+    {
+        _reproducableTime = FactoryParameters.GenerationSpeedConst / FactoryObject.Parameters.GenetaionSpeed
+            * Settings.Instance.StepTime;
     }
 }

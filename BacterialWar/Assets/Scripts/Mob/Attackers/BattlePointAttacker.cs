@@ -3,9 +3,7 @@ using System.Collections;
 
 public class BattlePointAttacker : BaseMobAttacker
 {
-    //todo make a balance model with connected all damage values between each other
-    [SerializeField]
-    private float _damage = 10;
+    private float _damage;
 
     protected override void ExecuteRound()
     {
@@ -21,5 +19,12 @@ public class BattlePointAttacker : BaseMobAttacker
 
             AddPointAttackParticles(ParticleCollection.Instance.DamagePoint, victim.MapPosition, new Vector3(0, -1f, 0));            
         }
+    }
+
+    public void SetParameters(BattlePointFactoryParameters parameters)
+    {
+        base.SetParameters(parameters);
+
+        _damage = parameters.Damage;
     }
 }

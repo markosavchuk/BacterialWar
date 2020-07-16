@@ -6,9 +6,6 @@ public class FreezeFactory : FactoryObject
     public override void Initialize()
     {
         base.Initialize();
-
-        var mobProductionComponent = gameObject.AddComponent<FreezeFactoryMobProduction>();
-        mobProductionComponent.ReproducableMob = MobCollection.Instance.FreezeMobLevel1;
     }
 
     public override void UpgradeFactory()
@@ -16,6 +13,13 @@ public class FreezeFactory : FactoryObject
         base.UpgradeFactory();
 
         FactoryBuilder.Instance.UpgrageFactoryPrefab(this);
+    }
+
+    protected override void InitializeMobProduction()
+    {
+        MobProduction = gameObject.AddComponent<FreezeFactoryMobProduction>();
+
+        base.InitializeMobProduction();
     }
 
     protected override void SetFactoryCalculator()
@@ -38,6 +42,20 @@ public class FreezeFactory : FactoryObject
             case 3:
             default:
                 FactoryImage = images.FreezeFactoryLevel3;
+                break;
+        }
+    }
+
+    protected override void SetReproducableMob()
+    {
+        switch (Level)
+        {
+            case 1:
+                MobProduction.ReproducableMob = MobCollection.Instance.FreezeMobLevel1;
+                break;
+            case 2:
+            default:
+                MobProduction.ReproducableMob = MobCollection.Instance.FreezeMobLevel2;
                 break;
         }
     }

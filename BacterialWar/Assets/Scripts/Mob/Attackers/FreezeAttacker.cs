@@ -5,14 +5,9 @@ using System.Linq;
 public class FreezeAttacker : BaseMobAttacker
 {
     [SerializeField]
-    private float _freezeTime = 1;
+    private float _freezeTime;
 
     private float _freezeRealTime;
-
-    private void Start()
-    {
-        _freezeRealTime = _freezeTime * Settings.Instance.StepTime;
-    }
 
     protected override void ExecuteRound()
     {
@@ -28,5 +23,14 @@ public class FreezeAttacker : BaseMobAttacker
         {
             AddWaveAttackParticle(ParticleCollection.Instance.DamageFreeze, 10, new Vector3(0, 0, 0));
         }
+    }
+
+    public void SetParameters(FreezeFactoryParameters parameters)
+    {
+        base.SetParameters(parameters);
+
+        _freezeTime = parameters.Freeze;
+
+        _freezeRealTime = _freezeTime * Settings.Instance.StepTime;
     }
 }

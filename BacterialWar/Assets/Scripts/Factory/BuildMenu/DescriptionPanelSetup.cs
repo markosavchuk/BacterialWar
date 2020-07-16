@@ -48,7 +48,7 @@ public class DescriptionPanelSetup : MonoBehaviour
 
         _health.text = FillParameterText("Health", newParameters.Health, oldParameters?.Health);
         _radius.text = FillParameterText("Radius", newParameters.RiachRange, oldParameters?.RiachRange);
-        _speed.text = FillParameterText("Speed", newParameters.Speed, oldParameters?.Speed);
+        _speed.text = FillParameterText("Attack speed", newParameters.Speed, oldParameters?.Speed);
         _generationSpeed.text = FillParameterText("Generation", newParameters.GenetaionSpeed, oldParameters?.GenetaionSpeed);
 
         _cost.text = (isNewFactory ? $"Plant" : "Upgrade") + $" ({newParameters.Cost})";

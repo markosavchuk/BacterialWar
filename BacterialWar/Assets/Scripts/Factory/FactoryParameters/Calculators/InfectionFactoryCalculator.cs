@@ -23,6 +23,7 @@ public class InfectionFactoryCalculator : BaseFactoryCalculator
         parameters.Cost += 100 * level;
         parameters.Infection += 20 * level;
         parameters.RiachRange += (level - 1);
+        parameters.GenetaionSpeed = level;
 
         return parameters;
     }

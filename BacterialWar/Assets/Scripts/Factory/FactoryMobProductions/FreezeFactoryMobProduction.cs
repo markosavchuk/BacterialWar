@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class FreezeFactoryMobProduction : BaseFactoryMobProduction
 {
+    private FreezeAttacker _attacker;
+
     protected override void InitializeNewMob(GameObject mobInstance)
     {
         base.InitializeNewMob(mobInstance);
 
-        var freezeAttacker = mobInstance.AddComponent<FreezeAttacker>();
-        freezeAttacker.FightPeriod = 2;
+        var parameters = FactoryObject.Parameters as FreezeFactoryParameters;
+
+        _attacker = mobInstance.AddComponent<FreezeAttacker>();
+        _attacker.SetParameters(parameters);
     }
 
     protected override void AddProgressBar()
@@ -17,5 +21,13 @@ public class FreezeFactoryMobProduction : BaseFactoryMobProduction
         base.AddProgressBar();
 
         ProgressBarControl.SetColor(UICollection.Instance.FreezeFactoryProgressBarColor);
+    }
+
+    public override void OnUpgrade()
+    {
+        base.OnUpgrade();
+
+        var parameters = FactoryObject.Parameters as FreezeFactoryParameters;
+        _attacker.SetParameters(parameters);
     }
 }

@@ -6,9 +6,6 @@ public class InfectionFactory : FactoryObject
     public override void Initialize()
     {
         base.Initialize();
-
-        var mobProductionComponent = gameObject.AddComponent<InfectionFactoryMobProduction>();
-        mobProductionComponent.ReproducableMob = MobCollection.Instance.InfectionMobLevel1;
     }
 
     public override void UpgradeFactory()
@@ -16,6 +13,13 @@ public class InfectionFactory : FactoryObject
         base.UpgradeFactory();
 
         FactoryBuilder.Instance.UpgrageFactoryPrefab(this);
+    }
+
+    protected override void InitializeMobProduction()
+    {
+        MobProduction = gameObject.AddComponent<InfectionFactoryMobProduction>();
+
+        base.InitializeMobProduction();
     }
 
     protected override void SetFactoryCalculator()
@@ -38,6 +42,20 @@ public class InfectionFactory : FactoryObject
             case 3:
             default:
                 FactoryImage = images.InfectionFactoryLevel3;
+                break;
+        }
+    }
+
+    protected override void SetReproducableMob()
+    {
+        switch (Level)
+        {
+            case 1:
+                MobProduction.ReproducableMob = MobCollection.Instance.InfectionMobLevel1;
+                break;
+            case 2:
+            default:
+                MobProduction.ReproducableMob = MobCollection.Instance.InfectionMobLevel2;
                 break;
         }
     }

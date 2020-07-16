@@ -4,7 +4,7 @@ using System.Collections;
 public class InfectionAttacker : BaseMobAttacker
 {
     [SerializeField]
-    private float _permanentDamage = 2;
+    private float _permanentDamage;
 
     protected override void ExecuteRound()
     {
@@ -20,5 +20,12 @@ public class InfectionAttacker : BaseMobAttacker
 
             AddPointAttackParticles(ParticleCollection.Instance.DamageInfection, victim.MapPosition, new Vector3(0, 1f, 0));
         }
+    }
+
+    public void SetParameters(InfectionFactoryParameters parameters)
+    {
+        base.SetParameters(parameters);
+
+        _permanentDamage = parameters.Infection;
     }
 }
