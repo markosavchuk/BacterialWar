@@ -51,11 +51,30 @@ public class MobMovement : MonoBehaviour
             _mobObject.OnFactory.SetMobAbove(null);
         }
 
-        var oldHexContainer = _mobObject.ParentHex;
         var newHexContainer = MapManager.Instance.Hex(newPlace.Value);
-        newHexContainer.SetContent(_mobObject, oldHexContainer);
 
-        ChangeNodePlayer(newPlace.Value);
+        // Mob is going to battle hex
+        if (newHexContainer.HexType == HexType.Battle)
+        {
+            var oldHexContainer = _mobObject.ParentHex;
+            newHexContainer.SetContent(_mobObject, oldHexContainer);
+
+            ChangeNodePlayer(newPlace.Value);
+        }
+        // Mob is going to my factory hex
+        else if (newHexContainer.HexType == HexType.Factory && newHexContainer.Player == _mobObject.Player)
+        {
+            // Mob is going to another factory
+            if (newHexContainer.Content != null && newHexContainer.Content is FactoryObject newParantFactory)
+            {
+                newParantFactory.SetMobAbove(_mobObject);
+            }
+            // Mob is going to empty factory hex
+            else
+            {
+                newHexContainer.SetContent(_mobObject);
+            }
+        }
 
         Move();
     }

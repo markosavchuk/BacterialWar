@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,26 +31,27 @@ public class BuildMenuInteraction : MonoBehaviour
             return;
         }
 
-        _selectedFactoryPosition = hexObject.MapPosition;
+        if (hexObject.Content is MobObject)
+        {
+            return;
+        }
 
+        _selectedFactoryPosition = hexObject.MapPosition;
         gameObject.SetActive(true);
 
         if (hexObject.Content == null)
         {
             _newFactoryPanel.SetActive(true);
         }
-        else
-        {
-            if (hexObject.Content is FactoryObject factory)
-            {
-                _factoryToUpgrage = factory;
+        else if (hexObject.Content is FactoryObject factory)
+        {          
+            _factoryToUpgrage = factory;
 
-                _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(_factoryToUpgrage);
-                _builtFactoryPanel.SetActive(true);
+            _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(_factoryToUpgrage);
+            _builtFactoryPanel.SetActive(true);
 
-                _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(_factoryToUpgrage, false);
-                _descriptionPanel.SetActive(true);
-            }
+            _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(_factoryToUpgrage, false);
+            _descriptionPanel.SetActive(true);
         }
     }
 
@@ -101,7 +103,14 @@ public class BuildMenuInteraction : MonoBehaviour
         }
         else
         {
-            FactoryBuilder.Instance.Build(_activeFactoryDescription, _selectedFactoryPosition.Value);
+            try
+            {
+                FactoryBuilder.Instance.Build(_activeFactoryDescription, _selectedFactoryPosition.Value);
+            }
+            catch(Exception ex)
+            {
+                Debug.Log(ex);
+            }
         }
 
         _selectedFactoryPosition = null;

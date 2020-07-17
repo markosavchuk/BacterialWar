@@ -37,6 +37,7 @@ public class MobMovementExtension
             return false;
         }
 
+        // Get hexComponent
         if (!(MapManager.Instance.Hex(position).GetComponent<HexObject>() is HexObject hexComponent))
         {
             return false;
@@ -45,11 +46,26 @@ public class MobMovementExtension
         // Check if this position allowed for Mob
         if (hexComponent.HexType != HexType.Battle)
         {
-            return false;
-        }
+            // Check if it's enemy factory hex
+            if (hexComponent.Player != player)
+            {
+                return false;
+            }
 
-        // Check if position is empty
-        if (hexComponent.Content != null)
+            // Check if position is empty (for factory hex with factory)
+            if (hexComponent.Content != null && hexComponent.Content is FactoryObject factory && factory?.MobAbove != null)
+            {
+                return false;
+            }
+
+            // Check if position is empty (for factory hex without factory)
+            if (hexComponent.Content != null && hexComponent.Content is MobObject mobObject)
+            {
+                return false;
+            }
+        }
+        // Check if position is empty (for mob hex)
+        else if (hexComponent.Content != null)
         {
             return false;
         }

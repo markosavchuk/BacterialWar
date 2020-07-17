@@ -70,13 +70,6 @@ public class HexObject : MapObject
             return true;
         }
 
-        // Check type of hex.
-        if ((obj is FactoryObject && HexType != HexType.Factory) ||
-            (obj is MobObject && HexType!= HexType.Battle))
-        {
-            return false;
-        }
-
         return true;
     }   
 }
