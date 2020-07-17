@@ -3,9 +3,39 @@ using UnityEngine;
 
 public class HexObject : MapObject
 {
+    private float _time = 0f;
+
     public HexType HexType;
 
     public HexContent Content { get; private set; }
+
+    private Player? _booked;
+    public Player? BookedForPlayer
+    {
+        get => _booked;
+        set
+        {
+            _booked = value;
+            _time = 0;
+        }
+    }
+
+    private void Update()
+    {
+        _time += Time.deltaTime;
+
+        if (_time >= Settings.Instance.StepTime)
+        {
+            _time -= Settings.Instance.StepTime;
+
+            ResetBooking();
+        }
+    }
+
+    private void ResetBooking()
+    {
+        BookedForPlayer = null;
+    }
 
     public void SetContent(HexContent content, HexObject oldHexContainer = null)
     {
@@ -22,6 +52,8 @@ public class HexObject : MapObject
             {
                 Content.ParentHex = this;
                 Content.MapPosition = MapPosition;
+
+                BookedForPlayer = null;
             }
         }
         else

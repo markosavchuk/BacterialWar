@@ -110,7 +110,11 @@ public class MobObject : HexContent
 
         if (Health <= 0)
         {
-            DestroyMob();
+            ParentHex.BookedForPlayer = Player == Player.Player1
+                ? Player.Player2
+                : Player.Player1;
+
+            DestroyMob();            
         }
     }
 

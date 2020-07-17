@@ -54,6 +54,12 @@ public class MobMovementExtension
             return false;
         }
 
+        // Check if position is booked
+        if (hexComponent.BookedForPlayer.HasValue && hexComponent.BookedForPlayer != player)
+        {
+            return false;
+        }
+
         // Check if game state allow it
         if (StateManager.Instance.GameState == GameState.Preparation)
         {
