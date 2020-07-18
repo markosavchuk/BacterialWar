@@ -24,10 +24,9 @@ public class BattlePointFactoryCalculator : BaseFactoryCalculator
 
         parameters.Health += 10 * level;
         parameters.Cost += 100 * level;
-        parameters.Damage += 20 * level;
+        parameters.Damage += 2 * level;
         parameters.RiachRange += (level - 1);
         parameters.GenetaionSpeed += (level - 1);
-        parameters.GenetaionSpeed = level;
 
         return parameters;
     }

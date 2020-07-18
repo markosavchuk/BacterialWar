@@ -23,7 +23,6 @@ public class FreezeFactoryCalculator : BaseFactoryCalculator
         parameters.Cost += 100 * level;
         parameters.Freeze = 0.5f;
         parameters.RiachRange += (level - 1);
-        parameters.GenetaionSpeed = level;
 
         return parameters;
     }

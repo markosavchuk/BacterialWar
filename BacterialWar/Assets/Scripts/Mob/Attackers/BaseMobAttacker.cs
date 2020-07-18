@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BaseMobAttacker : MonoBehaviour
@@ -76,5 +77,22 @@ public class BaseMobAttacker : MonoBehaviour
     {
         var particleObject = Instantiate(particlePrefab, gameObject.transform);
         return particleObject;
+    }
+
+    protected bool CanAttackSomeone()
+    {
+        var richArea = MobAttackerExtension.GetRichArea(MobObject);
+        EnemyMobsInArea = MobAttackerExtension.GetEnemyMobsInArea(richArea, MobObject.Player);
+        return EnemyMobsInArea.Any();
+    }
+
+    public virtual bool ShouldMove()
+    {
+        return true;
+    }
+
+    public void ResetWaitingTime()
+    {
+        _time = Time.deltaTime;
     }
 }

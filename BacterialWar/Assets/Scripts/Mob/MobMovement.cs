@@ -21,6 +21,19 @@ public class MobMovement : MonoBehaviour
         _realSpeed = _speed / Settings.Instance.StepTime;
     }
 
+    private BaseMobAttacker _mobAttacker;
+    private BaseMobAttacker MobAttacker
+    {
+        get
+        {
+            if (_mobAttacker == null)
+            {
+                _mobAttacker = gameObject.GetComponent<BaseMobAttacker>();
+            }
+            return _mobAttacker;
+        }
+    }
+
     void Update()
     {
         if (_mobObject.IsInMotion)
@@ -40,6 +53,11 @@ public class MobMovement : MonoBehaviour
             _mobObject.Player);
 
         if (!newPlace.HasValue)
+        {
+            return;
+        }
+
+        if (MobAttacker!=null && !MobAttacker.ShouldMove())
         {
             return;
         }
@@ -75,6 +93,8 @@ public class MobMovement : MonoBehaviour
                 newHexContainer.SetContent(_mobObject);
             }
         }
+
+        MobAttacker?.ResetWaitingTime();
 
         Move();
     }

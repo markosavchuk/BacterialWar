@@ -26,9 +26,8 @@ public class BattleAreaFactoryCalculator : BaseFactoryCalculator
 
         parameters.Health += 10 * level;
         parameters.Cost += 100 * level;
-        parameters.WaveDamage += 20 * level;
+        parameters.WaveDamage += 1 * level;
         parameters.RiachRange += (level - 1);
-        parameters.GenetaionSpeed = level;
 
         return parameters;
     }

@@ -22,6 +22,7 @@ public class FreezeAttacker : BaseMobAttacker
         if (EnemyMobsInArea.Any())
         {
             AddWaveAttackParticle(ParticleCollection.Instance.DamageFreeze, 10, new Vector3(0, 0, 0));
+            MobObject.FreezeMovement(Settings.Instance.StepTime * 0.25f);
         }
     }
 
@@ -32,5 +33,17 @@ public class FreezeAttacker : BaseMobAttacker
         _freezeTime = parameters.Freeze;
 
         _freezeRealTime = _freezeTime * Settings.Instance.StepTime;
+    }
+
+    public override bool ShouldMove()
+    {
+        if (!CanAttackSomeone())
+        {
+            return true;
+        }
+        else
+        {
+            return EnemyMobsInArea.All(m => m.FrozenMovement >= Settings.Instance.StepTime * 0.5f);
+        }
     }
 }

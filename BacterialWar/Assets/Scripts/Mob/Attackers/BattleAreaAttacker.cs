@@ -18,6 +18,7 @@ public class BattleAreaAttacker : BaseMobAttacker
         if (EnemyMobsInArea.Any())
         {
             AddWaveAttackParticle(ParticleCollection.Instance.DamageArea, 10, new Vector3(0, -1f, 0));
+            MobObject.FreezeMovement(Settings.Instance.StepTime);
         }
     }
 
@@ -26,5 +27,10 @@ public class BattleAreaAttacker : BaseMobAttacker
         base.SetParameters(parameters);
 
         _damage = parameters.WaveDamage;
+    }
+
+    public override bool ShouldMove()
+    {
+        return !CanAttackSomeone();
     }
 }

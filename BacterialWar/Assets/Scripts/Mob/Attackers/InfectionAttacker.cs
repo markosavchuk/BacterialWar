@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Linq;
 
 public class InfectionAttacker : BaseMobAttacker
 {
@@ -19,6 +20,7 @@ public class InfectionAttacker : BaseMobAttacker
             victim.GotInfected(_permanentDamage);
 
             AddPointAttackParticles(ParticleCollection.Instance.DamageInfection, victim.MapPosition, new Vector3(0, 1f, 0));
+            MobObject.FreezeMovement(Settings.Instance.StepTime * 0.25f);
         }
     }
 
@@ -27,5 +29,17 @@ public class InfectionAttacker : BaseMobAttacker
         base.SetParameters(parameters);
 
         _permanentDamage = parameters.Infection;
+    }
+
+    public override bool ShouldMove()
+    {
+        if (!CanAttackSomeone())
+        {
+            return true;
+        }
+        else
+        {
+            return CanAttackSomeone() && EnemyMobsInArea.All(m => m.Infection > 0);
+        }
     }
 }
