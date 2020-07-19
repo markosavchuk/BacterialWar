@@ -13,7 +13,7 @@ public class FreezeAttacker : BaseMobAttacker
     {
         base.ExecuteRound();
 
-        foreach (var mob in EnemyMobsInArea)
+        foreach (MobObject mob in EnemyMobsInArea)
         {
             mob.FreezeFight(_freezeRealTime);
             mob.FreezeMovement(_freezeRealTime);
@@ -43,7 +43,9 @@ public class FreezeAttacker : BaseMobAttacker
         }
         else
         {
-            return EnemyMobsInArea.All(m => m.FrozenMovement >= Settings.Instance.StepTime * 0.5f);
+            return EnemyMobsInArea
+                .Select(m => m as MobObject)
+                .All(m => m!=null && m.FrozenMovement >= Settings.Instance.StepTime * 0.5f);
         }
     }
 }

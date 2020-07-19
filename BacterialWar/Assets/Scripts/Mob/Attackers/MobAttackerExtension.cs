@@ -65,14 +65,34 @@ public class MobAttackerExtension
         return listOfPositions;
     }
 
-    public static IEnumerable<MobObject> GetEnemyMobsInArea(IEnumerable<Vector2Int> area, Player player)
+    public static IEnumerable<HexContent> GetEnemyInArea(IEnumerable<Vector2Int> area, Player player, bool includeFactories)
     {
-        return area.Where(p => MapManager.Instance.Hex(p).Content is MobObject)
-            .Select(p=> MapManager.Instance.Hex(p).Content as MobObject)
-            .Where(m => m.Player != player);
+        // Extract content from area positions
+        var areaContents = area.Select(p => MapManager.Instance.Hex(p).Content);
+
+        // Find factories with mob above
+        var factoriesWithMobAbove = areaContents
+            .Where(c => c is FactoryObject factory && factory.MobAbove != null);
+
+        // Extract Mobs from these factories
+        var mobsOnFactories = factoriesWithMobAbove
+            .Select(c => (c as FactoryObject).MobAbove);
+
+        // Add mobs on factories instead of these factories
+        areaContents = areaContents
+            .Where(h => !factoriesWithMobAbove.Contains(h))
+            .Union(mobsOnFactories);
+
+        if (!includeFactories)
+        {
+            // Exclude all factories from list
+            areaContents = areaContents.Where(c => c is MobObject);            
+        }
+
+        return areaContents.Where(m => m.Player != player);
     }
 
-    public static MobObject ChooseVictim(IEnumerable<MobObject> enemies, ChooseVictimStrategy strategy)
+    public static HexContent ChooseVictim(IEnumerable<HexContent> enemies, ChooseVictimStrategy strategy)
     {
         if (enemies.Any())
         {
@@ -85,16 +105,16 @@ public class MobAttackerExtension
         }
     }
 
-    public static MobObject CompareVictims(MobObject mob1, MobObject mob2, ChooseVictimStrategy strategy)
+    public static HexContent CompareVictims(HexContent obj1, HexContent obj2, ChooseVictimStrategy strategy)
     {
         switch (strategy)
         {
             case ChooseVictimStrategy.TheStrongest:
-                return mob1.Health > mob2.Health ? mob1 : mob2;
+                return obj1.Health > obj2.Health ? obj1 : obj2;
             case ChooseVictimStrategy.TheWeakest:
-                return mob1.Health < mob2.Health ? mob1 : mob2;
+                return obj1.Health < obj2.Health ? obj1 : obj2;
             default:
-                return mob1;
+                return obj1;
         }
     }
 }

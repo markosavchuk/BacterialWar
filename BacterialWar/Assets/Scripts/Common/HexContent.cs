@@ -9,10 +9,47 @@ public class HexContent : MapObject
     /// </summary>
     public HexObject ParentHex;
 
-    public void DestroyObject()
+    public float Health;
+
+    public virtual void GotAttacked(float damage, float freezeMovementTime)
     {
-        ParentHex.SetContent(null);
+        DamageObject(damage);
+    }
+
+    protected virtual void DestroyObject()
+    {
+        ParentHex?.SetContent(null);
 
         Destroy(gameObject);
+    }
+
+    protected void ShowHealthChange(float delta)
+    {
+        var damageText = Instantiate(
+            Player == Player.Player1
+                ? UICollection.Instance.MyDamageText
+                : UICollection.Instance.EnemyDamageText,
+            gameObject.transform);
+
+        var textMesh = damageText.GetComponent<TextMesh>();
+        textMesh.text = $"-{delta}";
+        damageText.AddComponent<TextMovement>();
+    }
+
+    protected virtual void DamageObject(float damage)
+    {
+        if (damage == 0)
+        {
+            return;
+        }
+
+        Health -= damage;
+
+        ShowHealthChange(damage);
+
+        if (Health <= 0)
+        {
+            DestroyObject();
+        }
     }
 }

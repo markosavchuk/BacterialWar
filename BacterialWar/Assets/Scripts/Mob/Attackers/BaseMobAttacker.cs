@@ -9,7 +9,9 @@ public class BaseMobAttacker : MonoBehaviour
     private float _time = 0f;
     private float _roundPeriod = int.MaxValue;
 
-    protected IEnumerable<MobObject> EnemyMobsInArea;
+    protected IEnumerable<HexContent> EnemyMobsInArea;
+    //todo setup
+    protected bool IsAttackFactories;
 
     private void Awake()
     {
@@ -46,7 +48,7 @@ public class BaseMobAttacker : MonoBehaviour
     protected virtual void ExecuteRound()
     {
         var richArea = MobAttackerExtension.GetRichArea(MobObject);
-        EnemyMobsInArea = MobAttackerExtension.GetEnemyMobsInArea(richArea, MobObject.Player);
+        EnemyMobsInArea = MobAttackerExtension.GetEnemyInArea(richArea, MobObject.Player, IsAttackFactories);
     }
 
     protected void AddPointAttackParticles(GameObject particlePrefab, Vector2Int targetPosition, Vector3 offset) 
@@ -82,7 +84,7 @@ public class BaseMobAttacker : MonoBehaviour
     protected bool CanAttackSomeone()
     {
         var richArea = MobAttackerExtension.GetRichArea(MobObject);
-        EnemyMobsInArea = MobAttackerExtension.GetEnemyMobsInArea(richArea, MobObject.Player);
+        EnemyMobsInArea = MobAttackerExtension.GetEnemyInArea(richArea, MobObject.Player, IsAttackFactories);
         return EnemyMobsInArea.Any();
     }
 

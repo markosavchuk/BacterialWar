@@ -8,8 +8,8 @@ public class BaseFactoryMobProduction : MonoBehaviour
     private Vector3 _mobOffset = new Vector3(0, 0.2f, 0);
 
     protected ProgressBarController ProgressBarControl;
-
     protected FactoryObject FactoryObject;
+    protected MobObject MobObject;
 
     private float _time = 0f;
     private float _reproducableTime;
@@ -44,6 +44,7 @@ public class BaseFactoryMobProduction : MonoBehaviour
     public virtual void OnUpgrade()
     {
         CalculateReproducableTime();
+        InitializeParameters();
     }
 
     protected virtual void AddProgressBar()
@@ -80,10 +81,10 @@ public class BaseFactoryMobProduction : MonoBehaviour
         newMobInstance.transform.position = FactoryObject.transform.position + _mobOffset;
         newMobInstance.transform.parent = MobCollection.Instance.gameObject.transform;
 
-        var mobObject = newMobInstance.AddComponent<MobObject>();
-        mobObject.Player = FactoryObject.Player;
+        MobObject = newMobInstance.AddComponent<MobObject>();
+        MobObject.Player = FactoryObject.Player;
 
-        FactoryObject.SetMobAbove(mobObject);
+        FactoryObject.SetMobAbove(MobObject);
 
         newMobInstance.AddComponent<MobMovement>();
 
@@ -92,12 +93,18 @@ public class BaseFactoryMobProduction : MonoBehaviour
 
     protected virtual void InitializeNewMob(GameObject mobInstance)
     {
-
+        InitializeParameters();
     }
 
     private void CalculateReproducableTime()
     {
         _reproducableTime = FactoryParameters.GenerationSpeedConst / FactoryObject.Parameters.GenetaionSpeed
             * Settings.Instance.StepTime;
+    }
+
+    private void InitializeParameters()
+    {
+        MobObject.Health = FactoryObject.Parameters.Health;
+        MobObject.RiachRange = FactoryObject.Parameters.RiachRange;
     }
 }

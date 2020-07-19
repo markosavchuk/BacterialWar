@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-public abstract class FactoryObject : HexContent
+public abstract class FactoryObject : FactoryHexObject
 {
     public MobObject MobAbove { get; private set; }
 
@@ -38,6 +38,8 @@ public abstract class FactoryObject : HexContent
         Parameters = FactoryCalculator.GetParameters(1);
 
         InitializeMobProduction();
+
+        Health = Parameters.Health;
     }
 
     public virtual void UpgradeFactory()
@@ -51,6 +53,8 @@ public abstract class FactoryObject : HexContent
         MobProduction.OnUpgrade();
 
         SetReproducableMob();
+
+        Health = Parameters.Health;
     }
 
     protected virtual void InitializeMobProduction()

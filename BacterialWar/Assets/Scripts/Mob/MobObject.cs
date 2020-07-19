@@ -9,11 +9,11 @@ public class MobObject : HexContent
     /// </summary>
     public FactoryObject OnFactory;
 
-    public float Health = 100;
+    public int RiachRange;
+
     public float FrozenFight = 0;
     public float FrozenMovement = 0;
     public bool IsInMotion = false;
-    public int RiachRange = 1;
     public float Infection = 0;
 
     private float _time = 0f;
@@ -31,13 +31,13 @@ public class MobObject : HexContent
             Unfreeze();
             DamageInfection();
         }
-    }    
+    }
 
-    public void GotAttacked(float damage, float freezeMovementTime)
+    public override void GotAttacked(float damage, float freezeMovementTime)
     {
-        FreezeMovement(freezeMovementTime);
+        base.GotAttacked(damage, freezeMovementTime);
 
-        DamageMob(damage);
+        FreezeMovement(freezeMovementTime);
     }
 
     public void GotInfected(float permanentDamage)
@@ -94,28 +94,7 @@ public class MobObject : HexContent
 
     private void DamageInfection()
     {
-        DamageMob(Infection);
-    }
-
-    private void DamageMob(float damage)
-    {
-        if (damage == 0)
-        {
-            return;
-        }
-
-        Health -= damage;
-
-        ShowHealthChange(damage);
-
-        if (Health <= 0)
-        {
-            ParentHex.BookedForPlayer = Player == Player.Player1
-                ? Player.Player2
-                : Player.Player1;
-
-            DestroyMob();            
-        }
+        DamageObject(Infection);
     }
 
     private StateParticle AddStateParticles(GameObject particlesPrefab, float? time = null)
@@ -129,7 +108,7 @@ public class MobObject : HexContent
         return stateParticle;
     }
 
-    private void DestroyMob()
+    protected override void DestroyObject()
     {
         if (_frozenParticles != null)
         {
@@ -141,19 +120,17 @@ public class MobObject : HexContent
             _infectionParticles.Lifetime = 0;
         }
 
-        DestroyObject();
-    }
+        if (OnFactory == null)
+        {
+            ParentHex.BookedForPlayer = Player == Player.Player1
+                ? Player.Player2
+                : Player.Player1;
+        }
+        else
+        {
+            OnFactory.SetMobAbove(null);
+        }
 
-    private void ShowHealthChange(float delta)
-    {
-        var damageText = Instantiate(
-            Player == Player.Player1
-                ? UICollection.Instance.MyDamageText
-                : UICollection.Instance.EnemyDamageText,
-            gameObject.transform);
-
-        var textMesh = damageText.GetComponent<TextMesh>();
-        textMesh.text = $"-{delta}";
-        damageText.AddComponent<TextMovement>();
+        base.DestroyObject();
     }
 }

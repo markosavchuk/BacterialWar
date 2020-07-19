@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CrystalObject : FactoryHexObject
+public class FactoryHexObject : HexContent
 {
 }

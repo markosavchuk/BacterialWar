@@ -15,9 +15,9 @@ public class InfectionAttacker : BaseMobAttacker
             EnemyMobsInArea,
             MobAttackerExtension.ChooseVictimStrategy.TheStrongest);
 
-        if (victim != null)
+        if (victim != null && victim is MobObject mobVictom)
         {
-            victim.GotInfected(_permanentDamage);
+            mobVictom.GotInfected(_permanentDamage);
 
             AddPointAttackParticles(ParticleCollection.Instance.DamageInfection, victim.MapPosition, new Vector3(0, 1f, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime * 0.25f);
@@ -39,7 +39,9 @@ public class InfectionAttacker : BaseMobAttacker
         }
         else
         {
-            return CanAttackSomeone() && EnemyMobsInArea.All(m => m.Infection > 0);
+            return EnemyMobsInArea
+                .Select(m => m as MobObject)
+                .All(m => m != null && m.Infection > 0);
         }
     }
 }
