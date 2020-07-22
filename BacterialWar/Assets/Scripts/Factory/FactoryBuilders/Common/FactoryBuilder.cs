@@ -24,7 +24,7 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     private void Start()
     {
         //todo remove it later
-        //AddStartFactories();
+        AddStartFactories();
     }
 
     public void Build<T>(Vector2Int position) where T : FactoryObject, new()
@@ -117,14 +117,14 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     //todo remove it later
     private void AddStartFactories()
     {
-        Build<BattleAreaFactory>(new Vector2Int(0, 14));
-        Build<BattlePointFactory>(new Vector2Int(2, 14));
-        Build<FreezeFactory>(new Vector2Int(4, 14));
-        Build<InfectionFactory>(new Vector2Int(6, 14));
+        Build<BattleAreaFactory>(new Vector2Int(0, 12));
+        Build<BattlePointFactory>(new Vector2Int(2, 12));
+        Build<FreezeFactory>(new Vector2Int(3, 12));
+        Build<InfectionFactory>(new Vector2Int(4, 12));
 
         Build<BattleAreaFactory>(new Vector2Int(0, 1));
-        Build<BattlePointFactory>(new Vector2Int(2, 1));
-        Build<FreezeFactory>(new Vector2Int(4, 1));
-        Build<InfectionFactory>(new Vector2Int(6, 1));
+        Build<BattlePointFactory>(new Vector2Int(1, 1));
+        Build<FreezeFactory>(new Vector2Int(3, 1));
+        Build<InfectionFactory>(new Vector2Int(4, 1));
     }
 }

@@ -1603,7 +1603,7 @@ MonoBehaviour:
   m_Padding:
     m_Left: 16
     m_Right: 16
-    m_Top: 16
+    m_Top: 32
     m_Bottom: 16
   m_ChildAlignment: 1
   m_Spacing: 16
