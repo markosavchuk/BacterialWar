@@ -14,6 +14,7 @@ public class MobMovement : MonoBehaviour
     private float _speed = 3f;
 
     private float _realSpeed;
+    private float? minDistanseToMove = null;
 
     private void Awake()
     {
@@ -99,11 +100,12 @@ public class MobMovement : MonoBehaviour
         Move();
     }
 
+    
     private void Move()
     {
-        var targetPosition = MapManager.Instance.Hex(_mobObject.MapPosition).transform.position + _mobOffset;
+        var targetPosition = MapManager.Instance.Hex(_mobObject.MapPosition).transform.position + _mobOffset;        
 
-        if (Vector3.Distance(gameObject.transform.position, targetPosition) < 0.05f)
+        if (minDistanseToMove.HasValue && Vector3.Distance(gameObject.transform.position, targetPosition) < minDistanseToMove)
         {
             gameObject.transform.position = targetPosition;
             _mobObject.IsInMotion = false;
@@ -111,7 +113,14 @@ public class MobMovement : MonoBehaviour
         else
         {
             var dir = targetPosition - gameObject.transform.position;
-            gameObject.transform.Translate(dir.normalized * _realSpeed * Time.deltaTime, Space.World);
+            var translation = dir.normalized * _realSpeed * Time.deltaTime;
+
+            if (!minDistanseToMove.HasValue)
+            {
+                minDistanseToMove = Vector3.Magnitude(translation) * 1.5f;
+            }
+
+            gameObject.transform.Translate(translation, Space.World);
         }
     }
 
