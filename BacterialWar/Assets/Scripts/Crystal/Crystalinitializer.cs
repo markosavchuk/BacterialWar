@@ -18,9 +18,10 @@ public class Crystalinitializer : MonoBehaviour
     private void AddCrystals()
     {
         var mapCenter = MapManager.Instance.Width / 2;
+        var offset = MapManager.Instance.Width % 2 == 0 ? -1 : 0;
 
         AddCrystal(_crystal1Prefab, new Vector2Int(mapCenter, 0), Player.Player1);
-        AddCrystal(_crystal2Prefab, new Vector2Int(mapCenter, MapManager.Instance.Height - 1), Player.Player2);
+        AddCrystal(_crystal2Prefab, new Vector2Int(mapCenter + offset, MapManager.Instance.Height - 1), Player.Player2); ;
     }
 
     private void AddCrystal(GameObject crystalPrefab, Vector2Int position, Player player)

@@ -2145,13 +2145,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0.47539586, y: -0, z: -0, w: 0.87977207}
-  m_LocalPosition: {x: 0, y: 12.45, z: -8.7}
+  m_LocalRotation: {x: 0.43986076, y: 0, z: 0, w: 0.898066}
+  m_LocalPosition: {x: -0.21, y: 12.04, z: -9.94}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 56.770004, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 52.19, y: 0, z: 0}
 --- !u!114 &1007749504 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
@@ -2551,10 +2551,10 @@ MonoBehaviour:
     type: 3}
   _factory2HexPrefab: {fileID: 2025972775262279051, guid: 3fd8a9ec752d54aa38424d540c87fd79,
     type: 3}
-  _gridWidth: 7
-  _gridHeight: 16
-  _factoryHeight: 2
   _gap: 0.1
+  _horizontalHexMarginPersentage: 1.2
+  _verticalHexMarginPersentage: 1
+  _maxWidth: 7
 --- !u!4 &1363641688
 Transform:
   m_ObjectHideFlags: 0

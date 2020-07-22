@@ -12,6 +12,10 @@ public class GroundGenerator : MonoBehaviour
     private float _hexHeightWithGap;
     private Vector3 _startPos;
 
+    private int _gridWidth;
+    private int _gridHeight;
+    private int _factoryHeight;
+
     [SerializeField]
     private GameObject _battleHexPrefab;
 
@@ -22,16 +26,16 @@ public class GroundGenerator : MonoBehaviour
     private GameObject _factory2HexPrefab;
 
     [SerializeField]
-    private int _gridWidth;
-
-    [SerializeField]
-    private int _gridHeight;
-
-    [SerializeField]
-    private int _factoryHeight;
-
-    [SerializeField]
     private float _gap;
+
+    [SerializeField]
+    private float _horizontalHexMarginPersentage;
+
+    [SerializeField]
+    private float _verticalHexMarginPersentage;
+
+    [SerializeField]
+    private int _maxWidth;
 
     private void Awake()
     {
@@ -43,11 +47,54 @@ public class GroundGenerator : MonoBehaviour
 
     private void Start()
     {
-        MapManager.Instance.Hexs = new HexObject[_gridWidth, _gridHeight];
-
         CalculateGap();
+        CaclulateWidthAndHeight();
         CalculateStartPosition();
         CreateGrid();
+    }
+
+    private void CaclulateWidthAndHeight()
+    {
+        var hexRectangle = VectorHelper.GUIRectWithObject(_battleHexPrefab);
+
+        var marginHorizontal = hexRectangle.height * _horizontalHexMarginPersentage;
+        var marginVertical = hexRectangle.width * _verticalHexMarginPersentage;
+
+        // Calculate width
+        _gridWidth = (int)((Screen.width - (marginHorizontal * 2)) / (hexRectangle.width * (1 + _gap)));
+        if (_gridWidth > _maxWidth)
+        {
+            _gridWidth = _maxWidth;
+        }
+
+        // Calculate height
+        double height = (Screen.height - (marginVertical * 2)) / (hexRectangle.height * (1 + _gap));
+        int roundedHeight = (int)height;
+
+        if (roundedHeight % 2 != 0 && height > roundedHeight)
+        {
+            roundedHeight++;
+        }
+        else if (roundedHeight % 2 != 0) 
+        {
+            roundedHeight--;
+        }
+
+        _gridHeight = roundedHeight;
+
+        _factoryHeight = _gridHeight >= 12 ? 2 : 1;
+
+        // Offeset camera X position if needed
+        if (_gridWidth % 2 == 0)
+        {
+            var cameraPos = Camera.main.transform.position;
+            Camera.main.transform.position = new Vector3(
+                cameraPos.x - _hexWidth / 2,
+                cameraPos.y,
+                cameraPos.z);
+        }
+
+        MapManager.Instance.Hexs = new HexObject[_gridWidth, _gridHeight];
     }
 
     private void CalculateGap()
