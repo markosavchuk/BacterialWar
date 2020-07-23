@@ -5,6 +5,13 @@ public class BattlePointAttacker : BaseMobAttacker
 {
     private float _damage;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        IsAttackFactories = true;
+    }
+
     protected override void ExecuteRound()
     {
         base.ExecuteRound();

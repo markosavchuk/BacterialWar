@@ -10,10 +10,9 @@ public class BaseMobAttacker : MonoBehaviour
     private float _roundPeriod = int.MaxValue;
 
     protected IEnumerable<HexContent> EnemyMobsInArea;
-    //todo setup
-    protected bool IsAttackFactories;
+    protected bool IsAttackFactories = false;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         MobObject = GetComponent<MobObject>();        
     }

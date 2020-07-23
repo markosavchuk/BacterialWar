@@ -39,7 +39,7 @@ public abstract class FactoryObject : FactoryHexObject
 
         InitializeMobProduction();
 
-        Health = Parameters.Health;
+        Health = Parameters.FactoryHealth;
     }
 
     public virtual void UpgradeFactory()
@@ -54,7 +54,7 @@ public abstract class FactoryObject : FactoryHexObject
 
         SetReproducableMob();
 
-        Health = Parameters.Health;
+        Health = Parameters.FactoryHealth;
     }
 
     protected virtual void InitializeMobProduction()

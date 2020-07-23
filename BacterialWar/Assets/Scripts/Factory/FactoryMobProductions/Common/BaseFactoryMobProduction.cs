@@ -107,4 +107,9 @@ public class BaseFactoryMobProduction : MonoBehaviour
         MobObject.Health = FactoryObject.Parameters.Health;
         MobObject.RiachRange = FactoryObject.Parameters.RiachRange;
     }
+
+    private void OnDestroy()
+    {
+        Destroy(ProgressBarControl.gameObject);
+    }
 }

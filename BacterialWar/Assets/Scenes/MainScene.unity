@@ -2585,6 +2585,7 @@ MonoBehaviour:
     type: 3}
   _crystal2Prefab: {fileID: 4313284915193839922, guid: 6e631899360964736897fca3e0d51827,
     type: 3}
+  _health: 5000
 --- !u!1 &1405461105
 GameObject:
   m_ObjectHideFlags: 0

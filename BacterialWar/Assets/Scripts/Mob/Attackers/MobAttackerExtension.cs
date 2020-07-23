@@ -68,7 +68,9 @@ public class MobAttackerExtension
     public static IEnumerable<HexContent> GetEnemyInArea(IEnumerable<Vector2Int> area, Player player, bool includeFactories)
     {
         // Extract content from area positions
-        var areaContents = area.Select(p => MapManager.Instance.Hex(p).Content);
+        var areaContents = area
+            .Select(p => MapManager.Instance.Hex(p).Content)
+            .Where(c => c != null);
 
         // Find factories with mob above
         var factoriesWithMobAbove = areaContents

@@ -31,6 +31,9 @@ public class HexContent : MapObject
                 : UICollection.Instance.EnemyDamageText,
             gameObject.transform);
 
+        damageText.transform.localScale = damageText.transform.localScale.Divide(
+            gameObject.transform.localScale);
+
         var textMesh = damageText.GetComponent<TextMesh>();
         textMesh.text = $"-{delta}";
         damageText.AddComponent<TextMovement>();

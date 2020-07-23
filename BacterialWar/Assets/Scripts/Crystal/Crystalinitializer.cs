@@ -10,6 +10,9 @@ public class Crystalinitializer : MonoBehaviour
     [SerializeField]
     private GameObject _crystal2Prefab;
 
+    [SerializeField]
+    private float _health;
+
     private void Start()
     {
         AddCrystals();
@@ -20,17 +23,18 @@ public class Crystalinitializer : MonoBehaviour
         var mapCenter = MapManager.Instance.Width / 2;
         var offset = MapManager.Instance.Width % 2 == 0 ? -1 : 0;
 
-        AddCrystal(_crystal1Prefab, new Vector2Int(mapCenter, 0), Player.Player1);
-        AddCrystal(_crystal2Prefab, new Vector2Int(mapCenter + offset, MapManager.Instance.Height - 1), Player.Player2); ;
+        AddCrystal(_crystal1Prefab, new Vector2Int(mapCenter, 0));
+        AddCrystal(_crystal2Prefab, new Vector2Int(mapCenter + offset, MapManager.Instance.Height - 1)); ;
     }
 
-    private void AddCrystal(GameObject crystalPrefab, Vector2Int position, Player player)
+    private void AddCrystal(GameObject crystalPrefab, Vector2Int position)
     {
         var parentHex = MapManager.Instance.Hexs[position.x, position.y];
 
         var crystal = Instantiate(crystalPrefab, parentHex.transform);
         var crystalObject = crystal.AddComponent<CrystalObject>();
-        crystalObject.Player = player;
+        crystalObject.Player = parentHex.Player;
+        crystalObject.Health = _health;
 
         parentHex.SetContent(crystalObject);
     }

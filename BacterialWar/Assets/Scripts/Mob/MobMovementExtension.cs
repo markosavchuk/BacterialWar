@@ -45,15 +45,23 @@ public class MobMovementExtension
 
         // Check if this position allowed for Mob
         if (hexComponent.HexType != HexType.Battle)
-        {
-            // Check if it's enemy factory hex
-            if (hexComponent.Player != player)
+        {            
+            if (hexComponent.Content != null && hexComponent.Content is FactoryObject factory)
             {
-                return false;
+                // Check if position is empty (for factory hex with factory)
+                if (factory?.MobAbove != null)
+                {
+                    return false;
+                }
+                // Check if this is enemy factory
+                else if (factory.Player != player) 
+                {
+                    return false;
+                }
             }
 
-            // Check if position is empty (for factory hex with factory)
-            if (hexComponent.Content != null && hexComponent.Content is FactoryObject factory && factory?.MobAbove != null)
+            // Check if this is crystal on this position
+            if (hexComponent.Content!=null && hexComponent.Content is CrystalObject)
             {
                 return false;
             }

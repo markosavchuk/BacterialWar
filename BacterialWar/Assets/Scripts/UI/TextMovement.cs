@@ -10,7 +10,7 @@ public class TextMovement : MonoBehaviour
     private float _fadeSpeed = 0.75f;
 
     [SerializeField]
-    private Vector3 _moveOffset = new Vector3(0, 0, 1);
+    private Vector3 _moveOffset = new Vector3(0, 0.5f, 0.5f);
 
     [SerializeField]
     private float _maxDistance = 2;

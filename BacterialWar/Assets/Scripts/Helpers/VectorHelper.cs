@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-public class VectorHelper
+public static class VectorHelper
 {
     public static Rect GUIRectWithObject(GameObject go)
     {
@@ -31,5 +31,10 @@ public class VectorHelper
         Vector2 screenPoint = Camera.main.WorldToScreenPoint(world);
         screenPoint.y = Screen.height - screenPoint.y;
         return screenPoint;
+    }
+
+    public static Vector3 Divide(this Vector3 value, Vector3 scale)
+    {
+        return new Vector3(value.x / scale.x, value.y / scale.y, value.z / scale.z);
     }
 }

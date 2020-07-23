@@ -71,28 +71,29 @@ public class MobMovement : MonoBehaviour
         }
 
         var newHexContainer = MapManager.Instance.Hex(newPlace.Value);
+        var oldHexContainer = _mobObject.ParentHex;
 
         // Mob is going to battle hex
         if (newHexContainer.HexType == HexType.Battle)
         {
-            var oldHexContainer = _mobObject.ParentHex;
             newHexContainer.SetContent(_mobObject, oldHexContainer);
 
             ChangeNodePlayer(newPlace.Value);
         }
-        // Mob is going to my factory hex
-        else if (newHexContainer.HexType == HexType.Factory && newHexContainer.Player == _mobObject.Player)
+        // Mob is going to factory hex
+        else if (newHexContainer.HexType == HexType.Factory)
         {
             // Mob is going to another factory
             if (newHexContainer.Content != null && newHexContainer.Content is FactoryObject newParantFactory)
             {
                 newParantFactory.SetMobAbove(_mobObject);
+                _mobObject.ParentHex.SetContent(null);
             }
             // Mob is going to empty factory hex
             else
             {
-                newHexContainer.SetContent(_mobObject);
-            }
+                newHexContainer.SetContent(_mobObject, oldHexContainer);
+            }            
         }
 
         MobAttacker?.ResetWaitingTime();
