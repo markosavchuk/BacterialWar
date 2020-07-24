@@ -1,5 +1,7 @@
 ﻿public enum GameState
 {
     Preparation,
-    Fight
+    Fight,
+    Won,
+    Lost
 }

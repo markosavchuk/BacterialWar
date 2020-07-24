@@ -9,7 +9,7 @@ public class StateManager : SingletonMonoBehaviour<StateManager>
     [SerializeField]
     private Text countingText;
 
-    public GameState GameState { get; set; }
+    public GameState GameState { get; private set; }
 
     private void Start()
     {
@@ -28,5 +28,12 @@ public class StateManager : SingletonMonoBehaviour<StateManager>
             countingNumber--;
             countingText.text = countingNumber.ToString();
         }, 1));
+    }
+
+    public void DestroyedCrystal(CrystalObject crystalObject)
+    {
+        GameState = crystalObject.Player == Player.Player1
+            ? GameState.Lost
+            : GameState.Won;
     }
 }

@@ -6,4 +6,11 @@ public class CrystalObject : FactoryHexObject
 {
     public float StartHealth;
     public Sprite CrystalImage;
+
+    protected override void DestroyObject()
+    {
+        base.DestroyObject();
+
+        StateManager.Instance.DestroyedCrystal(this);
+    }
 }

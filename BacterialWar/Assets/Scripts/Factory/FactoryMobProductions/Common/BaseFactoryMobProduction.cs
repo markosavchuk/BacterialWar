@@ -57,7 +57,9 @@ public class BaseFactoryMobProduction : MonoBehaviour
 
     private bool CanMakeNewMob()
     {
-        if (FactoryObject.MobAbove != null || ReproducableMob == null)
+        if (FactoryObject.MobAbove != null ||
+            ReproducableMob == null ||
+            StateManager.Instance.GameState == GameState.Lost)
         {
             ProgressBarControl.gameObject.SetActive(false);
 

@@ -36,6 +36,12 @@ public class BuildMenuInteraction : MonoBehaviour
             return;
         }
 
+        if (hexObject.Content == null && hexObject.Player == Player.Player1 &&
+            StateManager.Instance.GameState == GameState.Lost)
+        {
+            return;
+        }
+
         _selectedFactoryPosition = hexObject.MapPosition;
         gameObject.SetActive(true);
 
