@@ -12,12 +12,7 @@ public class FactoryNodeInteraction : MonoBehaviour
     }
 
     private void OnMouseDown()
-    {
-        if (_hexObject.Player != Player.Player1)
-        {
-            return;
-        }
-
+    {        
         FactoryBuilder.Instance.BuildMenu.OpenMenu(_hexObject);
     }    
 }

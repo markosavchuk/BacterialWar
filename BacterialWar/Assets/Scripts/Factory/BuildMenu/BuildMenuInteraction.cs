@@ -26,12 +26,12 @@ public class BuildMenuInteraction : MonoBehaviour
             return;
         }
 
-        if (hexObject.Content is CrystalObject)
+        if (hexObject.Content is MobObject)
         {
             return;
         }
 
-        if (hexObject.Content is MobObject)
+        if (hexObject.Content == null && hexObject.Player != Player.Player1)
         {
             return;
         }
@@ -39,24 +39,43 @@ public class BuildMenuInteraction : MonoBehaviour
         _selectedFactoryPosition = hexObject.MapPosition;
         gameObject.SetActive(true);
 
-        if (hexObject.Content == null)
-        {
+        if (hexObject.Content == null && hexObject.Player == Player.Player1)
+        {           
             _newFactoryPanel.SetActive(true);
         }
-        else if (hexObject.Content is FactoryObject factory)
-        {          
-            _factoryToUpgrage = factory;
+        else if (hexObject.Content is FactoryHexObject factoryHexObject)
+        {
+            if (factoryHexObject is FactoryObject factory)
+            {
+                _factoryToUpgrage = factory;
 
-            _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(_factoryToUpgrage);
+                _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(_factoryToUpgrage);
+
+                if (hexObject.Player == Player.Player1)
+                {
+                    _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(_factoryToUpgrage, false);
+                    _descriptionPanel.SetActive(true);
+                }
+            }
+            else if (factoryHexObject is CrystalObject crystal)
+            {
+                _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(crystal);
+            }
+
             _builtFactoryPanel.SetActive(true);
 
-            _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(_factoryToUpgrage, false);
-            _descriptionPanel.SetActive(true);
-        }
+            factoryHexObject.HealthUpdated -= OnSelectedFactoryHealthUpdated;
+            factoryHexObject.HealthUpdated += OnSelectedFactoryHealthUpdated;
+        }        
     }
 
     public void CloseMenu()
     {
+        if (_factoryToUpgrage != null)
+        {
+            _factoryToUpgrage.HealthUpdated -= OnSelectedFactoryHealthUpdated;
+        }
+
         _selectedFactoryPosition = null;
         _factoryToUpgrage = null;
 
@@ -116,5 +135,13 @@ public class BuildMenuInteraction : MonoBehaviour
         _selectedFactoryPosition = null;
 
         CloseMenu();
+    }
+
+    private void OnSelectedFactoryHealthUpdated(object sender, float health)
+    {
+        if (health <= 0)
+        {            
+            CloseMenu();
+        }
     }
 }

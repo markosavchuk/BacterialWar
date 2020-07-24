@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,7 +10,17 @@ public class HexContent : MapObject
     /// </summary>
     public HexObject ParentHex;
 
-    public float Health;
+    public EventHandler<float> HealthUpdated;
+
+    private float _health;
+    public float Health {
+        get => _health;
+        set
+        {
+            _health = value;
+            HealthUpdated?.Invoke(this, _health);
+        }
+    }
 
     public virtual void GotAttacked(float damage, float freezeMovementTime)
     {
