@@ -5,7 +5,7 @@ public class MobMovementExtension
     public static Vector2Int? FindNewPlaceForMob(Vector2Int oldPlace, Player player)
     {
         var delta = oldPlace.y % 2 == 0 ? -1 : 1;
-        var direction = player == Player.Player1 ? 1 : -1;
+        var direction = player == Player.MyPlayer ? 1 : -1;
 
         var path1 = new Vector2Int(oldPlace.x, oldPlace.y - 1 * direction);
         var path2 = new Vector2Int(oldPlace.x + delta, oldPlace.y - 1 * direction);
@@ -87,8 +87,8 @@ public class MobMovementExtension
         // Check if game state allow it
         if (StateManager.Instance.GameState == GameState.Preparation)
         {
-            if ((player == Player.Player1 && position.y < MapManager.Instance.Height / 2) ||
-                (player == Player.Player2 && position.y >= MapManager.Instance.Height / 2))
+            if ((player == Player.MyPlayer && position.y < MapManager.Instance.Height / 2) ||
+                (player == Player.EnemyPlayer && position.y >= MapManager.Instance.Height / 2))
             {
                 return false;
             }

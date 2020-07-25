@@ -37,7 +37,7 @@ public class HexContent : MapObject
     protected void ShowHealthChange(float delta)
     {
         var damageText = Instantiate(
-            Player == Player.Player1
+            Player == Player.MyPlayer
                 ? UICollection.Instance.MyDamageText
                 : UICollection.Instance.EnemyDamageText,
             gameObject.transform);

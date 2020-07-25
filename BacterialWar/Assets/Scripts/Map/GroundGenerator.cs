@@ -169,6 +169,6 @@ public class GroundGenerator : MonoBehaviour
 
     private Player GetPlayerForFactoryNode(Vector2Int position)
     {
-        return position.y < MapManager.Instance.Height / 2 ? Player.Player2 : Player.Player1;
+        return position.y < MapManager.Instance.Height / 2 ? Player.EnemyPlayer : Player.MyPlayer;
     }
 }

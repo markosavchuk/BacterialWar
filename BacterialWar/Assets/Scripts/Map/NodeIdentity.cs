@@ -37,6 +37,6 @@ public class NodeIdentity : MonoBehaviour
 
     private void SetPlayerColor()
     {
-        _renderer.material.color = _hexObject.Player == Player.Player1 ? Color1 : Color2;
+        _renderer.material.color = _hexObject.Player == Player.MyPlayer ? Color1 : Color2;
     }
 }

@@ -1,5 +1,7 @@
 ﻿public enum Player
 {
-    Player1,
-    Player2
+    // Player 1
+    MyPlayer,
+    // Player 2
+    EnemyPlayer
 }

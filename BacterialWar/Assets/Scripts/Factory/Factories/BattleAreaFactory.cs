@@ -36,16 +36,16 @@ public class BattleAreaFactory : FactoryObject
             case var _ when Level == 1:
                 FactoryImage = images.BattleAreaFactoryLevel1;
                 break;
-            case var _ when Level == 2 && Player == Player.Player1:
+            case var _ when Level == 2 && Player == Player.MyPlayer:
                 FactoryImage = images.BattleAreaFactoryLevel2Player1;
                 break;
-            case var _ when Level == 2 && Player == Player.Player2:
+            case var _ when Level == 2 && Player == Player.EnemyPlayer:
                 FactoryImage = images.BattleAreaFactoryLevel2Player2;
                 break;
-            case var _ when Level >= 3 && Player == Player.Player1:
+            case var _ when Level >= 3 && Player == Player.MyPlayer:
                 FactoryImage = images.BattleAreaFactoryLevel3Player1;
                 break;
-            case var _ when Level >= 3 && Player == Player.Player1:
+            case var _ when Level >= 3 && Player == Player.MyPlayer:
                 FactoryImage = images.BattleAreaFactoryLevel3Player2;
                 break;
             default:

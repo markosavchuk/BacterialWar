@@ -32,7 +32,7 @@ public class StateManager : SingletonMonoBehaviour<StateManager>
 
     public void DestroyedCrystal(CrystalObject crystalObject)
     {
-        GameState = crystalObject.Player == Player.Player1
+        GameState = crystalObject.Player == Player.MyPlayer
             ? GameState.Lost
             : GameState.Won;
     }

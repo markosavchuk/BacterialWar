@@ -29,13 +29,13 @@ public class BattleAreaFactoryBuilder : MonoBehaviour, IBuilder
         {
             case var _ when factory.Level == 1:
                 return _factoryLevel1Prefab;
-            case var _ when factory.Level == 2 && factory.Player == Player.Player1:
+            case var _ when factory.Level == 2 && factory.Player == Player.MyPlayer:
                 return _factoryLevel2Player1Prefab;
-            case var _ when factory.Level == 2 && factory.Player == Player.Player2:
+            case var _ when factory.Level == 2 && factory.Player == Player.EnemyPlayer:
                 return _factoryLevel2Player2Prefab;
-            case var _ when factory.Level >= 3 && factory.Player == Player.Player1:
+            case var _ when factory.Level >= 3 && factory.Player == Player.MyPlayer:
                 return _factoryLevel3Player1Prefab;
-            case var _ when factory.Level >= 3 && factory.Player == Player.Player1:
+            case var _ when factory.Level >= 3 && factory.Player == Player.MyPlayer:
                 return _factoryLevel3Player2Prefab;
             default:
                 return null;

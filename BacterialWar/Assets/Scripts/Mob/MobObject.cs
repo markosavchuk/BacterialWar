@@ -122,9 +122,9 @@ public class MobObject : HexContent
 
         if (OnFactory == null)
         {
-            ParentHex.BookedForPlayer = Player == Player.Player1
-                ? Player.Player2
-                : Player.Player1;
+            ParentHex.BookedForPlayer = Player == Player.MyPlayer
+                ? Player.EnemyPlayer
+                : Player.MyPlayer;
         }
         else
         {

@@ -31,12 +31,12 @@ public class BuildMenuInteraction : MonoBehaviour
             return;
         }
 
-        if (hexObject.Content == null && hexObject.Player != Player.Player1)
+        if (hexObject.Content == null && hexObject.Player != Player.MyPlayer)
         {
             return;
         }
 
-        if (hexObject.Content == null && hexObject.Player == Player.Player1 &&
+        if (hexObject.Content == null && hexObject.Player == Player.MyPlayer &&
             StateManager.Instance.GameState == GameState.Lost)
         {
             return;
@@ -45,8 +45,8 @@ public class BuildMenuInteraction : MonoBehaviour
         _selectedFactoryPosition = hexObject.MapPosition;
         gameObject.SetActive(true);
 
-        if (hexObject.Content == null && hexObject.Player == Player.Player1)
-        {           
+        if (hexObject.Content == null && hexObject.Player == Player.MyPlayer)
+        {
             _newFactoryPanel.SetActive(true);
         }
         else if (hexObject.Content is FactoryHexObject factoryHexObject)
@@ -57,7 +57,7 @@ public class BuildMenuInteraction : MonoBehaviour
 
                 _builtFactoryPanel.GetComponent<BuiltPanelSetup>().Setup(_factoryToUpgrage);
 
-                if (hexObject.Player == Player.Player1)
+                if (hexObject.Player == Player.MyPlayer)
                 {
                     _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(_factoryToUpgrage, false);
                     _descriptionPanel.SetActive(true);
@@ -72,7 +72,7 @@ public class BuildMenuInteraction : MonoBehaviour
 
             factoryHexObject.HealthUpdated -= OnSelectedFactoryHealthUpdated;
             factoryHexObject.HealthUpdated += OnSelectedFactoryHealthUpdated;
-        }        
+        }
     }
 
     public void CloseMenu()
@@ -92,7 +92,7 @@ public class BuildMenuInteraction : MonoBehaviour
         _builtFactoryPanel.SetActive(false);
         _descriptionPanel.SetActive(false);
 
-        _activeFactoryDescription = null;        
+        _activeFactoryDescription = null;
     }
 
     public void FadeOutAllItems(bool oppositeAction = false)
@@ -132,7 +132,7 @@ public class BuildMenuInteraction : MonoBehaviour
             {
                 FactoryBuilder.Instance.Build(_activeFactoryDescription, _selectedFactoryPosition.Value);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Debug.Log(ex);
             }
@@ -146,7 +146,7 @@ public class BuildMenuInteraction : MonoBehaviour
     private void OnSelectedFactoryHealthUpdated(object sender, float health)
     {
         if (health <= 0)
-        {            
+        {
             CloseMenu();
         }
     }
