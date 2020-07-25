@@ -60,7 +60,12 @@ public class BuildMenuInteraction : MonoBehaviour
                 if (hexObject.Player == Player.MyPlayer)
                 {
                     _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(_factoryToUpgrage, false);
+                    SetBuildOrUpgradeButtonInteraction(_factoryToUpgrage);
+
                     _descriptionPanel.SetActive(true);
+
+                    MoneyManager.Instance.MyWalletUpdated -= OnMyWalletUpdated;
+                    MoneyManager.Instance.MyWalletUpdated += OnMyWalletUpdated;
                 }
             }
             else if (factoryHexObject is CrystalObject crystal)
@@ -81,6 +86,8 @@ public class BuildMenuInteraction : MonoBehaviour
         {
             _factoryToUpgrage.HealthUpdated -= OnSelectedFactoryHealthUpdated;
         }
+
+        MoneyManager.Instance.MyWalletUpdated -= OnMyWalletUpdated;
 
         _selectedFactoryPosition = null;
         _factoryToUpgrage = null;
@@ -112,7 +119,12 @@ public class BuildMenuInteraction : MonoBehaviour
 
         _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(factoryObject, true);
 
+        SetBuildOrUpgradeButtonInteraction(factoryObject);       
+
         _descriptionPanel.SetActive(true);
+
+        MoneyManager.Instance.MyWalletUpdated -= OnMyWalletUpdated;
+        MoneyManager.Instance.MyWalletUpdated += OnMyWalletUpdated;
     }
 
     public void BuildFactory()
@@ -149,5 +161,24 @@ public class BuildMenuInteraction : MonoBehaviour
         {
             CloseMenu();
         }
+    }
+
+    private void OnMyWalletUpdated(object sender, float value)
+    {
+        var factory = _activeFactoryDescription != null
+            ? _activeFactoryDescription : _factoryToUpgrage;
+
+        if (factory != null)
+        {
+            SetBuildOrUpgradeButtonInteraction(factory);
+        }
+    }
+
+    private void SetBuildOrUpgradeButtonInteraction(FactoryObject factory)
+    {
+        var canInteract = MoneyManager.Instance.CanBuildFactory(factory);
+
+        _descriptionPanel.GetComponent<DescriptionPanelSetup>()
+            .SetButtonInteraction(canInteract);
     }
 }

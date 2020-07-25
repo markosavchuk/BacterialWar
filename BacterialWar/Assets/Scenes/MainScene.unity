@@ -420,6 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
+  StartHealth: 0
   FactoryCalculator: {fileID: 44866126}
   Level: 0
   FactoryImage: {fileID: 0}
@@ -976,6 +977,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
+  StartHealth: 0
   FactoryCalculator: {fileID: 264997219}
   Level: 0
   FactoryImage: {fileID: 0}
@@ -1237,6 +1239,14 @@ PrefabInstance:
       propertyPath: m_Color.b
       value: 0.54509807
       objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400000, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_FillCenter
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -1308,6 +1318,26 @@ PrefabInstance:
     - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_Colors.m_PressedColor.g
       value: 0.6446757
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_Interactable
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.33962262
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.33962262
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.33962262
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_Colors.m_ColorMultiplier
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 22400000, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_LocalScale.z
@@ -1741,6 +1771,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
+  StartHealth: 0
   FactoryCalculator: {fileID: 657071097}
   Level: 0
   FactoryImage: {fileID: 0}
@@ -2565,6 +2596,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1197202597}
   m_CullTransparentMesh: 0
+--- !u!114 &1209878020 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 11400004, guid: 05a81c3d5091440058129444d28322f3,
+    type: 3}
+  m_PrefabInstance: {fileID: 616256063}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1235608350 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
@@ -2589,6 +2632,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1339406348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1339406350}
+  - component: {fileID: 1339406349}
+  m_Layer: 0
+  m_Name: MoneyManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1339406349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339406348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03bd29bcbd33c4f22bc36241662769d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _persistent: 1
+  _startMoneyAmount: 600
+--- !u!4 &1339406350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339406348}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1363641686
 GameObject:
   m_ObjectHideFlags: 0
@@ -3958,6 +4046,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
+  StartHealth: 0
   FactoryCalculator: {fileID: 1816787950}
   Level: 0
   FactoryImage: {fileID: 0}
@@ -4302,7 +4391,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 436.46616, y: -416}
+  m_AnchoredPosition: {x: 455.0752, y: -160}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1967643019
@@ -4387,6 +4476,7 @@ MonoBehaviour:
   _defense: {fileID: 520454538}
   _generationSpeed: {fileID: 256784526}
   _cost: {fileID: 1236338282}
+  _button: {fileID: 1209878020}
 --- !u!1 &2044399253
 GameObject:
   m_ObjectHideFlags: 0

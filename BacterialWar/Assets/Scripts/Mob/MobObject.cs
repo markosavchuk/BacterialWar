@@ -131,6 +131,8 @@ public class MobObject : HexContent
             OnFactory.SetMobAbove(null);
         }
 
+        MoneyManager.Instance.EarnMoneyFromMob(this);
+
         base.DestroyObject();
     }
 }

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CrystalObject : FactoryHexObject
 {
-    public float StartHealth;
     public Sprite CrystalImage;
 
     protected override void DestroyObject()

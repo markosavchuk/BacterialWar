@@ -60,11 +60,18 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         parentHex.SetContent(factoryComponent);
         newFactory.transform.position = parentHex.transform.position + _factoryOffset;
 
-        factoryComponent.Initialize();                
+        factoryComponent.Initialize();
+
+        MoneyManager.Instance.SpendMoneyOnFactory(factoryComponent);
     }
 
     public void Build(FactoryObject factoryObject, Vector2Int position)
     {
+        if (!MoneyManager.Instance.CanBuildFactory(factoryObject))
+        {
+            throw new System.ArgumentException("Not enough money to build factory");
+        }
+
         switch (factoryObject)
         {
             case BattleAreaFactory _:

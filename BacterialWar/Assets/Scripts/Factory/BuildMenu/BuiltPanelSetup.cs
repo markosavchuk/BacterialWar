@@ -16,7 +16,6 @@ public class BuiltPanelSetup : MonoBehaviour
     private Text _factoryHealh;
 
     private FactoryHexObject _factoryHexObject;
-    private float _maxHealth;
 
     private void OnDestroy()
     {
@@ -35,8 +34,6 @@ public class BuiltPanelSetup : MonoBehaviour
 
     public void Setup(FactoryObject factory)
     {
-        _maxHealth = factory.Parameters.FactoryHealth;
-
         BaseSetup(factory);
 
         _factoryImage.sprite = factory.FactoryImage;
@@ -45,8 +42,6 @@ public class BuiltPanelSetup : MonoBehaviour
 
     public void Setup(CrystalObject crystal)
     {
-        _maxHealth = crystal.StartHealth;
-
         BaseSetup(crystal);
 
         _factoryImage.sprite = crystal.CrystalImage;
@@ -63,6 +58,6 @@ public class BuiltPanelSetup : MonoBehaviour
 
     private void SetHealth()
     {
-        _factoryHealh.text = $"{_factoryHexObject.Health}/{_maxHealth}";
+        _factoryHealh.text = $"{_factoryHexObject.Health}/{_factoryHexObject.StartHealth}";
     }
 }

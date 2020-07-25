@@ -12,6 +12,8 @@ public class HexContent : MapObject
 
     public EventHandler<float> HealthUpdated;
 
+    public float StartHealth;
+
     private float _health;
     public float Health {
         get => _health;

@@ -107,6 +107,7 @@ public class BaseFactoryMobProduction : MonoBehaviour
     private void InitializeParameters()
     {
         MobObject.Health = FactoryObject.Parameters.Health;
+        MobObject.StartHealth = FactoryObject.Parameters.Health;
         MobObject.RiachRange = FactoryObject.Parameters.RiachRange;
     }
 

@@ -30,7 +30,10 @@ public class DescriptionPanelSetup : MonoBehaviour
     private Text _generationSpeed;
 
     [SerializeField]
-    private Text _cost;    
+    private Text _cost;
+
+    [SerializeField]
+    private Button _button;
 
     public void Setup(FactoryObject factory, bool isNewFactory)
     {
@@ -54,6 +57,11 @@ public class DescriptionPanelSetup : MonoBehaviour
         _cost.text = (isNewFactory ? $"Plant" : "Upgrade") + $" ({newParameters.Cost})";
 
         _damage.text = FillParameterText(newParameters.SpecialDamageValue.Name, newParameters.SpecialDamageValue.Value, oldParameters?.SpecialDamageValue.Value);
+    }
+
+    public void SetButtonInteraction(bool interactable)
+    {
+        _button.interactable = interactable;
     }
 
     private string FillParameterText(string name, float newParameter, float? oldParameter = null)
