@@ -2,8 +2,10 @@
 
 public class Settings : SingletonMonoBehaviour<Settings>
 {
-    private void Awake()
+    protected override void OnAwake()
     {
+        base.OnAwake();
+
         //todo change it later
         Application.targetFrameRate = 30;
     }

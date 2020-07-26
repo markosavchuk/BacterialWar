@@ -13,8 +13,10 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
 
     public BuildMenuInteraction BuildMenu;
 
-    private void Awake()
+    protected override void OnAwake()
     {
+        base.OnAwake();
+
         _battleAreaFactoryBuilder = GetComponent<BattleAreaFactoryBuilder>();
         _battlePointFactoryBuilder = GetComponent<BattlePointFactoryBuilder>();
         _freezeFactoryBuilder = GetComponent<FreezeFactoryBuilder>();

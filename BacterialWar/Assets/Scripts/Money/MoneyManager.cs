@@ -12,8 +12,10 @@ public class MoneyManager : SingletonMonoBehaviour<MoneyManager>
 
     public EventHandler<float> MyWalletUpdated;
 
-    private void Awake()
+    protected override void OnAwake()
     {
+        base.OnAwake();
+
         WalletsDictionary = new Dictionary<Player, float>()
         {
             {Player.MyPlayer, _startMoneyAmount},
