@@ -1217,7 +1217,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_Name
-      value: SF Button
+      value: Button
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_Enabled
