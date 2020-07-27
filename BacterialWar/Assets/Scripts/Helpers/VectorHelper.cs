@@ -37,4 +37,19 @@ public static class VectorHelper
     {
         return new Vector3(value.x / scale.x, value.y / scale.y, value.z / scale.z);
     }
+
+    public static Rect GetRectForSafeArea()
+    {
+        var rect = Screen.safeArea;
+
+        // Convert safe area rectangle from absolute pixels to normalised anchor coordinates
+        Vector2 anchorMin = rect.position;
+        Vector2 anchorMax = rect.position + rect.size;
+        anchorMin.x /= Screen.width;
+        anchorMin.y /= Screen.height;
+        anchorMax.x /= Screen.width;
+        anchorMax.y /= Screen.height;
+
+        return new Rect(anchorMin.x, anchorMin.y, anchorMax.x, anchorMax.y);
+    }
 }

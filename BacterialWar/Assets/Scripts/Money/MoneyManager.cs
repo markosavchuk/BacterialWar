@@ -56,6 +56,11 @@ public class MoneyManager : SingletonMonoBehaviour<MoneyManager>
         return WalletsDictionary[factoryObject.Player] >= factoryObject.Parameters.Cost;
     }
 
+    public float GetCurrentAmount(Player player)
+    {
+        return WalletsDictionary[player];
+    }
+
     private float CalculateMoneyFromMob(MobObject mob)
     {
         return mob.StartHealth;
