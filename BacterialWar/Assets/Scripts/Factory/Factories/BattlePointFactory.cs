@@ -22,7 +22,7 @@ public class BattlePointFactory : FactoryObject
         base.InitializeMobProduction();
     }
 
-    protected override void SetFactoryCalculator()
+    public override void SetFactoryCalculator()
     {
         FactoryCalculator = gameObject.AddComponent<BattlePointFactoryCalculator>();
     }

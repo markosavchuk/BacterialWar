@@ -119,7 +119,7 @@ public class BuildMenuInteraction : MonoBehaviour
 
         _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(factoryObject, true);
 
-        SetBuildOrUpgradeButtonInteraction(factoryObject);       
+        SetBuildOrUpgradeButtonInteraction(factoryObject);
 
         _descriptionPanel.SetActive(true);
 
@@ -176,7 +176,15 @@ public class BuildMenuInteraction : MonoBehaviour
 
     private void SetBuildOrUpgradeButtonInteraction(FactoryObject factory)
     {
-        var canInteract = MoneyManager.Instance.CanBuildFactory(factory);
+        bool canInteract;
+        if (_factoryToUpgrage == null)
+        {
+            canInteract = MoneyManager.Instance.CanBuildOrUpgradeFactory(factory, 1);
+        }
+        else
+        {
+            canInteract = MoneyManager.Instance.CanBuildOrUpgradeFactory(factory, factory.Level + 1);
+        }
 
         _descriptionPanel.GetComponent<DescriptionPanelSetup>()
             .SetButtonInteraction(canInteract);

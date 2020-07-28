@@ -31,4 +31,21 @@ public class MapManager : SingletonBase<MapManager>
         return position.x >= 0 && position.x < Width &&
             position.y >= 0 && position.y < Height;
     }
+
+    public List<HexObject> GetAllFactoryHexs(Player player)
+    {
+        var hexs = new List<HexObject>();
+        for (var i = 0; i < Width; i++)
+        {
+            for (int j = 0; j < Height; j++)
+            {
+                var hex = Hexs[i, j];
+                if (hex.Player == player && hex.HexType == HexType.Factory)
+                {
+                    hexs.Add(hex);
+                }
+            }
+        }
+        return hexs;
+    }
 }

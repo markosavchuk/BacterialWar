@@ -26,7 +26,7 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     private void Start()
     {
         //todo remove it later
-        AddStartFactories();
+        //AddStartFactories();
     }
 
     public void Build<T>(Vector2Int position) where T : FactoryObject, new()
@@ -64,12 +64,12 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
 
         factoryComponent.Initialize();
 
-        MoneyManager.Instance.SpendMoneyOnFactory(factoryComponent);
+        MoneyManager.Instance.SpendMoneyOnBuildingFactory(factoryComponent);
     }
 
     public void Build(FactoryObject factoryObject, Vector2Int position)
     {
-        if (!MoneyManager.Instance.CanBuildFactory(factoryObject))
+        if (!MoneyManager.Instance.CanBuildOrUpgradeFactory(factoryObject, 1))
         {
             throw new System.ArgumentException("Not enough money to build factory");
         }
@@ -128,12 +128,12 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
     {
         Build<BattleAreaFactory>(new Vector2Int(0, 12));
         Build<BattlePointFactory>(new Vector2Int(2, 12));
-        Build<FreezeFactory>(new Vector2Int(3, 12));
-        Build<InfectionFactory>(new Vector2Int(4, 12));
+        //Build<FreezeFactory>(new Vector2Int(3, 12));
+        //Build<InfectionFactory>(new Vector2Int(4, 12));
 
         Build<BattleAreaFactory>(new Vector2Int(0, 1));
         Build<BattlePointFactory>(new Vector2Int(1, 1));
-        Build<FreezeFactory>(new Vector2Int(3, 1));
-        Build<InfectionFactory>(new Vector2Int(4, 1));
+        //Build<FreezeFactory>(new Vector2Int(3, 1));
+        //Build<InfectionFactory>(new Vector2Int(4, 1));
     }
 }

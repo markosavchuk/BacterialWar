@@ -87,7 +87,10 @@ public class MobMovement : MonoBehaviour
             if (newHexContainer.Content != null && newHexContainer.Content is FactoryObject newParantFactory)
             {
                 newParantFactory.SetMobAbove(_mobObject);
-                _mobObject.ParentHex.SetContent(null);
+                if (_mobObject.ParentHex != null)
+                {
+                    _mobObject.ParentHex.SetContent(null);
+                }
             }
             // Mob is going to empty factory hex
             else

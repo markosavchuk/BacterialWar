@@ -47,9 +47,4 @@ public class MainMenuManager : SingletonMonoBehaviour<MainMenuManager>
     {
         _moneyValue.text = money.ToString();
     }
-
-    private void OnDestroy()
-    {
-        MoneyManager.Instance.MyWalletUpdated -= SetMoneyValue;
-    }
 }

@@ -20,7 +20,7 @@ public class FreezeFactoryCalculator : BaseFactoryCalculator
         }
 
         parameters.Health += 10 * level;
-        parameters.Cost += 100 * level;
+        parameters.Cost += 200 * level;
         parameters.Freeze = 0.5f;
         parameters.RiachRange += (level - 1);
 

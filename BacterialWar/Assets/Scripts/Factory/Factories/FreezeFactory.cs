@@ -22,7 +22,7 @@ public class FreezeFactory : FactoryObject
         base.InitializeMobProduction();
     }
 
-    protected override void SetFactoryCalculator()
+    public override void SetFactoryCalculator()
     {
         FactoryCalculator = gameObject.AddComponent<FreezeFactoryCalculator>();
     }

@@ -20,7 +20,7 @@ public class InfectionFactoryCalculator : BaseFactoryCalculator
         }
 
         parameters.Health += 10 * level;
-        parameters.Cost += 100 * level;
+        parameters.Cost += 110 * level;
         parameters.Infection += 2 * level;
         parameters.RiachRange += (level - 1);
 

@@ -43,10 +43,7 @@ public class GroundGenerator : MonoBehaviour
         {
             throw new ArgumentException($"{nameof(_gridHeight)} should be even number.");
         }
-    }
 
-    private void Start()
-    {
         CalculateGap();
         CaclulateWidthAndHeight();
         CalculateStartPosition();

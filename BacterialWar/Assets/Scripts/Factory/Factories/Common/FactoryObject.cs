@@ -45,6 +45,8 @@ public abstract class FactoryObject : FactoryHexObject
 
     public virtual void UpgradeFactory()
     {
+        MoneyManager.Instance.SpendMoneyOnUpgradingFactory(this);
+
         Level++;
 
         SetFactoryImage();
@@ -71,7 +73,7 @@ public abstract class FactoryObject : FactoryHexObject
 
     protected abstract void SetFactoryImage();
 
-    protected abstract void SetFactoryCalculator();
+    public abstract void SetFactoryCalculator();
 
     protected abstract void SetReproducableMob();
 }

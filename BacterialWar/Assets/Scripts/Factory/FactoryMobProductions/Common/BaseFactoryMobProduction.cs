@@ -59,7 +59,8 @@ public class BaseFactoryMobProduction : MonoBehaviour
     {
         if (FactoryObject.MobAbove != null ||
             ReproducableMob == null ||
-            StateManager.Instance.GameState == GameState.Lost)
+            (StateManager.Instance.GameState == GameState.Lost && FactoryObject.Player == Player.MyPlayer) ||
+            (StateManager.Instance.GameState == GameState.Won && FactoryObject.Player == Player.EnemyPlayer))
         {
             ProgressBarControl.gameObject.SetActive(false);
 
