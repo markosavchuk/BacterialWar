@@ -12,8 +12,12 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private float _stepPeriod;
 
-    private float _time = 0f;
+    [SerializeField]
+    private Difficulty _difficulty;
 
+    private float _realStepPeriod;
+    private float _time = 0f;
+    private float _moneyMultiplyer;
     private List<HexObject> _factoriesHex;
     private int _primaryRow;
     private List<FactoryObject> _availableFactories;
@@ -29,6 +33,8 @@ public class EnemyAI : MonoBehaviour
 
         _availableFactories = GetAvailableFactories();
         _planedFactoryCorrelations = GetPlanedFactoryCorellations();
+        
+        SetDifficulty();
     }
     
     private List<FactoryObject> GetAvailableFactories()
@@ -63,15 +69,29 @@ public class EnemyAI : MonoBehaviour
 
         return corellations;
     }
+
+    private void SetDifficulty()
+    {
+        var parameters = GetComponent<DifficultySettingsProvider>()
+            .DifficultySettingsList.Find(f => f.Difficulty == _difficulty);
+
+        _realStepPeriod = _stepPeriod * parameters.StepTimeMultiplier * Settings.Instance.StepTime;
+        _moneyMultiplyer = parameters.MoneyMultiplier;
+
+        if (_moneyMultiplyer > 1)
+        {
+            throw new ArgumentException("Money Multiplyer cannot be more then 1.");
+        }
+    }
     #endregion
 
     private void Update()
     {
         _time += Time.deltaTime;
 
-        if (_time >= _stepPeriod)
+        if (_time >= _realStepPeriod)
         {
-            _time -= _stepPeriod;
+            _time -= _realStepPeriod;
 
             TryBuildOrUpgrade();
         }        
@@ -79,7 +99,7 @@ public class EnemyAI : MonoBehaviour
 
     private void TryBuildOrUpgrade()
     {
-        var availableMoney = MoneyManager.Instance.GetCurrentAmount(_player);
+        var availableMoney = MoneyManager.Instance.GetCurrentAmount(_player) * _moneyMultiplyer;
 
         // Build new factory if there is space for it
         var emptyPositions = _factoriesHex

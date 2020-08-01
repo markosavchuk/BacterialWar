@@ -19,9 +19,7 @@ public class MoneyManager : SingletonMonoBehaviour<MoneyManager>
         WalletsDictionary = new Dictionary<Player, float>()
         {
             {Player.MyPlayer, _startMoneyAmount},
-            //todo switch it later
             {Player.EnemyPlayer, _startMoneyAmount}
-            //{Player.EnemyPlayer, 300}
         };
     }
 
