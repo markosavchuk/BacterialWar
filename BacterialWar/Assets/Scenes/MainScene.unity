@@ -3163,6 +3163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: 0
+  _stepPeriod: 1.5
 --- !u!114 &1536091121
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3176,6 +3177,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: 1
+  _stepPeriod: 1.5
 --- !u!4 &1536091122
 Transform:
   m_ObjectHideFlags: 0

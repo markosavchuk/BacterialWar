@@ -9,10 +9,17 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     private Player _player;
 
+    [SerializeField]
+    private float _stepPeriod;
+
+    private float _time = 0f;
+
     private List<HexObject> _factoriesHex;
     private int _primaryRow;
     private List<FactoryObject> _availableFactories;
+    private List<(float Value, Type Type)> _planedFactoryCorrelations;
 
+    #region Initialization
     private void Awake()
     {
         _factoriesHex = MapManager.Instance.GetAllFactoryHexs(_player);
@@ -20,7 +27,13 @@ public class EnemyAI : MonoBehaviour
             ? _factoriesHex.Max(h => h.MapPosition.y)
             : _factoriesHex.Min(h => h.MapPosition.y);
 
-        _availableFactories = new List<FactoryObject>()
+        _availableFactories = GetAvailableFactories();
+        _planedFactoryCorrelations = GetPlanedFactoryCorellations();
+    }
+    
+    private List<FactoryObject> GetAvailableFactories()
+    {
+        var availableFactories = new List<FactoryObject>()
         {
             gameObject.AddComponent<BattleAreaFactory>(),
             gameObject.AddComponent<BattlePointFactory>(),
@@ -28,18 +41,40 @@ public class EnemyAI : MonoBehaviour
             gameObject.AddComponent<InfectionFactory>()
         };
 
-        foreach (var factory in _availableFactories)
+        foreach (var factory in availableFactories)
         {
             factory.SetFactoryCalculator();
             factory.Parameters = factory.FactoryCalculator.GetParameters(1);
             factory.Player = _player;
         }
+
+        return availableFactories;
     }
 
-    //todo refactor with change money event
+    private List<(float Value, Type Type)> GetPlanedFactoryCorellations()
+    {
+        var corellations = new List<(float Value, Type Type)>
+        {
+            (2 + UnityEngine.Random.Range(0f, 1f), typeof(BattleAreaFactory)),
+            (2 + UnityEngine.Random.Range(0f, 1f), typeof(BattlePointFactory)),
+            (1 + UnityEngine.Random.Range(0f, 0.5f), typeof(FreezeFactory)),
+            (1 + UnityEngine.Random.Range(0f, 0.5f), typeof(InfectionFactory))
+        };
+
+        return corellations;
+    }
+    #endregion
+
     private void Update()
     {
-        TryBuildOrUpgrade();
+        _time += Time.deltaTime;
+
+        if (_time >= _stepPeriod)
+        {
+            _time -= _stepPeriod;
+
+            TryBuildOrUpgrade();
+        }        
     }
 
     private void TryBuildOrUpgrade()
@@ -72,7 +107,7 @@ public class EnemyAI : MonoBehaviour
                 .Select(f => f.MapPosition)
                 .ToList();
 
-            if (potensialFactories.Any())
+            if (potensialFactories!=null && potensialFactories.Any())
             {
                 var positionToUpgrade = ChoosePositionToBuildOrUpgrade(potensialPositions);
                 if (positionToUpgrade.HasValue)
@@ -85,8 +120,8 @@ public class EnemyAI : MonoBehaviour
                 }
             }
         }
-    }
-    
+    }   
+
     private Vector2Int? ChoosePositionToBuildOrUpgrade(List<Vector2Int> positions)
     {
         if (positions==null || !positions.Any())
@@ -105,31 +140,72 @@ public class EnemyAI : MonoBehaviour
             potensialPositions = positions;
         }
 
-        //todo add some random thing here
-
         // Choose median within available positions
-        var medianPosition = potensialPositions.ElementAt(potensialPositions.Count % 2 == 0
-            ? potensialPositions.Count / 2
-            : (potensialPositions.Count - 1) / 2);
+        Vector2Int GetMedianPosition(List<Vector2Int> positionsToChoose)
+        {
+            return positionsToChoose.ElementAt(positionsToChoose.Count % 2 == 0
+                ? positionsToChoose.Count / 2
+                : (positionsToChoose.Count - 1) / 2);
+        }
 
-        return medianPosition;
+        // Randomly choose between top two positions
+        var position1 = GetMedianPosition(potensialPositions);
+
+        potensialPositions.Remove(position1);
+        if (potensialPositions.Any())
+        {
+            var position2 = GetMedianPosition(potensialPositions);
+
+            return UnityEngine.Random.Range(0, 2) == 0
+                ? position1
+                : position2;
+        }
+        else
+        {
+            return position1;
+        }        
     }
 
-    //todo improve it
+    private List<(float Value, Type Type)> GetCurrentFactoryCorrelations()
+    {
+        var builtFactories = GetAllBuildFactories();
+
+        return builtFactories
+            .GroupBy(f => f.GetType())
+            .Select(g => ((float)g.Count(), g.Key))
+            .ToList();
+    }
+
     private FactoryObject ChooseNewFactory()
     {
-        var cheapestFactory = _availableFactories
+        // Calculate what factory should be build according to planned correlactions
+        var currentCorrelation = GetCurrentFactoryCorrelations();
+        var delta = new List<(float Value, Type Type)>();       
+
+        foreach (var correlation in _planedFactoryCorrelations)
+        {
+            var currentValue = currentCorrelation
+                .FirstOrDefault(c => c.Type == correlation.Type)
+                .Value;
+
+            delta.Add((currentValue / correlation.Value, correlation.Type));
+        }
+
+        var minValue = delta.Min(c => c.Value);
+        var factoryWithMinCorrelations = delta.Where(c => c.Value == minValue).Select(c => c.Type);
+        var factoryToChoose = _availableFactories.Where(f => factoryWithMinCorrelations.Contains(f.GetType()));
+
+        // Choose the cheapest factory between available
+        var cheapestFactory = factoryToChoose
             .Aggregate((i1, i2) => i1.Parameters.Cost < i2.Parameters.Cost ? i1 : i2);
+
         return cheapestFactory;
     }
 
-    //todo don't work for two farest factories
     private IEnumerable<FactoryObject> ChooseFactoryToUpgarde()
     {
         // Find all factories that could be upgraded
-        var builtFactories = _factoriesHex
-            .Where(h => h.Content != null && h.Content as FactoryObject)
-            .Select(h => h.Content as FactoryObject);
+        var builtFactories = GetAllBuildFactories();
 
         if (!builtFactories.Any())
         {
@@ -149,5 +225,12 @@ public class EnemyAI : MonoBehaviour
         }
 
         return ordered.Take(amountToConsider);
+    }
+
+    private IEnumerable<FactoryObject> GetAllBuildFactories()
+    {
+        return _factoriesHex
+            .Where(h => h.Content != null && h.Content as FactoryObject)
+            .Select(h => h.Content as FactoryObject);
     }
 }
