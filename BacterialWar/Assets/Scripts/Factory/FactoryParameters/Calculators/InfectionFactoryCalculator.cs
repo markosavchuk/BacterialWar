@@ -3,6 +3,13 @@ public class InfectionFactoryCalculator : BaseFactoryCalculator
 {
     public override FactoryParameters GetParameters(int level)
     {
+        var cached = CheckForCaching(GetType(), level);
+
+        if (cached != null)
+        {
+            return cached;
+        }
+
         var parameters = new InfectionFactoryParameters
         {
             Name = "Infectious Virus Generator",
@@ -23,6 +30,8 @@ public class InfectionFactoryCalculator : BaseFactoryCalculator
         parameters.Cost += 110 * level;
         parameters.Infection += 2 * level;
         parameters.RiachRange += (level - 1);
+
+        СachedParameters.Add((GetType(), level), parameters);
 
         return parameters;
     }

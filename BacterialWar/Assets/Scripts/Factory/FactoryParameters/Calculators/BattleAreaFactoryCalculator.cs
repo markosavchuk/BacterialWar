@@ -3,7 +3,12 @@ public class BattleAreaFactoryCalculator : BaseFactoryCalculator
 {
     public override FactoryParameters GetParameters(int level)
     {
-        //todo set mob image according to level
+        var cached = CheckForCaching(GetType(), level);
+
+        if (cached != null)
+        {
+            return cached;
+        }
 
         var parameters = new BattleAreaFactoryParameters
         {
@@ -28,6 +33,8 @@ public class BattleAreaFactoryCalculator : BaseFactoryCalculator
         parameters.Cost += 120 * level;
         parameters.WaveDamage += 1 * level;
         parameters.RiachRange += (level - 1);
+
+        СachedParameters.Add((GetType(), level), parameters);
 
         return parameters;
     }
