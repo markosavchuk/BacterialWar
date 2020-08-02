@@ -15,17 +15,25 @@ public class BattleAreaAttacker : BaseMobAttacker
 
     protected override void ExecuteRound()
     {
-        base.ExecuteRound();
-
-        foreach (var victim in EnemyMobsInArea)
-        {
-            victim.GotAttacked(_damage, 0);
-        }
+        base.ExecuteRound();        
 
         if (EnemyMobsInArea.Any())
         {
             AddWaveAttackParticle(ParticleCollection.Instance.DamageArea, 10, new Vector3(0, -1f, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime);
+        }
+
+        foreach (var victim in EnemyMobsInArea)
+        {
+            var currentVictimPosition = victim.MapPosition;
+
+            StartCoroutine(CoroutineHelper.ExecuteAfterTime(GetTimeToRichMob(currentVictimPosition), () =>
+            {
+                if (RichArea.Contains(victim.MapPosition))
+                {
+                    victim.GotAttacked(_damage, 0);
+                }
+            }));            
         }
     }
 

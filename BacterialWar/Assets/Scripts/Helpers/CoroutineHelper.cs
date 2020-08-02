@@ -18,4 +18,10 @@ public static class CoroutineHelper
         yield return new WaitForSeconds(waitingSeconds - pingSeconds * fraction);
         executionTask();
     }
+
+    public static IEnumerator ExecuteAfterTime(float waitingSeconds, Action executionTask)
+    {
+        yield return new WaitForSeconds(waitingSeconds);
+        executionTask();
+    }
 }

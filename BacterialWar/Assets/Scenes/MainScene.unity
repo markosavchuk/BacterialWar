@@ -3168,7 +3168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: 0
   _stepPeriod: 2
-  _difficulty: 0
+  _difficulty: 1
 --- !u!114 &1536091118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3225,7 +3225,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: 1
   _stepPeriod: 2
-  _difficulty: 0
+  _difficulty: 1
 --- !u!4 &1536091122
 Transform:
   m_ObjectHideFlags: 0

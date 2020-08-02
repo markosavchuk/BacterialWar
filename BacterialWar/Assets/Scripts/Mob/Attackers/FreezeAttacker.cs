@@ -12,17 +12,25 @@ public class FreezeAttacker : BaseMobAttacker
     protected override void ExecuteRound()
     {
         base.ExecuteRound();
-
-        foreach (MobObject mob in EnemyMobsInArea)
-        {
-            mob.FreezeFight(_freezeRealTime);
-            mob.FreezeMovement(_freezeRealTime);
-        }
-
+       
         if (EnemyMobsInArea.Any())
         {
             AddWaveAttackParticle(ParticleCollection.Instance.DamageFreeze, 10, new Vector3(0, 0, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime * 0.25f);
+        }
+
+        foreach (MobObject victim in EnemyMobsInArea)
+        {
+            var currentVictimPosition = victim.MapPosition;
+
+            StartCoroutine(CoroutineHelper.ExecuteAfterTime(GetTimeToRichMob(currentVictimPosition), () =>
+            {
+                if (RichArea.Contains(victim.MapPosition))
+                {
+                    victim.FreezeFight(_freezeRealTime);
+                    victim.FreezeMovement(_freezeRealTime);
+                }
+            }));            
         }
     }
 

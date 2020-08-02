@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class BaseMobAttacker : MonoBehaviour
 {
+    private const float RichTimeConst = 2.5f;
+
     protected MobObject MobObject;
 
     private float _time = 0f;
     private float _roundPeriod = int.MaxValue;
 
     protected IEnumerable<HexContent> EnemyMobsInArea;
+    protected IEnumerable<Vector2Int> RichArea;
     protected bool IsAttackFactories = false;
 
     protected virtual void Awake()
@@ -46,8 +49,8 @@ public class BaseMobAttacker : MonoBehaviour
 
     protected virtual void ExecuteRound()
     {
-        var richArea = MobAttackerExtension.GetRichArea(MobObject);
-        EnemyMobsInArea = MobAttackerExtension.GetEnemyInArea(richArea, MobObject.Player, IsAttackFactories);
+        RichArea = MobAttackerExtension.GetRichArea(MobObject);
+        EnemyMobsInArea = MobAttackerExtension.GetEnemyInArea(RichArea, MobObject.Player, IsAttackFactories);
     }
 
     protected void AddPointAttackParticles(GameObject particlePrefab, Vector2Int targetPosition, Vector3 offset) 
@@ -82,9 +85,14 @@ public class BaseMobAttacker : MonoBehaviour
 
     protected bool CanAttackSomeone()
     {
-        var richArea = MobAttackerExtension.GetRichArea(MobObject);
-        EnemyMobsInArea = MobAttackerExtension.GetEnemyInArea(richArea, MobObject.Player, IsAttackFactories);
+        RichArea = MobAttackerExtension.GetRichArea(MobObject);
+        EnemyMobsInArea = MobAttackerExtension.GetEnemyInArea(RichArea, MobObject.Player, IsAttackFactories);
         return EnemyMobsInArea.Any();
+    }
+
+    protected float GetTimeToRichMob(Vector2Int vectimMobPosition)
+    {
+        return Vector2Int.Distance(MobObject.MapPosition, vectimMobPosition) * Settings.Instance.StepTime / RichTimeConst;
     }
 
     public virtual bool ShouldMove()

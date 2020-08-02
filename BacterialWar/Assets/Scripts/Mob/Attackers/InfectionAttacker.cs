@@ -17,10 +17,18 @@ public class InfectionAttacker : BaseMobAttacker
 
         if (victim != null && victim is MobObject mobVictom)
         {
-            mobVictom.GotInfected(_permanentDamage);
-
             AddPointAttackParticles(ParticleCollection.Instance.DamageInfection, victim.MapPosition, new Vector3(0, 1f, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime * 0.25f);
+
+            var currentVictimPosition = victim.MapPosition;
+
+            StartCoroutine(CoroutineHelper.ExecuteAfterTime(GetTimeToRichMob(currentVictimPosition), () =>
+            {
+                if (victim.MapPosition.Equals(currentVictimPosition))
+                {
+                    mobVictom.GotInfected(_permanentDamage);
+                }
+            }));
         }
     }
 

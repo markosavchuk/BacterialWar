@@ -3,6 +3,8 @@ using System.Collections;
 
 public class BattlePointAttacker : BaseMobAttacker
 {
+    
+
     private float _damage;
 
     protected override void Awake()
@@ -22,11 +24,19 @@ public class BattlePointAttacker : BaseMobAttacker
 
         if (victim != null)
         {
-            victim.GotAttacked(_damage, Settings.Instance.StepTime * 0.5f);
-
-            AddPointAttackParticles(ParticleCollection.Instance.DamagePoint, victim.MapPosition, new Vector3(0, -1f, 0));            
-
+            AddPointAttackParticles(ParticleCollection.Instance.DamagePoint, victim.MapPosition, new Vector3(0, -1f, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime);
+
+            var currentVictimPosition = victim.MapPosition;
+
+            StartCoroutine(CoroutineHelper.ExecuteAfterTime(GetTimeToRichMob(currentVictimPosition), () =>
+            {
+                // Check if victim is still on that position
+                if (victim.MapPosition.Equals(currentVictimPosition))
+                {
+                    victim.GotAttacked(_damage, Settings.Instance.StepTime * 0.5f);                    
+                }
+            }));       
         }
     }
 
