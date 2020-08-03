@@ -45,6 +45,6 @@ public class MainMenuManager : SingletonMonoBehaviour<MainMenuManager>
 
     private void SetMoneyValue(object sender, float money)
     {
-        _moneyValue.text = money.ToString();
+        _moneyValue.text = Mathf.Round(money).ToString();
     }
 }

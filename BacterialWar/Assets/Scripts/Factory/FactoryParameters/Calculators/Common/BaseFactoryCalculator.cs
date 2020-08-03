@@ -4,6 +4,10 @@ using UnityEngine;
 
 public abstract class BaseFactoryCalculator : MonoBehaviour
 {
+    protected const int AverageMobsAttackedWithRadius1 = 2;
+    protected const int AverageMobLifetime = 3;
+    protected const int HowManyStepsNeedToPayOffTheFactory = 10;
+
     protected static Dictionary<(Type Type, int Level), FactoryParameters> СachedParameters
         = new Dictionary<(Type Type, int Level), FactoryParameters>();
 

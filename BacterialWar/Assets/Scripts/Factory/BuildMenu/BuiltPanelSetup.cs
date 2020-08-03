@@ -58,6 +58,6 @@ public class BuiltPanelSetup : MonoBehaviour
 
     private void SetHealth()
     {
-        _factoryHealh.text = $"{_factoryHexObject.Health}/{_factoryHexObject.StartHealth}";
+        _factoryHealh.text = $"{Mathf.Round(_factoryHexObject.Health)}/{Mathf.Round(_factoryHexObject.StartHealth)}";
     }
 }

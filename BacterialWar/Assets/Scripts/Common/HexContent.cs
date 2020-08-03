@@ -24,6 +24,8 @@ public class HexContent : MapObject
         }
     }
 
+    public float Defense;
+
     public virtual void GotAttacked(float damage, float freezeMovementTime)
     {
         DamageObject(damage);
@@ -48,24 +50,31 @@ public class HexContent : MapObject
             gameObject.transform.localScale);
 
         var textMesh = damageText.GetComponent<TextMesh>();
-        textMesh.text = $"-{delta}";
+        textMesh.text = $"-{Mathf.Round(delta)}";
         damageText.AddComponent<TextMovement>();
     }
 
     protected virtual void DamageObject(float damage)
     {
-        if (damage == 0)
+        var realDamage = CalculateDefense(damage);
+
+        if (realDamage == 0)
         {
             return;
         }
 
-        Health -= damage;
+        Health -= realDamage;
 
-        ShowHealthChange(damage);
+        ShowHealthChange(realDamage);
 
         if (Health <= 0)
         {
             DestroyObject();
         }
+    }
+
+    private float CalculateDefense(float damage)
+    {
+        return damage * ((100 - Defense) / 100);
     }
 }

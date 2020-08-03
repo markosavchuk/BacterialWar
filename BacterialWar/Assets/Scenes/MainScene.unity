@@ -421,6 +421,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
   StartHealth: 0
+  Defense: 0
   FactoryCalculator: {fileID: 44866126}
   Level: 0
   FactoryImage: {fileID: 0}
@@ -1086,6 +1087,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
   StartHealth: 0
+  Defense: 0
   FactoryCalculator: {fileID: 264997219}
   Level: 0
   FactoryImage: {fileID: 0}
@@ -1524,6 +1526,22 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 22400002, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22400002, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 22400002, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 104
+      objectReference: {fileID: 0}
+    - target: {fileID: 22400002, guid: 05a81c3d5091440058129444d28322f3, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -24
+      objectReference: {fileID: 0}
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1607,6 +1625,26 @@ PrefabInstance:
     - target: {fileID: 22400004, guid: 05a81c3d5091440058129444d28322f3, type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313454505314979848, guid: 05a81c3d5091440058129444d28322f3,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313454505314979848, guid: 05a81c3d5091440058129444d28322f3,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313454505314979848, guid: 05a81c3d5091440058129444d28322f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 35.199997
+      objectReference: {fileID: 0}
+    - target: {fileID: 1313454505314979848, guid: 05a81c3d5091440058129444d28322f3,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -24
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: -2551567307442911686, guid: 05a81c3d5091440058129444d28322f3, type: 3}
@@ -1953,6 +1991,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
   StartHealth: 0
+  Defense: 0
   FactoryCalculator: {fileID: 657071097}
   Level: 0
   FactoryImage: {fileID: 0}
@@ -2843,7 +2882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _persistent: 1
-  _startMoneyAmount: 600
+  _startMoneyAmount: 2500
 --- !u!4 &1339406350
 Transform:
   m_ObjectHideFlags: 0
@@ -2931,6 +2970,7 @@ MonoBehaviour:
   _crystal1Image: {fileID: 21300000, guid: 2926f473918e143d98e1fd87b713584f, type: 3}
   _crystal2Image: {fileID: 21300000, guid: a425e63c14a354609b52716c4d3f6827, type: 3}
   _health: 5000
+  _defense: 50
 --- !u!1 &1405461105
 GameObject:
   m_ObjectHideFlags: 0
@@ -3161,14 +3201,14 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536091116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c287deff37d844a42b8c7be5ffcc134e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _player: 0
   _stepPeriod: 2
-  _difficulty: 1
+  _difficulty: 2
 --- !u!114 &1536091118
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3225,7 +3265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _player: 1
   _stepPeriod: 2
-  _difficulty: 1
+  _difficulty: 0
 --- !u!4 &1536091122
 Transform:
   m_ObjectHideFlags: 0
@@ -4446,6 +4486,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
   StartHealth: 0
+  Defense: 0
   FactoryCalculator: {fileID: 1816787950}
   Level: 0
   FactoryImage: {fileID: 0}
@@ -4790,7 +4831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 455.0752, y: -160}
+  m_AnchoredPosition: {x: 138.54681, y: -160}
   m_SizeDelta: {x: 256, y: 256}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1967643019

@@ -15,6 +15,7 @@ public class MobObject : HexContent
     public float FrozenMovement = 0;
     public bool IsInMotion = false;
     public float Infection = 0;
+    public float Reward;
 
     private float _time = 0f;
     private StateParticle _frozenParticles;

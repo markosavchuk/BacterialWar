@@ -29,7 +29,7 @@ public class MoneyManager : SingletonMonoBehaviour<MoneyManager>
             ? Player.MyPlayer
             : Player.EnemyPlayer;
 
-        WalletsDictionary[player] += CalculateMoneyFromMob(mobObject);
+        WalletsDictionary[player] += mobObject.Reward;
 
         if (player == Player.MyPlayer)
         {
@@ -66,11 +66,6 @@ public class MoneyManager : SingletonMonoBehaviour<MoneyManager>
     public float GetCurrentAmount(Player player)
     {
         return WalletsDictionary[player];
-    }
-
-    private float CalculateMoneyFromMob(MobObject mob)
-    {
-        return mob.StartHealth;
     }
 
     private void SpendMoney(Player player, float amount)

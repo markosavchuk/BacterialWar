@@ -1,7 +1,7 @@
 ﻿using System;
 public class InfectionFactoryParameters : FactoryParameters
 {
-    public float Infection = 5;
+    public float Infection;
 
     public override (string Name, float Value) SpecialDamageValue
     {

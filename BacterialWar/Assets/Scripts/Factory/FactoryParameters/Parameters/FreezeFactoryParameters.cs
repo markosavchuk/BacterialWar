@@ -2,7 +2,7 @@
 using UnityEngine;
 public class FreezeFactoryParameters : FactoryParameters
 {
-    public float Freeze = 1;
+    public float Freeze;
 
     public override (string Name, float Value) SpecialDamageValue
     {

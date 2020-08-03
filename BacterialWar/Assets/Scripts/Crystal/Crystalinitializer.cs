@@ -19,6 +19,9 @@ public class Crystalinitializer : MonoBehaviour
     [SerializeField]
     private float _health;
 
+    [SerializeField]
+    private float _defense;
+
     private void Start()
     {
         AddCrystals();
@@ -42,6 +45,7 @@ public class Crystalinitializer : MonoBehaviour
         crystalObject.Player = parentHex.Player;
         crystalObject.Health = _health;
         crystalObject.StartHealth = _health;
+        crystalObject.Defense = _defense;
         crystalObject.CrystalImage = crystalImage;
 
         parentHex.SetContent(crystalObject);

@@ -101,15 +101,17 @@ public class BaseFactoryMobProduction : MonoBehaviour
 
     private void CalculateReproducableTime()
     {
-        _reproducableTime = FactoryParameters.GenerationSpeedConst / FactoryObject.Parameters.GenetaionSpeed
-            * Settings.Instance.StepTime;
+        _reproducableTime = Settings.Instance.StepTime
+            / FactoryObject.Parameters.GenetaionSpeed;
     }
 
     private void InitializeParameters()
     {
         MobObject.Health = FactoryObject.Parameters.Health;
+        MobObject.Defense = FactoryObject.Parameters.Defense;
         MobObject.StartHealth = FactoryObject.Parameters.Health;
         MobObject.RiachRange = FactoryObject.Parameters.RiachRange;
+        MobObject.Reward = FactoryObject.Parameters.RewardForDestroyingMob;
     }
 
     private void OnDestroy()

@@ -74,7 +74,7 @@ public class BaseMobAttacker : MonoBehaviour
 
     protected void SetParameters(FactoryParameters parameters)
     {
-        _roundPeriod = FactoryParameters.AttackSpeedConst / parameters.Speed * Settings.Instance.StepTime;
+        _roundPeriod = parameters.AttackSpeed * Settings.Instance.StepTime;
     }
 
     private GameObject AddParticle(GameObject particlePrefab)

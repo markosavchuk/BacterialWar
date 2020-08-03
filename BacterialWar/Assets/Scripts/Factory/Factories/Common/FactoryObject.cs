@@ -41,6 +41,7 @@ public abstract class FactoryObject : FactoryHexObject
 
         Health = Parameters.FactoryHealth;
         StartHealth = Parameters.FactoryHealth;
+        Defense = Parameters.Defense;
     }
 
     public virtual void UpgradeFactory()
@@ -59,6 +60,7 @@ public abstract class FactoryObject : FactoryHexObject
 
         Health = Parameters.FactoryHealth;
         StartHealth = Parameters.FactoryHealth;
+        Defense = Parameters.Defense;
     }
 
     protected virtual void InitializeMobProduction()
