@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class MapManager : SingletonBase<MapManager>
 {
@@ -47,5 +48,11 @@ public class MapManager : SingletonBase<MapManager>
             }
         }
         return hexs;
+    }
+
+    public CrystalObject GetCrystal(Player player)
+    {
+        var t = GameObject.FindObjectsOfType<CrystalObject>().ToList();
+        return GameObject.FindObjectsOfType<CrystalObject>().Where(c => c.Player == player).FirstOrDefault();
     }
 }

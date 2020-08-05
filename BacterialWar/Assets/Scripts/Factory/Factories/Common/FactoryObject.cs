@@ -40,7 +40,7 @@ public abstract class FactoryObject : FactoryHexObject
         InitializeMobProduction();
 
         Health = Parameters.FactoryHealth;
-        StartHealth = Parameters.FactoryHealth;
+        InitialHealth = Parameters.FactoryHealth;
         Defense = Parameters.Defense;
     }
 
@@ -59,7 +59,7 @@ public abstract class FactoryObject : FactoryHexObject
         SetReproducableMob();
 
         Health = Parameters.FactoryHealth;
-        StartHealth = Parameters.FactoryHealth;
+        InitialHealth = Parameters.FactoryHealth;
         Defense = Parameters.Defense;
     }
 

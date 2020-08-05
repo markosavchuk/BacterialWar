@@ -12,7 +12,7 @@ public class HexContent : MapObject
 
     public EventHandler<float> HealthUpdated;
 
-    public float StartHealth;
+    public float InitialHealth;
 
     private float _health;
     public float Health {
