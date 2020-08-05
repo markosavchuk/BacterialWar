@@ -57,7 +57,6 @@ public class DescriptionPanelSetup : MonoBehaviour
 
         _cost.text = (isNewFactory ? $"Plant" : "Upgrade") + $" ({newParameters.Cost})";
 
-        //todo show freeze in x100
         _damage.text = FillParameterText(newParameters.SpecialDamageValue.Name, newParameters.SpecialDamageValue.Value, oldParameters?.SpecialDamageValue.Value);
     }
 
@@ -68,18 +67,21 @@ public class DescriptionPanelSetup : MonoBehaviour
 
     private string FillParameterText(string name, float newParameter, float? oldParameter = null, string additionalSign = "")
     {
-        newParameter = (int)newParameter;
+        var maxValuetoShowDecimals = 9;
+
+        newParameter = newParameter > maxValuetoShowDecimals ? (int)newParameter : newParameter;
         if (oldParameter.HasValue)
         {
-            oldParameter = (int)oldParameter;
+            oldParameter = oldParameter > maxValuetoShowDecimals ? (int)oldParameter : oldParameter;
         }
 
-        var str = $"{name}: {newParameter}{additionalSign}";
+        var str = $"{name}: {string.Format("{0:0.#}", newParameter)}{additionalSign}";
         if (oldParameter.HasValue)
         {
-            var deltaStr = newParameter > oldParameter ? $" (+{newParameter-oldParameter})" : string.Empty;
+            var deltaStr = newParameter > oldParameter ? $" (+{string.Format("{0:0.#}", newParameter - oldParameter)})" : string.Empty;
             str = str + deltaStr;
         }
+
         return str;
     }
 }

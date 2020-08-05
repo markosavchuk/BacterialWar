@@ -148,7 +148,7 @@ PrefabInstance:
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 68
+      value: 75.5
       objectReference: {fileID: 0}
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
@@ -2564,7 +2564,7 @@ PrefabInstance:
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 68
+      value: 75.5
       objectReference: {fileID: 0}
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
@@ -2729,7 +2729,7 @@ PrefabInstance:
     - target: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_Text
-      value: 'Damage: 10'
+      value: 'Damage: 9999 (+9999)'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9761143cc80624b5593b5d8f28b4594e, type: 3}
@@ -2969,7 +2969,7 @@ MonoBehaviour:
     type: 3}
   _crystal1Image: {fileID: 21300000, guid: 2926f473918e143d98e1fd87b713584f, type: 3}
   _crystal2Image: {fileID: 21300000, guid: a425e63c14a354609b52716c4d3f6827, type: 3}
-  _health: 5000
+  _health: 1000
   _defense: 50
 --- !u!1 &1405461105
 GameObject:
@@ -3258,7 +3258,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536091116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c287deff37d844a42b8c7be5ffcc134e, type: 3}
   m_Name: 
@@ -3439,7 +3439,7 @@ PrefabInstance:
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 68
+      value: 75.5
       objectReference: {fileID: 0}
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
@@ -3624,24 +3624,7 @@ PrefabInstance:
     - target: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_Text
-      value: 'Health: 999 (+99)
-
-'
-      objectReference: {fileID: 0}
-    - target: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
-        type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
-        type: 3}
-      propertyPath: m_FontData.m_BestFit
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
-        type: 3}
-      propertyPath: m_FontData.m_HorizontalOverflow
-      value: 1
+      value: 'Health: 99'
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9761143cc80624b5593b5d8f28b4594e, type: 3}
@@ -3677,7 +3660,7 @@ PrefabInstance:
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 68
+      value: 75.5
       objectReference: {fileID: 0}
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
@@ -3922,7 +3905,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 406.20804, y: -139}
+  m_AnchoredPosition: {x: 138.54681, y: -139}
   m_SizeDelta: {x: 256, y: 214}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1700677213
@@ -4183,7 +4166,7 @@ PrefabInstance:
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 68
+      value: 75.5
       objectReference: {fileID: 0}
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
@@ -4343,9 +4326,12 @@ PrefabInstance:
     - target: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_Text
-      value: 'Defense: 1
-
-'
+      value: 'Defense: 1000'
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733542337620102102, guid: 9761143cc80624b5593b5d8f28b4594e,
+        type: 3}
+      propertyPath: m_FontData.m_MinSize
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9761143cc80624b5593b5d8f28b4594e, type: 3}
@@ -4622,7 +4608,7 @@ PrefabInstance:
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 68
+      value: 75.5
       objectReference: {fileID: 0}
     - target: {fileID: 4364340481413940901, guid: 9761143cc80624b5593b5d8f28b4594e,
         type: 3}
