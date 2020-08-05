@@ -420,7 +420,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
-  StartHealth: 0
+  InitialHealth: 0
   Defense: 0
   FactoryCalculator: {fileID: 44866126}
   Level: 0
@@ -1214,7 +1214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
-  StartHealth: 0
+  InitialHealth: 0
   Defense: 0
   FactoryCalculator: {fileID: 264997219}
   Level: 0
@@ -2246,7 +2246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
-  StartHealth: 0
+  InitialHealth: 0
   Defense: 0
   FactoryCalculator: {fileID: 657071097}
   Level: 0
@@ -3590,13 +3590,13 @@ MonoBehaviour:
     m_BestFit: 0
     m_MinSize: 0
     m_MaxSize: 173
-    m_Alignment: 3
+    m_Alignment: 5
     m_AlignByGeometry: 0
     m_RichText: 0
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1000/1000
+  m_Text: 9999/9999
 --- !u!222 &1530542338
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3634,7 +3634,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1536091116}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c287deff37d844a42b8c7be5ffcc134e, type: 3}
   m_Name: 
@@ -4894,7 +4894,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ParentHex: {fileID: 0}
-  StartHealth: 0
+  InitialHealth: 0
   Defense: 0
   FactoryCalculator: {fileID: 1816787950}
   Level: 0
