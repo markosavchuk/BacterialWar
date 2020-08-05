@@ -1,33 +1,52 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class StateManager : SingletonMonoBehaviour<StateManager>
 {
     [SerializeField]
-    private float preparationTime;
-
-    [SerializeField]
-    private Text countingText;
+    private float _preparationTime;
 
     public GameState GameState { get; private set; }
 
-    private void Start()
+    private bool _speededUp = false;
+
+    protected override void OnAwake()
     {
-        GameState = GameState.Preparation;
+        base.OnAwake();
 
-        int readPreparationTime = (int)preparationTime * (int)Settings.Instance.StepTime;
-        int countingNumber = (int)readPreparationTime;
-        countingText.text = countingNumber.ToString();
+        GameState = GameState.NotStarted;
+        Time.timeScale = 0;
+    }
 
-        StartCoroutine(CoroutineHelper.ExecuteAfterTime(readPreparationTime, () =>
+    public void StartOrResumeGame()
+    {
+        Time.timeScale = _speededUp ? 2 : 1;
+
+        if (GameState == GameState.NotStarted) 
         {
-            Destroy(countingText);
-            GameState = GameState.Fight;
-        },
-        ()=>{
-            countingNumber--;
-            countingText.text = countingNumber.ToString();
-        }, 1));
+            GameState = GameState.Preparation;
+            StartCoroutine(CoroutineHelper.ExecuteAfterTime(_preparationTime, () =>
+            {
+                GameState = GameState.Fight;
+            }));
+        }
+    }
+
+    public void StopGame()
+    {
+        SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0;
+    }
+
+    public void SpeedUpGame(bool speedUp)
+    {
+        Time.timeScale = speedUp ? 2 : 1;
+        _speededUp = speedUp;
     }
 
     public void DestroyedCrystal(CrystalObject crystalObject)

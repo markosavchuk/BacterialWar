@@ -8,8 +8,6 @@ public abstract class SingletonMonoBehaviour<T> : Singleton where T : MonoBehavi
 
     private static readonly object Lock = new object();
 
-    [SerializeField]
-    private bool _persistent = true;
     #endregion
 
     #region  Properties
@@ -48,8 +46,6 @@ public abstract class SingletonMonoBehaviour<T> : Singleton where T : MonoBehavi
     #region  Methods
     private void Awake()
     {
-        if (_persistent)
-            DontDestroyOnLoad(gameObject);
         OnAwake();
     }
 
