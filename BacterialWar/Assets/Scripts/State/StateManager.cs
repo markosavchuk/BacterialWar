@@ -54,5 +54,10 @@ public class StateManager : SingletonMonoBehaviour<StateManager>
         GameState = crystalObject.Player == Player.MyPlayer
             ? GameState.Lost
             : GameState.Won;
+
+        if (GameState == GameState.Won)
+        {
+            gameObject.AddComponent<FireworkManager>();
+        }
     }
 }

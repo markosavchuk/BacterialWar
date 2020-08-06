@@ -3484,6 +3484,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1414198724}
   - component: {fileID: 1414198723}
+  - component: {fileID: 1414198725}
   m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
@@ -3528,6 +3529,30 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1414198725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1414198722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99ce70e8a619d4aa9bfb7d8e99d8b7ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _firework1: {fileID: 7243171674319284878, guid: 73c96836c7d264180b066bad281a9027,
+    type: 3}
+  _firework2: {fileID: 3778653920233960179, guid: 521323aaa0d564ee4a440d5f74f470a9,
+    type: 3}
+  _firework3: {fileID: 4435186848047844689, guid: 7907538954fb44fecb1384f5f8a525b7,
+    type: 3}
+  _firework4: {fileID: 6540224971707040102, guid: 066adf7fd35714508b7926385ca29d87,
+    type: 3}
+  _firework5: {fileID: 2090300163881688349, guid: fa0aa17dabd494876ab9b25e3d2f1c62,
+    type: 3}
+  _firework6: {fileID: 422511659656172184, guid: e7615af89814f4c368fafb60980eeebe,
+    type: 3}
 --- !u!1 &1530542335
 GameObject:
   m_ObjectHideFlags: 0
