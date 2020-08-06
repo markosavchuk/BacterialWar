@@ -23,12 +23,6 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         _infectionFactoryBuilder = GetComponent<InfectionFactoryBuilder>();
     }
 
-    private void Start()
-    {
-        //todo remove it later
-        //AddStartFactories();
-    }
-
     public void Build<T>(Vector2Int position) where T : FactoryObject, new()
     {
         if (!MapManager.Instance.IsExist(position))
@@ -121,19 +115,5 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         }
 
         return null;
-    }
-
-    //todo remove it later
-    private void AddStartFactories()
-    {
-        Build<BattleAreaFactory>(new Vector2Int(0, 12));
-        Build<BattlePointFactory>(new Vector2Int(2, 12));
-        //Build<FreezeFactory>(new Vector2Int(3, 12));
-        //Build<InfectionFactory>(new Vector2Int(4, 12));
-
-        Build<BattleAreaFactory>(new Vector2Int(0, 1));
-        Build<BattlePointFactory>(new Vector2Int(1, 1));
-        //Build<FreezeFactory>(new Vector2Int(3, 1));
-        //Build<InfectionFactory>(new Vector2Int(4, 1));
     }
 }

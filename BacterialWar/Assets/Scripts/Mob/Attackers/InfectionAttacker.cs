@@ -24,7 +24,7 @@ public class InfectionAttacker : BaseMobAttacker
 
             StartCoroutine(CoroutineHelper.ExecuteAfterTime(GetTimeToRichMob(currentVictimPosition), () =>
             {
-                if (victim.MapPosition.Equals(currentVictimPosition))
+                if (victim != null && victim.MapPosition.Equals(currentVictimPosition))
                 {
                     mobVictom.GotInfected(_permanentDamage);
                 }

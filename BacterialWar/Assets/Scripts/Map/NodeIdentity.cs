@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-//todo improve logic
 public class NodeIdentity : MonoBehaviour
 {
     private HexObject _hexObject;

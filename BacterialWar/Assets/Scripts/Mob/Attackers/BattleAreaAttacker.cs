@@ -29,7 +29,7 @@ public class BattleAreaAttacker : BaseMobAttacker
 
             StartCoroutine(CoroutineHelper.ExecuteAfterTime(GetTimeToRichMob(currentVictimPosition), () =>
             {
-                if (RichArea.Contains(victim.MapPosition))
+                if (victim != null && RichArea.Contains(victim.MapPosition)) 
                 {
                     victim.GotAttacked(_damage, 0);
                 }

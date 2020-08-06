@@ -25,7 +25,7 @@ public class FreezeAttacker : BaseMobAttacker
 
             StartCoroutine(CoroutineHelper.ExecuteAfterTime(GetTimeToRichMob(currentVictimPosition), () =>
             {
-                if (RichArea.Contains(victim.MapPosition))
+                if (victim != null && RichArea.Contains(victim.MapPosition))
                 {
                     victim.FreezeFight(_freezeRealTime);
                     victim.FreezeMovement(_freezeRealTime);

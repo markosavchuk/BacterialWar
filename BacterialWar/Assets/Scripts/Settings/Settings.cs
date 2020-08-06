@@ -6,7 +6,6 @@ public class Settings : SingletonMonoBehaviour<Settings>
     {
         base.OnAwake();
 
-        //todo change it later
         Application.targetFrameRate = 30;
     }
 

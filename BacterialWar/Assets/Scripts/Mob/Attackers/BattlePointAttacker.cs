@@ -32,9 +32,9 @@ public class BattlePointAttacker : BaseMobAttacker
             StartCoroutine(CoroutineHelper.ExecuteAfterTime(GetTimeToRichMob(currentVictimPosition), () =>
             {
                 // Check if victim is still on that position
-                if (victim.MapPosition.Equals(currentVictimPosition))
+                if (victim!=null && victim.MapPosition.Equals(currentVictimPosition))
                 {
-                    victim.GotAttacked(_damage, Settings.Instance.StepTime * 0.5f);                    
+                    victim.GotAttacked(_damage, Settings.Instance.StepTime * 0.5f);
                 }
             }));       
         }
