@@ -15,13 +15,35 @@ public class BuildMenuInteraction : MonoBehaviour
     [SerializeField]
     private GameObject _builtFactoryPanel;
 
-    private FactoryObject _activeFactoryDescription;
     private Vector2Int? _selectedFactoryPosition;
+    private FactoryObject _activeFactoryDescription;
     private FactoryObject _factoryToUpgrage;
+
+    private Vector2Int? SelectedFactoryPosition
+    {
+        get => _selectedFactoryPosition;
+        set
+        {
+            if (value.HasValue)
+            {
+                MapManager.Instance.Hex(value.Value)
+                    .GetComponent<FactoryNodeInteraction>()
+                    ?.HighlightNode(true);
+            }
+            else if (_selectedFactoryPosition.HasValue)
+            {
+                MapManager.Instance.Hex(_selectedFactoryPosition.Value)
+                    .GetComponent<FactoryNodeInteraction>()
+                    ?.HighlightNode(false);
+            }
+
+            _selectedFactoryPosition = value;
+        }
+    }
 
     public void OpenMenu(HexObject hexObject)
     {
-        if (_selectedFactoryPosition.HasValue)
+        if (SelectedFactoryPosition.HasValue)
         {
             return;
         }
@@ -42,7 +64,7 @@ public class BuildMenuInteraction : MonoBehaviour
             return;
         }
 
-        _selectedFactoryPosition = hexObject.MapPosition;
+        SelectedFactoryPosition = hexObject.MapPosition;
         gameObject.SetActive(true);
 
         if (hexObject.Content == null && hexObject.Player == Player.MyPlayer)
@@ -89,7 +111,7 @@ public class BuildMenuInteraction : MonoBehaviour
 
         MoneyManager.Instance.MyWalletUpdated -= OnMyWalletUpdated;
 
-        _selectedFactoryPosition = null;
+        SelectedFactoryPosition = null;
         _factoryToUpgrage = null;
 
         FadeOutAllItems(true);
@@ -129,7 +151,7 @@ public class BuildMenuInteraction : MonoBehaviour
 
     public void BuildFactory()
     {
-        if (!_selectedFactoryPosition.HasValue)
+        if (!SelectedFactoryPosition.HasValue)
         {
             return;
         }
@@ -142,7 +164,7 @@ public class BuildMenuInteraction : MonoBehaviour
         {
             try
             {
-                FactoryBuilder.Instance.Build(_activeFactoryDescription, _selectedFactoryPosition.Value);
+                FactoryBuilder.Instance.Build(_activeFactoryDescription, SelectedFactoryPosition.Value);
             }
             catch (Exception ex)
             {
@@ -150,7 +172,7 @@ public class BuildMenuInteraction : MonoBehaviour
             }
         }
 
-        _selectedFactoryPosition = null;
+        SelectedFactoryPosition = null;
 
         CloseMenu();
     }

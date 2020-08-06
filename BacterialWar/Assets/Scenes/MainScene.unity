@@ -3545,8 +3545,6 @@ MonoBehaviour:
     type: 3}
   _firework2: {fileID: 3778653920233960179, guid: 521323aaa0d564ee4a440d5f74f470a9,
     type: 3}
-  _firework3: {fileID: 4435186848047844689, guid: 7907538954fb44fecb1384f5f8a525b7,
-    type: 3}
   _firework4: {fileID: 6540224971707040102, guid: 066adf7fd35714508b7926385ca29d87,
     type: 3}
   _firework5: {fileID: 2090300163881688349, guid: fa0aa17dabd494876ab9b25e3d2f1c62,
