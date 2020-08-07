@@ -22,12 +22,4 @@ public class FreezeFactoryMobProduction : BaseFactoryMobProduction
 
         ProgressBarControl.SetColor(UICollection.Instance.FreezeFactoryProgressBarColor);
     }
-
-    public override void OnUpgrade()
-    {
-        base.OnUpgrade();
-
-        var parameters = FactoryObject.Parameters as FreezeFactoryParameters;
-        _attacker.SetParameters(parameters);
-    }
 }

@@ -21,13 +21,4 @@ public class BattleAreaFactoryMobProduction : BaseFactoryMobProduction
         
         ProgressBarControl.SetColor(UICollection.Instance.BattleAreaFactoryProgressBarColor);
     }
-
-    public override void OnUpgrade()
-    {
-        base.OnUpgrade();
-
-        var parameters = FactoryObject.Parameters as BattleAreaFactoryParameters;
-
-        _attacker.SetParameters(parameters);
-    }
 }

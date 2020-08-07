@@ -44,7 +44,6 @@ public class BaseFactoryMobProduction : MonoBehaviour
     public virtual void OnUpgrade()
     {
         CalculateReproducableTime();
-        InitializeParameters();
     }
 
     protected virtual void AddProgressBar()

@@ -22,13 +22,4 @@ public class InfectionFactoryMobProduction : BaseFactoryMobProduction
 
         ProgressBarControl.SetColor(UICollection.Instance.InfectionFactoryProgressBarColor);
     }
-
-    public override void OnUpgrade()
-    {
-        base.OnUpgrade();
-
-        var parameters = FactoryObject.Parameters as InfectionFactoryParameters;
-
-        _attacker.SetParameters(parameters);
-    }
 }
