@@ -7,6 +7,13 @@ public class InfectionAttacker : BaseMobAttacker
     [SerializeField]
     private float _permanentDamage;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        AddAudioSource(AudioCollection.Instance.InfectionSound);
+    }
+
     protected override void ExecuteRound()
     {
         base.ExecuteRound();
@@ -19,6 +26,11 @@ public class InfectionAttacker : BaseMobAttacker
         {
             AddPointAttackParticles(ParticleCollection.Instance.DamageInfection, victim.MapPosition, new Vector3(0, 1f, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime * 0.25f);
+
+            if (StateManager.Instance.GameState != GameState.Won)
+            {
+                SoundAudioSource.Play();
+            }
 
             var currentVictimPosition = victim.MapPosition;
 

@@ -64,6 +64,8 @@ public class BuildMenuInteraction : MonoBehaviour
             return;
         }
 
+        AudioCollection.Instance.ClickSound.Play();
+
         SelectedFactoryPosition = hexObject.MapPosition;
         gameObject.SetActive(true);
 
@@ -137,6 +139,8 @@ public class BuildMenuInteraction : MonoBehaviour
 
     public void OpenFactoryDescription(FactoryObject factoryObject)
     {
+        AudioCollection.Instance.ClickSound.Play();
+
         _activeFactoryDescription = factoryObject;
 
         _descriptionPanel.GetComponent<DescriptionPanelSetup>().Setup(factoryObject, true);
@@ -158,7 +162,7 @@ public class BuildMenuInteraction : MonoBehaviour
 
         if (_factoryToUpgrage != null)
         {
-            _factoryToUpgrage.UpgradeFactory();
+            _factoryToUpgrage.UpgradeFactory();            
         }
         else
         {

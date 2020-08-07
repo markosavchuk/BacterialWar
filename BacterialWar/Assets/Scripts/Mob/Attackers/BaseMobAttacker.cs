@@ -7,6 +7,7 @@ public class BaseMobAttacker : MonoBehaviour
     private const float RichTimeConst = 2.5f;
 
     protected MobObject MobObject;
+    protected AudioSource SoundAudioSource;
 
     private float _time = 0f;
     private float _roundPeriod = int.MaxValue;
@@ -103,5 +104,12 @@ public class BaseMobAttacker : MonoBehaviour
     public void ResetWaitingTime()
     {
         _time = Time.deltaTime;
+    }
+
+    protected void AddAudioSource(AudioSource audioSource)
+    {
+        SoundAudioSource = gameObject.AddComponent<AudioSource>();
+        SoundAudioSource.clip = audioSource.clip;
+        SoundAudioSource.volume = audioSource.volume;
     }
 }

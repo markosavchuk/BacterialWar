@@ -59,6 +59,11 @@ public class FactoryBuilder : SingletonMonoBehaviour<FactoryBuilder>
         factoryComponent.Initialize();
 
         MoneyManager.Instance.SpendMoneyOnBuildingFactory(factoryComponent);
+
+        if (factoryComponent.Player == Player.MyPlayer)
+        {
+            AudioCollection.Instance.BuildSound.Play();
+        }
     }
 
     public void Build(FactoryObject factoryObject, Vector2Int position)

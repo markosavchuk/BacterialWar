@@ -11,6 +11,8 @@ public class BattleAreaAttacker : BaseMobAttacker
         base.Awake();
 
         IsAttackFactories = true;
+
+        AddAudioSource(AudioCollection.Instance.WaveAttackSound);
     }
 
     protected override void ExecuteRound()
@@ -21,6 +23,11 @@ public class BattleAreaAttacker : BaseMobAttacker
         {
             AddWaveAttackParticle(ParticleCollection.Instance.DamageArea, 10, new Vector3(0, -1f, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime);
+
+            if (StateManager.Instance.GameState != GameState.Won)
+            {
+                SoundAudioSource.Play();
+            }
         }
 
         foreach (var victim in EnemyMobsInArea)

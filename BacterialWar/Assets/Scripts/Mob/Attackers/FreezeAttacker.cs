@@ -9,6 +9,13 @@ public class FreezeAttacker : BaseMobAttacker
 
     private float _freezeRealTime;
 
+    protected override void Awake()
+    {
+        base.Awake();
+
+        AddAudioSource(AudioCollection.Instance.FreezeSound);
+    }
+
     protected override void ExecuteRound()
     {
         base.ExecuteRound();
@@ -17,6 +24,11 @@ public class FreezeAttacker : BaseMobAttacker
         {
             AddWaveAttackParticle(ParticleCollection.Instance.DamageFreeze, 10, new Vector3(0, 0, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime * 0.25f);
+
+            if (StateManager.Instance.GameState != GameState.Won)
+            {
+                SoundAudioSource.Play();
+            }
         }
 
         foreach (MobObject victim in EnemyMobsInArea)

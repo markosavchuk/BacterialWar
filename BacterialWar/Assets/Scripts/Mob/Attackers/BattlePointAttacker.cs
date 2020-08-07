@@ -3,8 +3,6 @@ using System.Collections;
 
 public class BattlePointAttacker : BaseMobAttacker
 {
-    
-
     private float _damage;
 
     protected override void Awake()
@@ -12,6 +10,8 @@ public class BattlePointAttacker : BaseMobAttacker
         base.Awake();
 
         IsAttackFactories = true;
+
+        AddAudioSource(AudioCollection.Instance.PointAttackSound);
     }
 
     protected override void ExecuteRound()
@@ -26,6 +26,11 @@ public class BattlePointAttacker : BaseMobAttacker
         {
             AddPointAttackParticles(ParticleCollection.Instance.DamagePoint, victim.MapPosition, new Vector3(0, -1f, 0));
             MobObject.FreezeMovement(Settings.Instance.StepTime);
+
+            if (StateManager.Instance.GameState != GameState.Won)
+            {
+                SoundAudioSource.Play();
+            }
 
             var currentVictimPosition = victim.MapPosition;
 

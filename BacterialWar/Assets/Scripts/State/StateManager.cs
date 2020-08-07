@@ -35,6 +35,7 @@ public class StateManager : SingletonMonoBehaviour<StateManager>
 
     public void StopGame()
     {
+        AudioCollection.Instance.SaveBackgroundMusicTime();
         SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex);
     }
 
@@ -57,7 +58,15 @@ public class StateManager : SingletonMonoBehaviour<StateManager>
 
         if (GameState == GameState.Won)
         {
-            gameObject.AddComponent<FireworkManager>();
+            OnWin();
         }
+    }
+
+    private void OnWin()
+    {
+        gameObject.AddComponent<FireworkManager>();
+
+        AudioCollection.Instance.StopBackgroundMusic();
+        AudioCollection.Instance.VictoryMusic.Play();
     }
 }

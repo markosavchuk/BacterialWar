@@ -61,6 +61,11 @@ public abstract class FactoryObject : FactoryHexObject
         Health = Parameters.FactoryHealth;
         InitialHealth = Parameters.FactoryHealth;
         Defense = Parameters.Defense;
+
+        if (Player == Player.MyPlayer)
+        {
+            AudioCollection.Instance.BuildSound.Play();
+        }
     }
 
     protected virtual void InitializeMobProduction()
